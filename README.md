@@ -81,16 +81,16 @@ https://audioguide.gamegiaoduc.co/backend/abc123/guides/1
 
 Nên đổi `BACKEND_SECRET` trước khi deploy production.
 
-## Deploy Docker tại `/opt/audioguide`
+## Deploy Docker tại `/opt/audioGuide`
 
 Triển khai nhanh:
 
 ```bash
-cd /opt/audioguide
+cd /opt/audioGuide
 chmod +x deploy/quick-deploy.sh
-CF_ORIGIN_CERT_FILE="/opt/audioguide/certs/cloudflare-origin.pem" \
-CF_ORIGIN_KEY_FILE="/opt/audioguide/certs/cloudflare-origin.key" \
-DOCX_PATH="/opt/audioguide/data/source.docx" \
+CF_ORIGIN_CERT_FILE="/opt/audioGuide/certs/cloudflare-origin.pem" \
+CF_ORIGIN_KEY_FILE="/opt/audioGuide/certs/cloudflare-origin.key" \
+DOCX_PATH="/opt/audioGuide/data/source.docx" \
 ./deploy/quick-deploy.sh
 ```
 
@@ -99,7 +99,7 @@ Script này tự tạo/cập nhật `.env`, seed dữ liệu, build Docker, cài
 Hoặc chạy từng bước:
 
 ```bash
-cd /opt/audioguide
+cd /opt/audioGuide
 cp .env.example .env
 # sửa BACKEND_SECRET trong .env trước khi chạy
 npm install

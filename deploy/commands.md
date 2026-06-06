@@ -3,8 +3,8 @@
 ## 1. Copy code vào server
 
 ```bash
-mkdir -p /opt/audioguide
-cd /opt/audioguide
+mkdir -p /opt/audioGuide
+cd /opt/audioGuide
 ```
 
 ## 2. Cài dependency và tạo seed từ DOCX
@@ -28,7 +28,7 @@ npm run seed
 Nếu DOCX nằm ở đường dẫn khác trên server:
 
 ```bash
-DOCX_PATH="/opt/audioguide/data/source.docx" npm run seed
+DOCX_PATH="/opt/audioGuide/data/source.docx" npm run seed
 ```
 
 Kết quả sẽ ghi vào:
@@ -103,11 +103,11 @@ sudo systemctl reload nginx
 Chạy bằng script, gồm cả cài Cloudflare cert/key và ghi site config nginx:
 
 ```bash
-cd /opt/audioguide
+cd /opt/audioGuide
 chmod +x deploy/quick-deploy.sh
-CF_ORIGIN_CERT_FILE="/opt/audioguide/certs/cloudflare-origin.pem" \
-CF_ORIGIN_KEY_FILE="/opt/audioguide/certs/cloudflare-origin.key" \
-DOCX_PATH="/opt/audioguide/data/source.docx" \
+CF_ORIGIN_CERT_FILE="/opt/audioGuide/certs/cloudflare-origin.pem" \
+CF_ORIGIN_KEY_FILE="/opt/audioGuide/certs/cloudflare-origin.key" \
+DOCX_PATH="/opt/audioGuide/data/source.docx" \
 ./deploy/quick-deploy.sh
 ```
 
@@ -123,12 +123,12 @@ Script sẽ tự:
 Hoặc chạy thủ công:
 
 ```bash
-cd /opt/audioguide
+cd /opt/audioGuide
 cp .env.example .env
 SECRET="$(openssl rand -hex 24)"
 sed -i "s/^BACKEND_SECRET=.*/BACKEND_SECRET=$SECRET/" .env
 npm install
-DOCX_PATH="/opt/audioguide/data/source.docx" npm run seed
+DOCX_PATH="/opt/audioGuide/data/source.docx" npm run seed
 docker compose up -d --build
 sudo cp deploy/nginx-audioguide.conf /etc/nginx/conf.d/audioguide.conf
 sudo nginx -t

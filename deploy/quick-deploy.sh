@@ -2,8 +2,8 @@
 set -euo pipefail
 
 DOMAIN="${DOMAIN:-audioguide.gamegiaoduc.co}"
-APP_DIR="${APP_DIR:-/opt/audioguide}"
-DOCX_PATH="${DOCX_PATH:-/opt/audioguide/data/source.docx}"
+APP_DIR="${APP_DIR:-/opt/audioGuide}"
+DOCX_PATH="${DOCX_PATH:-/opt/audioGuide/data/source.docx}"
 PORT="${PORT:-9000}"
 SSL_DIR="${SSL_DIR:-/etc/nginx/ssl/audioguide}"
 SSL_CERT_PATH="${SSL_CERT_PATH:-$SSL_DIR/cloudflare-origin.pem}"
