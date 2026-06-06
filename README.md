@@ -65,6 +65,15 @@ public/audio/24.mp3
 
 Nếu ảnh chưa có, giao diện tự dùng ảnh placeholder. Nếu audio chưa có, nút play sẽ báo thiếu file.
 
+Khi deploy tại `/opt/audioGuide`, Nginx phục vụ trực tiếp:
+
+```text
+https://audioguide.gamegiaoduc.co/images/items/21.jpg -> /opt/audioGuide/public/images/items/21.jpg
+https://audioguide.gamegiaoduc.co/audio/21.mp3 -> /opt/audioGuide/public/audio/21.mp3
+```
+
+Sau khi copy ảnh/audio mới lên server, chạy lại `./deploy/quick-deploy.sh` hoặc `sudo nginx -t && sudo systemctl reload nginx`.
+
 ## API backend
 
 Backend không còn nằm ở `/api/guides` công khai. Link backend dùng secret trong `.env`:

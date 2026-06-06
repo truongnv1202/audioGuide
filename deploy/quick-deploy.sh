@@ -84,6 +84,18 @@ server {
         add_header Cache-Control "public, max-age=31536000, immutable";
     }
 
+    location ^~ /images/ {
+        root $APP_DIR/public;
+        try_files \$uri =404;
+        add_header Cache-Control "public, max-age=86400";
+    }
+
+    location ^~ /audio/ {
+        root $APP_DIR/public;
+        try_files \$uri =404;
+        add_header Cache-Control "public, max-age=86400";
+    }
+
     location ^~ /api/ {
         return 404;
     }
@@ -131,7 +143,7 @@ set_env_value "PORT" "$PORT"
 set_env_value "GUIDES_DATA_PATH" "$CONTAINER_GUIDES_DATA_PATH"
 set_env_value "UPLOADS_DIR" "$CONTAINER_UPLOADS_DIR"
 
-mkdir -p "$HOST_UPLOADS_DIR"
+mkdir -p "$HOST_UPLOADS_DIR" "$APP_DIR/public/images/items" "$APP_DIR/public/audio"
 
 install_origin_cert
 

@@ -48,6 +48,20 @@ public/images/items/01.jpg ... public/images/items/24.jpg
 public/audio/01.mp3 ... public/audio/24.mp3
 ```
 
+Trên server, các URL này được Nginx phục vụ trực tiếp từ thư mục `public`:
+
+```text
+https://audioguide.gamegiaoduc.co/images/items/21.jpg -> /opt/audioGuide/public/images/items/21.jpg
+https://audioguide.gamegiaoduc.co/audio/21.mp3 -> /opt/audioGuide/public/audio/21.mp3
+```
+
+Nếu vừa copy thêm file ảnh/audio, chạy lại `./deploy/quick-deploy.sh` hoặc:
+
+```bash
+sudo nginx -t
+sudo systemctl reload nginx
+```
+
 ## 4. Build và chạy Docker
 
 ```bash
