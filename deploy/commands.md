@@ -7,7 +7,7 @@ mkdir -p /opt/audioGuide
 cd /opt/audioGuide
 ```
 
-## 2. Cài dependency và tạo seed mẫu
+## 2. Cài dependency và tạo seed
 
 Tạo file môi trường:
 
@@ -19,7 +19,14 @@ echo "Backend secret URL: https://audioguide.gamegiaoduc.co/backend/$SECRET/guid
 ```
 
 ```bash
-docker run --rm -v "$PWD:/app" -w /app -e GUIDES_DATA_PATH=/app/data/guides.json node:22-alpine sh -lc "npm install && npm run seed"
+mkdir -p data
+
+docker run --rm \
+  -v "$PWD:/app" \
+  -w /app \
+  -e GUIDES_DATA_PATH=/app/data/guides.json \
+  node:22-alpine \
+  sh -lc "npm install && npm run seed"
 ```
 
 Kết quả sẽ ghi vào:
@@ -120,7 +127,7 @@ chmod +x deploy/quick-deploy.sh
 Script sẽ tự:
 
 - Tạo/cập nhật `.env` và `BACKEND_SECRET`.
-- Tạo seed mẫu bằng container `node:22-alpine` nếu chưa có `data/guides.json`.
+- Tạo seed tĩnh từ `seed.js` bằng container `node:22-alpine` nếu chưa có `data/guides.json`.
 - Tạo thư mục `data/uploads` để lưu ảnh/audio upload.
 - Build/chạy Docker bằng `docker compose up -d --build`.
 - Tự tạo cert/key vào `/etc/nginx/ssl/audioguide` nếu chưa có.

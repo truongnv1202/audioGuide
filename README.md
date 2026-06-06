@@ -23,7 +23,7 @@ npm run dev
 
 Mở `http://localhost:9000/?id=1`.
 
-## Tạo dữ liệu seed mẫu
+## Tạo dữ liệu seed
 
 Chạy:
 
@@ -31,12 +31,18 @@ Chạy:
 npm run seed
 ```
 
-Script sẽ tạo `data/guides.json` với 24 bài mẫu để biên tập sau qua backend.
+Script dùng dữ liệu đã nhúng sẵn trong `seed.js` và tạo `data/guides.json` với 24 bài.
 
-Nếu muốn lưu ở file khác:
+Nếu muốn chỉ định nơi lưu JSON khác:
 
 ```bash
 GUIDES_DATA_PATH="/duong/dan/guides.json" npm run seed
+```
+
+Nếu muốn tạo lại 24 bài mẫu rỗng:
+
+```bash
+npm run seed:samples
 ```
 
 Khi chạy Docker, thư mục `data/` được mount vào container để nội dung đã sửa không mất khi rebuild.
@@ -129,11 +135,12 @@ Triển khai nhanh:
 
 ```bash
 cd /opt/audioGuide
+mkdir -p data
 chmod +x deploy/quick-deploy.sh
 ./deploy/quick-deploy.sh
 ```
 
-Script này tự tạo/cập nhật `.env`, seed dữ liệu bằng container `node:22-alpine`, tạo thư mục upload, build Docker, tự tạo self-signed SSL cert nếu chưa có, ghi nginx site config và reload nginx. Server không cần dùng Node/npm cài sẵn.
+Script này tự tạo/cập nhật `.env`, seed dữ liệu tĩnh từ `seed.js` bằng container `node:22-alpine` nếu chưa có `data/guides.json`, tạo thư mục upload, build Docker, tự tạo self-signed SSL cert nếu chưa có, ghi nginx site config và reload nginx. Server không cần dùng Node/npm cài sẵn.
 
 Hoặc chạy từng bước:
 

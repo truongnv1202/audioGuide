@@ -140,7 +140,7 @@ if [ ! -f "$HOST_GUIDES_DATA_PATH" ]; then
   docker run --rm \
     -v "$APP_DIR:/app" \
     -w /app \
-    -e GUIDES_DATA_PATH=/app/data/guides.json \
+    -e GUIDES_DATA_PATH="$CONTAINER_GUIDES_DATA_PATH" \
     node:22-alpine \
     sh -lc "npm install && npm run seed"
 fi

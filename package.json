@@ -9,7 +9,7 @@
     "start": "next start -p 9000",
     "lint": "eslint .",
     "seed": "node seed.js",
-    "seed:samples": "node seed.js"
+    "seed:samples": "node scripts/seed-sample-guides.mjs"
   },
   "dependencies": {
     "@fontsource/inter": "latest",
