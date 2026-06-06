@@ -6,8 +6,8 @@ APP_DIR="${APP_DIR:-/opt/audioGuide}"
 DOCX_PATH="${DOCX_PATH:-/opt/audioGuide/data/source.docx}"
 PORT="${PORT:-9000}"
 SSL_DIR="${SSL_DIR:-/etc/nginx/ssl/audioguide}"
-SSL_CERT_PATH="${SSL_CERT_PATH:-$SSL_DIR/cloudflare-origin.pem}"
-SSL_KEY_PATH="${SSL_KEY_PATH:-$SSL_DIR/cloudflare-origin.key}"
+SSL_CERT_PATH="${SSL_CERT_PATH:-$SSL_DIR/origin-selfsigned.pem}"
+SSL_KEY_PATH="${SSL_KEY_PATH:-$SSL_DIR/origin-selfsigned.key}"
 NGINX_CONF="${NGINX_CONF:-/etc/nginx/conf.d/audioguide.conf}"
 
 if [ "${EUID:-$(id -u)}" -eq 0 ]; then
@@ -34,32 +34,21 @@ set_env_value() {
   fi
 }
 
-install_cloudflare_cert() {
+install_origin_cert() {
   $SUDO mkdir -p "$SSL_DIR"
 
-  if [ -n "${CF_ORIGIN_CERT_FILE:-}" ] && [ -n "${CF_ORIGIN_KEY_FILE:-}" ]; then
-    $SUDO cp "$CF_ORIGIN_CERT_FILE" "$SSL_CERT_PATH"
-    $SUDO cp "$CF_ORIGIN_KEY_FILE" "$SSL_KEY_PATH"
+  if [ -n "${ORIGIN_CERT_FILE:-}" ] && [ -n "${ORIGIN_KEY_FILE:-}" ]; then
+    $SUDO cp "$ORIGIN_CERT_FILE" "$SSL_CERT_PATH"
+    $SUDO cp "$ORIGIN_KEY_FILE" "$SSL_KEY_PATH"
   fi
 
   if [ ! -f "$SSL_CERT_PATH" ] || [ ! -f "$SSL_KEY_PATH" ]; then
-    cat >&2 <<EOF
-Cloudflare origin cert/key not found.
-
-Create an Origin Certificate in Cloudflare:
-  SSL/TLS > Origin Server > Create Certificate
-  Hostname: $DOMAIN
-
-Then run this script again with:
-  CF_ORIGIN_CERT_FILE=/path/to/cloudflare-origin.pem \\
-  CF_ORIGIN_KEY_FILE=/path/to/cloudflare-origin.key \\
-  ./deploy/quick-deploy.sh
-
-Expected installed paths:
-  $SSL_CERT_PATH
-  $SSL_KEY_PATH
-EOF
-    exit 1
+    echo "Generating self-signed origin certificate for $DOMAIN"
+    $SUDO openssl req -x509 -nodes -days 3650 -newkey rsa:2048 \
+      -keyout "$SSL_KEY_PATH" \
+      -out "$SSL_CERT_PATH" \
+      -subj "/CN=$DOMAIN" \
+      -addext "subjectAltName=DNS:$DOMAIN"
   fi
 
   $SUDO chmod 644 "$SSL_CERT_PATH"
@@ -140,7 +129,7 @@ fi
 set_env_value "PORT" "$PORT"
 set_env_value "DOCX_PATH" "$DOCX_PATH"
 
-install_cloudflare_cert
+install_origin_cert
 
 npm install
 DOCX_PATH="$DOCX_PATH" npm run seed
@@ -155,3 +144,4 @@ echo "Frontend: https://$DOMAIN/?id=1"
 echo "Backend:  https://$DOMAIN/backend/$SECRET/guides"
 echo "Nginx:    $NGINX_CONF"
 echo "Cert:     $SSL_CERT_PATH"
+echo "Cloudflare SSL/TLS mode: Full (not Full strict) when using this self-signed cert"

@@ -63,59 +63,22 @@ App sẽ chạy nội bộ tại:
 127.0.0.1:9000
 ```
 
-## 5. Tạo SSL certificate cho Cloudflare
-
-Trong Cloudflare dashboard, vào `SSL/TLS` > `Overview` và đặt mode là **Full (strict)**.
-
-Tạo private key + CSR mới trên server:
+## 5. Tự tạo SSL certificate cho origin
 
 ```bash
 cd /opt/audioGuide
-chmod +x deploy/create-cloudflare-origin-csr.sh
-./deploy/create-cloudflare-origin-csr.sh
+chmod +x deploy/create-self-signed-origin-cert.sh
+./deploy/create-self-signed-origin-cert.sh
 ```
 
-Sau đó vào Cloudflare `SSL/TLS` > `Origin Server` > `Create Certificate`, chọn **Use my private key and CSR**, paste nội dung CSR script vừa in ra, hostname dùng `audioguide.gamegiaoduc.co`.
-
-Lưu certificate Cloudflare trả về vào:
-
-```bash
-tee /opt/audioGuide/certs/cloudflare-origin.pem >/dev/null <<'EOF'
------BEGIN CERTIFICATE-----
-PASTE_CLOUDFLARE_ORIGIN_CERTIFICATE_HERE
------END CERTIFICATE-----
-EOF
-chmod 644 /opt/audioGuide/certs/cloudflare-origin.pem
-```
-
-Script CSR đã tạo sẵn private key ở:
+File được tạo tại:
 
 ```text
-/opt/audioGuide/certs/cloudflare-origin.key
+/etc/nginx/ssl/audioguide/origin-selfsigned.pem
+/etc/nginx/ssl/audioguide/origin-selfsigned.key
 ```
 
-Nếu Cloudflare tự tạo cả cert/key, lưu cert/key thủ công vào server:
-
-```bash
-mkdir -p /opt/audioGuide/certs
-
-tee /opt/audioGuide/certs/cloudflare-origin.pem >/dev/null <<'EOF'
------BEGIN CERTIFICATE-----
-PASTE_CLOUDFLARE_ORIGIN_CERTIFICATE_HERE
------END CERTIFICATE-----
-EOF
-
-tee /opt/audioGuide/certs/cloudflare-origin.key >/dev/null <<'EOF'
------BEGIN PRIVATE KEY-----
-PASTE_CLOUDFLARE_ORIGIN_PRIVATE_KEY_HERE
------END PRIVATE KEY-----
-EOF
-
-chmod 644 /opt/audioGuide/certs/cloudflare-origin.pem
-chmod 600 /opt/audioGuide/certs/cloudflare-origin.key
-```
-
-Không đưa cert/key thật vào git. Nếu không muốn dùng Cloudflare Origin Certificate, dùng Let's Encrypt DNS challenge rồi sửa `ssl_certificate` và `ssl_certificate_key` trong nginx sang đường dẫn certbot cấp.
+Nếu chạy sau Cloudflare với cert tự ký, vào Cloudflare `SSL/TLS` > `Overview` và đặt mode là **Full**. Không dùng **Full (strict)** với self-signed cert.
 
 ## 6. Cấu hình nginx chung
 
@@ -127,13 +90,11 @@ sudo systemctl reload nginx
 
 ## Deploy nhanh toàn bộ
 
-Chạy bằng script, gồm cả cài Cloudflare cert/key và ghi site config nginx:
+Chạy bằng script, script sẽ tự tạo self-signed cert nếu chưa có và ghi site config nginx:
 
 ```bash
 cd /opt/audioGuide
 chmod +x deploy/quick-deploy.sh
-CF_ORIGIN_CERT_FILE="/opt/audioGuide/certs/cloudflare-origin.pem" \
-CF_ORIGIN_KEY_FILE="/opt/audioGuide/certs/cloudflare-origin.key" \
 DOCX_PATH="/opt/audioGuide/data/source.docx" \
 ./deploy/quick-deploy.sh
 ```
@@ -143,7 +104,7 @@ Script sẽ tự:
 - Tạo/cập nhật `.env` và `BACKEND_SECRET`.
 - Chạy `npm install` và `npm run seed`.
 - Build/chạy Docker bằng `docker compose up -d --build`.
-- Copy cert/key vào `/etc/nginx/ssl/audioguide`.
+- Tự tạo cert/key vào `/etc/nginx/ssl/audioguide` nếu chưa có.
 - Ghi site config vào `/etc/nginx/conf.d/audioguide.conf`.
 - Chạy `nginx -t` và `systemctl reload nginx`.
 
