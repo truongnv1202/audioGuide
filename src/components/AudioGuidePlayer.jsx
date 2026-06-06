@@ -92,16 +92,16 @@ export default function AudioGuidePlayer({ guide }) {
   }
 
   return (
-    <section className="rounded-[clamp(32px,6vw,64px)] bg-[#ffd776]/70 px-[clamp(24px,5vw,60px)] py-[clamp(22px,3.8dvh,52px)] shadow-[0_-14px_45px_rgba(168,101,32,0.16)] backdrop-blur">
+    <section className="rounded-[clamp(10px,3vw,30px)] border border-[#e5c565] bg-white/95 px-[clamp(16px,4.2vw,46px)] py-[clamp(16px,2dvh,32px)] shadow-[0_3px_10px_rgba(151,110,25,0.24)]">
       <audio ref={audioRef} preload="metadata" src={guide.audioUrl}>
         <track kind="captions" />
       </audio>
 
-      <div className="flex items-center gap-[clamp(16px,3.2vw,36px)]">
+      <div className="flex items-center gap-[clamp(12px,3vw,34px)]">
         <button
           type="button"
           onClick={togglePlayback}
-          className="grid size-[clamp(44px,8vw,92px)] shrink-0 place-items-center rounded-full bg-[var(--guide-accent)] text-white shadow-lg shadow-[#9d4549]/25 transition active:scale-95"
+          className="grid size-[clamp(45px,12vw,116px)] shrink-0 place-items-center rounded-full bg-[#d4a11d] text-white shadow-[0_5px_10px_rgba(153,111,19,0.22)] transition active:scale-95"
           aria-label={isPlaying ? "Tạm dừng audio" : "Phát audio"}
         >
           {isPlaying ? (
@@ -114,14 +114,14 @@ export default function AudioGuidePlayer({ guide }) {
           )}
         </button>
 
-        <span className="w-[clamp(48px,9vw,104px)] shrink-0 text-[clamp(16px,3.1vw,34px)] font-semibold text-[#6f4a42]">
+        <span className="w-[clamp(38px,10vw,100px)] shrink-0 text-[clamp(12px,3.2vw,31px)] font-normal text-[#493b32]">
           {formatTime(currentTime)}
         </span>
 
         <button
           type="button"
           onClick={handleSeek}
-          className="relative flex h-[clamp(44px,7vw,84px)] flex-1 items-center justify-between overflow-hidden rounded-full px-1"
+          className="relative flex h-[clamp(42px,7vw,76px)] flex-1 items-center justify-between overflow-hidden rounded-full px-1"
           aria-label="Tua audio"
         >
           <span
@@ -134,14 +134,14 @@ export default function AudioGuidePlayer({ guide }) {
               <span
                 // eslint-disable-next-line react/no-array-index-key
                 key={index}
-                className={active ? "z-10 w-px rounded-full bg-[#9d4549]" : "z-10 w-px rounded-full bg-[#e7b960]"}
+                className={active ? "z-10 w-px rounded-full bg-[#d4a11d]" : "z-10 w-px rounded-full bg-[#efd99c]"}
                 style={{ height: `clamp(${height}px, ${height / 5}vw, ${height * 2.1}px)` }}
               />
             );
           })}
         </button>
 
-        <span className="w-[clamp(48px,9vw,104px)] shrink-0 text-right text-[clamp(16px,3.1vw,34px)] font-semibold text-[#6f4a42]">
+        <span className="w-[clamp(38px,10vw,100px)] shrink-0 text-right text-[clamp(12px,3.2vw,31px)] font-normal text-[#493b32]">
           {formatTime(duration)}
         </span>
       </div>

@@ -37,6 +37,17 @@ body {
   font-family: var(--font-lato);
 }
 
+.guide-screen {
+  background:
+    radial-gradient(circle at 28% 11%, rgba(255, 255, 255, 0.72), transparent 9rem),
+    radial-gradient(circle at 88% 22%, rgba(255, 255, 255, 0.35), transparent 8rem),
+    linear-gradient(180deg, #ffe99b 0%, #fff3b9 45%, #fff9df 100%);
+}
+
+.content-card {
+  backdrop-filter: blur(4px);
+}
+
 @media (orientation: portrait) and (min-width: 900px) {
   body {
     background:
