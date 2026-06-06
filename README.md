@@ -84,6 +84,47 @@ python scripts/extract-docx-images.py
 
 Script đọc file DOCX trong `Downloads` và ghi ảnh vào `public/images/items`. Các ảnh luôn có alias `01.jpg` ... `24.jpg` để khớp `imageUrl` trong dữ liệu seed.
 
+## Sinh MP3 bằng fal.ai trên máy dev
+
+Script `scripts/generate_fal_audio.py` chỉ đọc field `description` của từng bài, không đọc `title`, `subtitle`, `title1`, `title2`, `title3`.
+
+```bash
+pip install -r requirements.txt
+export FAL_KEY="YOUR_FAL_KEY"
+python scripts/generate_fal_audio.py --dry-run
+python scripts/generate_fal_audio.py --overwrite
+```
+
+Trên Windows PowerShell:
+
+```powershell
+pip install -r requirements.txt
+$env:FAL_KEY="YOUR_FAL_KEY"
+python scripts/generate_fal_audio.py --dry-run
+python scripts/generate_fal_audio.py --overwrite
+```
+
+Mặc định script dùng model `fal-ai/minimax/speech-2.8-hd`, `language_boost=Vietnamese`, voice `audiobook_male_1`, tốc độ `0.92`, pitch `-2` để có giọng nam trầm, chậm hơn, phù hợp kể chuyện audio guide. Nếu chọn được voice khác trên fal.ai, đổi bằng:
+
+```bash
+FAL_VOICE_ID="voice_id_mong_muon" python scripts/generate_fal_audio.py --overwrite
+```
+
+Sinh thử một vài bài:
+
+```bash
+python scripts/generate_fal_audio.py --only 1,8,21 --overwrite
+```
+
+Kết quả ghi vào:
+
+```text
+public/audio/01.mp3
+public/audio/02.mp3
+...
+public/audio/24.mp3
+```
+
 Khi deploy tại `/opt/audioGuide`, Nginx phục vụ trực tiếp:
 
 ```text
@@ -95,6 +136,7 @@ Copy ảnh đã trích xuất lên server:
 
 ```bash
 rsync -av public/images/items/ user@server:/opt/audioGuide/public/images/items/
+rsync -av public/audio/ user@server:/opt/audioGuide/public/audio/
 ```
 
 Sau khi copy ảnh/audio mới lên server, chạy lại `./deploy/quick-deploy.sh` hoặc `sudo nginx -t && sudo systemctl reload nginx`.
