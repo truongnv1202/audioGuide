@@ -67,25 +67,52 @@ App sẽ chạy nội bộ tại:
 
 Trong Cloudflare dashboard, vào `SSL/TLS` > `Overview` và đặt mode là **Full (strict)**.
 
-Tạo Cloudflare Origin Certificate tại `SSL/TLS` > `Origin Server` > `Create Certificate`, dùng hostname `audioguide.gamegiaoduc.co`. Sau đó lưu cert/key vào server:
+Tạo private key + CSR mới trên server:
 
 ```bash
-sudo mkdir -p /etc/nginx/ssl/audioguide
+cd /opt/audioGuide
+chmod +x deploy/create-cloudflare-origin-csr.sh
+./deploy/create-cloudflare-origin-csr.sh
+```
 
-sudo tee /etc/nginx/ssl/audioguide/cloudflare-origin.pem >/dev/null <<'EOF'
+Sau đó vào Cloudflare `SSL/TLS` > `Origin Server` > `Create Certificate`, chọn **Use my private key and CSR**, paste nội dung CSR script vừa in ra, hostname dùng `audioguide.gamegiaoduc.co`.
+
+Lưu certificate Cloudflare trả về vào:
+
+```bash
+tee /opt/audioGuide/certs/cloudflare-origin.pem >/dev/null <<'EOF'
+-----BEGIN CERTIFICATE-----
+PASTE_CLOUDFLARE_ORIGIN_CERTIFICATE_HERE
+-----END CERTIFICATE-----
+EOF
+chmod 644 /opt/audioGuide/certs/cloudflare-origin.pem
+```
+
+Script CSR đã tạo sẵn private key ở:
+
+```text
+/opt/audioGuide/certs/cloudflare-origin.key
+```
+
+Nếu Cloudflare tự tạo cả cert/key, lưu cert/key thủ công vào server:
+
+```bash
+mkdir -p /opt/audioGuide/certs
+
+tee /opt/audioGuide/certs/cloudflare-origin.pem >/dev/null <<'EOF'
 -----BEGIN CERTIFICATE-----
 PASTE_CLOUDFLARE_ORIGIN_CERTIFICATE_HERE
 -----END CERTIFICATE-----
 EOF
 
-sudo tee /etc/nginx/ssl/audioguide/cloudflare-origin.key >/dev/null <<'EOF'
+tee /opt/audioGuide/certs/cloudflare-origin.key >/dev/null <<'EOF'
 -----BEGIN PRIVATE KEY-----
 PASTE_CLOUDFLARE_ORIGIN_PRIVATE_KEY_HERE
 -----END PRIVATE KEY-----
 EOF
 
-sudo chmod 644 /etc/nginx/ssl/audioguide/cloudflare-origin.pem
-sudo chmod 600 /etc/nginx/ssl/audioguide/cloudflare-origin.key
+chmod 644 /opt/audioGuide/certs/cloudflare-origin.pem
+chmod 600 /opt/audioGuide/certs/cloudflare-origin.key
 ```
 
 Không đưa cert/key thật vào git. Nếu không muốn dùng Cloudflare Origin Certificate, dùng Let's Encrypt DNS challenge rồi sửa `ssl_certificate` và `ssl_certificate_key` trong nginx sang đường dẫn certbot cấp.

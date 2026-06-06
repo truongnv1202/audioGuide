@@ -117,25 +117,46 @@ Cách nhanh nhất là dùng **Cloudflare Origin Certificate**:
 
 1. Vào Cloudflare dashboard > `SSL/TLS` > `Origin Server` > `Create Certificate`.
 2. Hostnames nên có `audioguide.gamegiaoduc.co` và có thể thêm `*.gamegiaoduc.co` nếu dùng chung cho subdomain khác.
-3. Lưu certificate và private key vào server, ví dụ:
+3. Có thể tạo private key + CSR mới trên server:
 
 ```bash
-mkdir -p /etc/nginx/ssl/audioguide
+cd /opt/audioGuide
+chmod +x deploy/create-cloudflare-origin-csr.sh
+./deploy/create-cloudflare-origin-csr.sh
+```
 
-tee /etc/nginx/ssl/audioguide/cloudflare-origin.pem >/dev/null <<'EOF'
+Trong Cloudflare chọn **Use my private key and CSR**, paste CSR script in ra, rồi lưu certificate Cloudflare trả về:
+
+```bash
+tee /opt/audioGuide/certs/cloudflare-origin.pem >/dev/null <<'EOF'
 -----BEGIN CERTIFICATE-----
 PASTE_CLOUDFLARE_ORIGIN_CERTIFICATE_HERE
 -----END CERTIFICATE-----
 EOF
 
-tee /etc/nginx/ssl/audioguide/cloudflare-origin.key >/dev/null <<'EOF'
+chmod 644 /opt/audioGuide/certs/cloudflare-origin.pem
+chmod 600 /opt/audioGuide/certs/cloudflare-origin.key
+```
+
+Nếu để Cloudflare tự tạo cả cert/key, lưu cả hai file vào server:
+
+```bash
+mkdir -p /opt/audioGuide/certs
+
+tee /opt/audioGuide/certs/cloudflare-origin.pem >/dev/null <<'EOF'
+-----BEGIN CERTIFICATE-----
+PASTE_CLOUDFLARE_ORIGIN_CERTIFICATE_HERE
+-----END CERTIFICATE-----
+EOF
+
+tee /opt/audioGuide/certs/cloudflare-origin.key >/dev/null <<'EOF'
 -----BEGIN PRIVATE KEY-----
 PASTE_CLOUDFLARE_ORIGIN_PRIVATE_KEY_HERE
 -----END PRIVATE KEY-----
 EOF
 
-chmod 644 /etc/nginx/ssl/audioguide/cloudflare-origin.pem
-chmod 600 /etc/nginx/ssl/audioguide/cloudflare-origin.key
+chmod 644 /opt/audioGuide/certs/cloudflare-origin.pem
+chmod 600 /opt/audioGuide/certs/cloudflare-origin.key
 ```
 
 Không commit cert/key thật vào repository. Nếu không dùng Cloudflare Origin Certificate, có thể dùng Let's Encrypt với DNS challenge cho `audioguide.gamegiaoduc.co`, rồi trỏ `ssl_certificate` và `ssl_certificate_key` sang đường dẫn certbot cấp.
