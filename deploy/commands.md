@@ -100,13 +100,25 @@ sudo systemctl reload nginx
 
 ## Deploy nhanh toàn bộ
 
-Chạy bằng script:
+Chạy bằng script, gồm cả cài Cloudflare cert/key và ghi site config nginx:
 
 ```bash
 cd /opt/audioguide
 chmod +x deploy/quick-deploy.sh
-DOCX_PATH="/opt/audioguide/data/source.docx" ./deploy/quick-deploy.sh
+CF_ORIGIN_CERT_FILE="/opt/audioguide/certs/cloudflare-origin.pem" \
+CF_ORIGIN_KEY_FILE="/opt/audioguide/certs/cloudflare-origin.key" \
+DOCX_PATH="/opt/audioguide/data/source.docx" \
+./deploy/quick-deploy.sh
 ```
+
+Script sẽ tự:
+
+- Tạo/cập nhật `.env` và `BACKEND_SECRET`.
+- Chạy `npm install` và `npm run seed`.
+- Build/chạy Docker bằng `docker compose up -d --build`.
+- Copy cert/key vào `/etc/nginx/ssl/audioguide`.
+- Ghi site config vào `/etc/nginx/conf.d/audioguide.conf`.
+- Chạy `nginx -t` và `systemctl reload nginx`.
 
 Hoặc chạy thủ công:
 

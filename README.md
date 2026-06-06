@@ -88,8 +88,13 @@ Triển khai nhanh:
 ```bash
 cd /opt/audioguide
 chmod +x deploy/quick-deploy.sh
-DOCX_PATH="/opt/audioguide/data/source.docx" ./deploy/quick-deploy.sh
+CF_ORIGIN_CERT_FILE="/opt/audioguide/certs/cloudflare-origin.pem" \
+CF_ORIGIN_KEY_FILE="/opt/audioguide/certs/cloudflare-origin.key" \
+DOCX_PATH="/opt/audioguide/data/source.docx" \
+./deploy/quick-deploy.sh
 ```
+
+Script này tự tạo/cập nhật `.env`, seed dữ liệu, build Docker, cài Cloudflare origin cert/key, ghi nginx site config và reload nginx.
 
 Hoặc chạy từng bước:
 
