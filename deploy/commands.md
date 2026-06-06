@@ -74,6 +74,14 @@ sudo nginx -t
 sudo systemctl reload nginx
 ```
 
+Kiểm tra riêng ảnh item 21 trên server:
+
+```bash
+ls -l /opt/audioGuide/public/images/items/21.jpg
+curl -I http://127.0.0.1:9000/images/items/21.jpg
+curl -I https://audioguide.gamegiaoduc.co/images/items/21.jpg
+```
+
 ## 4. Build và chạy Docker
 
 ```bash

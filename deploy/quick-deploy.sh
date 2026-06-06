@@ -86,14 +86,23 @@ server {
 
     location ^~ /images/ {
         root $APP_DIR/public;
-        try_files \$uri =404;
+        try_files \$uri @audioguide_app;
         add_header Cache-Control "public, max-age=86400";
     }
 
     location ^~ /audio/ {
         root $APP_DIR/public;
-        try_files \$uri =404;
+        try_files \$uri @audioguide_app;
         add_header Cache-Control "public, max-age=86400";
+    }
+
+    location @audioguide_app {
+        proxy_pass http://127.0.0.1:$PORT;
+        proxy_http_version 1.1;
+        proxy_set_header Host \$host;
+        proxy_set_header X-Real-IP \$remote_addr;
+        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto \$scheme;
     }
 
     location ^~ /api/ {
