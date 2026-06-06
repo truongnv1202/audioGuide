@@ -30,7 +30,7 @@ export async function generateFalAudioFromDescription(description) {
   }
 
   if (prompt.length > 5000) {
-    throw new Error("Description is too long for one fal.ai request");
+    throw new Error("Nội dung quá dài để sinh một file MP3.");
   }
 
   const model = process.env.FAL_TTS_MODEL || DEFAULT_MODEL;
@@ -67,14 +67,14 @@ export async function generateFalAudioFromDescription(description) {
   });
 
   if (!response.ok) {
-    throw new Error(`fal.ai error ${response.status}: ${await response.text()}`);
+    throw new Error(`Không sinh được MP3. Mã lỗi: ${response.status}`);
   }
 
   const result = await response.json();
   const audioUrl = result?.audio?.url || result?.data?.audio?.url;
 
   if (!audioUrl) {
-    throw new Error("fal.ai response missing audio URL");
+    throw new Error("Không nhận được file MP3 từ dịch vụ sinh giọng đọc.");
   }
 
   const audioResponse = await fetch(audioUrl);

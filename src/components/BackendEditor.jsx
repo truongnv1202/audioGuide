@@ -88,7 +88,7 @@ export default function BackendEditor({ secret, initialGuides }) {
       return;
     }
 
-    if (!window.confirm(`Sinh MP3 bằng fal.ai cho bài ${String(draft.id).padStart(2, "0")}? Còn ${remaining} lần.`)) {
+    if (!window.confirm(`Sinh MP3 cho bài ${String(draft.id).padStart(2, "0")}? Còn ${remaining} lần.`)) {
       return;
     }
 
@@ -111,7 +111,7 @@ export default function BackendEditor({ secret, initialGuides }) {
         current.map((guide) => (guide.id === saveResult.data.id ? saveResult.data : guide)),
       );
       setDraft(cloneGuide(saveResult.data));
-      setMessage("Đang sinh MP3 bằng fal.ai...");
+      setMessage("Đang sinh MP3...");
 
       const response = await fetch(`/backend/${secret}/guides/${draft.id}/generate-audio`, {
         method: "POST",
@@ -300,7 +300,7 @@ export default function BackendEditor({ secret, initialGuides }) {
                 <div className="mt-3 rounded-xl border border-[#eadba9] bg-white p-3">
                   <div className="flex flex-wrap items-center justify-between gap-3">
                     <div>
-                      <p className="font-black">Sinh MP3 bằng fal.ai</p>
+                      <p className="font-black">Sinh MP3</p>
                       <p className="text-sm text-[#7b6a4c]">
                         Chỉ đọc phần nội dung thuyết minh. Đã sinh {Number(draft.audioGenerationCount || 0)}/10 lần.
                       </p>
