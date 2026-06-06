@@ -107,6 +107,19 @@ echo "https://audioguide.gamegiaoduc.co/backend/$SECRET"
 
 Mỗi bài lưu riêng trong `data/guides/NN.json`, nên có thể sửa/backup từng bài độc lập.
 
+Trong UI backend có nút sinh MP3 bằng fal.ai. Chức năng này chỉ đọc `description`, lưu file vào `data/uploads/audio`, tự cập nhật `audioUrl`, và mỗi bài chỉ được sinh tối đa 10 lần.
+
+Trước khi dùng nút sinh MP3, cấu hình `FAL_KEY` trong `.env` rồi restart container:
+
+```bash
+if grep -q '^FAL_KEY=' .env; then
+  sed -i 's|^FAL_KEY=.*|FAL_KEY=YOUR_FAL_KEY|' .env
+else
+  echo 'FAL_KEY=YOUR_FAL_KEY' >> .env
+fi
+docker compose up -d --build
+```
+
 API vẫn dùng được nếu muốn gọi bằng `curl`:
 
 ```bash

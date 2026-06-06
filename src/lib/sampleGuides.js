@@ -23,6 +23,8 @@ export function createSampleGuides(total = TOTAL_SAMPLE_GUIDES) {
       imageLayout: DEFAULT_IMAGE_LAYOUT,
       audioUrl: `/audio/${paddedId}.mp3`,
       playbackRate: 1,
+      audioGenerationCount: 0,
+      audioGeneratedAt: "",
     };
   });
 }

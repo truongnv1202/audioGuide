@@ -71,6 +71,62 @@ export default function BackendEditor({ secret, initialGuides }) {
       );
       setDraft(cloneGuide(result.data));
       setMessage(`Đã lưu bài ${String(result.data.id).padStart(2, "0")}`);
+      return result.data;
+    } catch (error) {
+      setMessage(error.message);
+      return null;
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  async function generateAudio() {
+    const remaining = 10 - Number(draft.audioGenerationCount || 0);
+
+    if (remaining <= 0) {
+      setMessage("Bài này đã sinh MP3 đủ 10 lần.");
+      return;
+    }
+
+    if (!window.confirm(`Sinh MP3 bằng fal.ai cho bài ${String(draft.id).padStart(2, "0")}? Còn ${remaining} lần.`)) {
+      return;
+    }
+
+    setSaving(true);
+    setMessage("Đang lưu nội dung trước khi sinh MP3...");
+
+    try {
+      const saveResponse = await fetch(`/backend/${secret}/guides/${draft.id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(draft),
+      });
+      const saveResult = await saveResponse.json();
+
+      if (!saveResponse.ok) {
+        throw new Error(saveResult.error || "Không lưu được bài viết");
+      }
+
+      setGuides((current) =>
+        current.map((guide) => (guide.id === saveResult.data.id ? saveResult.data : guide)),
+      );
+      setDraft(cloneGuide(saveResult.data));
+      setMessage("Đang sinh MP3 bằng fal.ai...");
+
+      const response = await fetch(`/backend/${secret}/guides/${draft.id}/generate-audio`, {
+        method: "POST",
+      });
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Không sinh được MP3");
+      }
+
+      setGuides((current) =>
+        current.map((guide) => (guide.id === result.data.id ? result.data : guide)),
+      );
+      setDraft(cloneGuide(result.data));
+      setMessage(`Đã sinh MP3. Còn ${result.generated.remaining}/${result.generated.max} lần.`);
     } catch (error) {
       setMessage(error.message);
     } finally {
@@ -240,6 +296,29 @@ export default function BackendEditor({ secret, initialGuides }) {
                     step={0.05}
                     onChange={(value) => updateField("playbackRate", value)}
                   />
+                </div>
+                <div className="mt-3 rounded-xl border border-[#eadba9] bg-white p-3">
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <div>
+                      <p className="font-black">Sinh MP3 bằng fal.ai</p>
+                      <p className="text-sm text-[#7b6a4c]">
+                        Chỉ đọc phần nội dung thuyết minh. Đã sinh {Number(draft.audioGenerationCount || 0)}/10 lần.
+                      </p>
+                    </div>
+                    <button
+                      type="button"
+                      disabled={saving || Number(draft.audioGenerationCount || 0) >= 10}
+                      onClick={generateAudio}
+                      className="rounded-xl bg-[#8f6a14] px-4 py-2 font-black text-white disabled:opacity-50"
+                    >
+                      Sinh MP3
+                    </button>
+                  </div>
+                  {draft.audioGeneratedAt ? (
+                    <p className="mt-2 text-xs text-[#7b6a4c]">
+                      Lần sinh gần nhất: {new Date(draft.audioGeneratedAt).toLocaleString("vi-VN")}
+                    </p>
+                  ) : null}
                 </div>
                 <form onSubmit={uploadMedia} className="mt-3 grid gap-3 md:grid-cols-[1fr_1fr_auto]">
                   <input name="image" type="file" accept="image/*" className="backend-input" />

@@ -27,6 +27,16 @@ export function normalizePlaybackRate(value) {
   return Math.min(Math.max(numeric, 0.5), 2);
 }
 
+export function normalizeAudioGenerationCount(value) {
+  const numeric = Number(value);
+
+  if (!Number.isFinite(numeric) || numeric < 0) {
+    return 0;
+  }
+
+  return Math.floor(numeric);
+}
+
 export function normalizeGuideDisplay(guide) {
   const title = String(guide.title ?? "");
   const subtitle = String(guide.subtitle ?? "");
@@ -39,6 +49,8 @@ export function normalizeGuideDisplay(guide) {
     title2: String(guide.title2 ?? subtitle),
     title3: String(guide.title3 ?? ""),
     playbackRate: normalizePlaybackRate(guide.playbackRate),
+    audioGenerationCount: normalizeAudioGenerationCount(guide.audioGenerationCount),
+    audioGeneratedAt: String(guide.audioGeneratedAt ?? ""),
     titleLayout: {
       ...DEFAULT_TITLE_LAYOUT,
       ...(guide.titleLayout && typeof guide.titleLayout === "object" ? guide.titleLayout : {}),

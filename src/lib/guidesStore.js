@@ -1,7 +1,11 @@
 import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
-import { normalizeGuideDisplay, normalizePlaybackRate } from "@/lib/guideDefaults";
+import {
+  normalizeAudioGenerationCount,
+  normalizeGuideDisplay,
+  normalizePlaybackRate,
+} from "@/lib/guideDefaults";
 import { createSampleGuides } from "@/lib/sampleGuides";
 
 const EDITABLE_STRING_FIELDS = [
@@ -13,8 +17,9 @@ const EDITABLE_STRING_FIELDS = [
   "description",
   "imageUrl",
   "audioUrl",
+  "audioGeneratedAt",
 ];
-const EDITABLE_NUMBER_FIELDS = ["playbackRate"];
+const EDITABLE_NUMBER_FIELDS = ["playbackRate", "audioGenerationCount"];
 const EDITABLE_OBJECT_FIELDS = ["titleLayout", "imageLayout"];
 
 export function getGuidesDataPath() {
@@ -112,7 +117,10 @@ export async function updateGuideById(id, payload) {
 
   for (const field of EDITABLE_NUMBER_FIELDS) {
     if (Object.prototype.hasOwnProperty.call(payload, field)) {
-      updates[field] = normalizePlaybackRate(payload[field]);
+      updates[field] =
+        field === "playbackRate"
+          ? normalizePlaybackRate(payload[field])
+          : normalizeAudioGenerationCount(payload[field]);
     }
   }
 

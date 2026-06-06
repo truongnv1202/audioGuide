@@ -226,6 +226,8 @@ const guidesWithDisplay = guides.map((guide) => ({
   titleLayout: defaultTitleLayout,
   imageLayout: defaultImageLayout,
   playbackRate: 1,
+  audioGenerationCount: 0,
+  audioGeneratedAt: "",
 }));
 
 await mkdir(outputDir, { recursive: true });

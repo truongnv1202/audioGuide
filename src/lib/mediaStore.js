@@ -106,3 +106,24 @@ export async function saveGuideUpload(guideId, fieldName, file) {
     url: `/media/${directory}/${filename}`,
   };
 }
+
+export async function saveGeneratedGuideAudio(guideId, audioBuffer, generationCount) {
+  const numericId = Number(guideId);
+
+  if (!Number.isInteger(numericId) || numericId < 1 || !Buffer.isBuffer(audioBuffer)) {
+    return null;
+  }
+
+  const paddedId = String(numericId).padStart(2, "0");
+  const count = String(Math.max(Number(generationCount) || 1, 1)).padStart(2, "0");
+  const filename = `${paddedId}-generated-${count}.mp3`;
+  const outputPath = path.join(getUploadsRoot(), "audio", filename);
+
+  await mkdir(path.dirname(outputPath), { recursive: true });
+  await writeFile(outputPath, audioBuffer);
+
+  return {
+    field: "audioUrl",
+    url: `/media/audio/${filename}`,
+  };
+}

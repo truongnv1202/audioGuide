@@ -151,6 +151,20 @@ UI sửa bài:
 GET /backend/{BACKEND_SECRET}
 ```
 
+Trong UI backend có nút **Sinh MP3 bằng fal.ai** cho từng bài. Chức năng này chỉ đọc field `description`, lưu file vào `data/uploads/audio`, tự cập nhật `audioUrl`, và mỗi bài chỉ được sinh tối đa 10 lần.
+
+Cần cấu hình `FAL_KEY` trong `.env` trên server rồi restart container:
+
+```bash
+cd /opt/audioGuide
+if grep -q '^FAL_KEY=' .env; then
+  sed -i 's|^FAL_KEY=.*|FAL_KEY=YOUR_FAL_KEY|' .env
+else
+  echo 'FAL_KEY=YOUR_FAL_KEY' >> .env
+fi
+docker compose up -d --build
+```
+
 API JSON:
 
 ```text
@@ -158,6 +172,7 @@ GET /backend/{BACKEND_SECRET}/guides
 GET /backend/{BACKEND_SECRET}/guides/1
 PATCH /backend/{BACKEND_SECRET}/guides/1
 POST /backend/{BACKEND_SECRET}/guides/1/upload
+POST /backend/{BACKEND_SECRET}/guides/1/generate-audio
 ```
 
 Ví dụ nếu `.env` có `BACKEND_SECRET=abc123`:
