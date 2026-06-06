@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Audio guide placeholder</title>
+  <desc id="desc">¢nh n¡n m∑c Ành cho nŸi dung audio guide.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#e9e3d9"/>
+      <stop offset="0.48" stop-color="#d9c4a6"/>
+      <stop offset="1" stop-color="#9a6b3e"/>
+    </linearGradient>
+    <linearGradient id="face" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#f0c9ad"/>
+      <stop offset="1" stop-color="#c99272"/>
+    </linearGradient>
+  </defs>
+  <rect width="740" height="1000" fill="url(#bg)"/>
+  <circle cx="370" cy="322" r="126" fill="url(#face)" opacity="0.78"/>
+  <path d="M236 346c12-126 87-184 163-174 69 9 111 68 105 177-53-40-101-52-144-47-48 5-89 24-124 44z" fill="#1f242f" opacity="0.84"/>
+  <path d="M184 770c22-168 109-266 190-266s168 98 190 266z" fill="#514337" opacity="0.88"/>
+  <path d="M277 588h194l-97 159z" fill="#efe2c0" opacity="0.95"/>
+  <path d="M324 610h100l-50 118z" fill="#7b4c35" opacity="0.75"/>
+  <rect x="0" y="642" width="740" height="358" fill="#d59438" opacity="0.28"/>
+  <g fill="none" stroke="#fff8e8" stroke-opacity="0.35">
+    <path d="M70 66c73 23 121 18 175-6 61-27 125-24 191 11 57 30 129 28 216-6"/>
+    <path d="M91 894c86-52 176-72 270-59 92 13 184-4 277-51"/>
+  </g>
+</svg>

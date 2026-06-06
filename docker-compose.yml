@@ -1,0 +1,14 @@
+services:
+  audioguide:
+    build:
+      context: .
+    container_name: audioguide
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
+      PORT: ${PORT:-9000}
+      BACKEND_SECRET: ${BACKEND_SECRET:-change-this-backend-secret}
+    ports:
+      - "127.0.0.1:${PORT:-9000}:${PORT:-9000}"

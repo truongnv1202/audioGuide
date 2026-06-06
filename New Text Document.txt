@@ -1,0 +1,3 @@
+cd /opt/audioguide
+chmod +x deploy/quick-deploy.sh
+DOCX_PATH="/opt/audioguide/data/source.docx" ./deploy/quick-deploy.sh
