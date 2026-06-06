@@ -25,6 +25,10 @@ function getUploadsRoot() {
   return process.env.UPLOADS_DIR || path.join(process.cwd(), "data", "uploads");
 }
 
+function getPublicAudioRoot() {
+  return process.env.PUBLIC_AUDIO_DIR || path.join(process.cwd(), "public", "audio");
+}
+
 function getExtensionFromName(name) {
   return path.extname(name || "").replace(".", "").toLowerCase();
 }
@@ -115,15 +119,14 @@ export async function saveGeneratedGuideAudio(guideId, audioBuffer, generationCo
   }
 
   const paddedId = String(numericId).padStart(2, "0");
-  const count = String(Math.max(Number(generationCount) || 1, 1)).padStart(2, "0");
-  const filename = `${paddedId}-generated-${count}.mp3`;
-  const outputPath = path.join(getUploadsRoot(), "audio", filename);
+  const filename = `${paddedId}.mp3`;
+  const outputPath = path.join(getPublicAudioRoot(), filename);
 
   await mkdir(path.dirname(outputPath), { recursive: true });
   await writeFile(outputPath, audioBuffer);
 
   return {
     field: "audioUrl",
-    url: `/media/audio/${filename}`,
+    url: `/audio/${filename}`,
   };
 }

@@ -13,9 +13,10 @@ services:
       GUIDES_DATA_PATH: ${GUIDES_DATA_PATH:-/app/data/guides.json}
       GUIDES_DATA_DIR: ${GUIDES_DATA_DIR:-/app/data/guides}
       UPLOADS_DIR: ${UPLOADS_DIR:-/app/data/uploads}
+      PUBLIC_AUDIO_DIR: ${PUBLIC_AUDIO_DIR:-/app/public/audio}
     ports:
       - "127.0.0.1:${PORT:-9000}:${PORT:-9000}"
     volumes:
       - ./data:/app/data
       - ./public/images/items:/app/public/images/items:ro
-      - ./public/audio:/app/public/audio:ro
+      - ./public/audio:/app/public/audio

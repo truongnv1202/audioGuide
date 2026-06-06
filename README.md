@@ -151,7 +151,7 @@ UI sửa bài:
 GET /backend/{BACKEND_SECRET}
 ```
 
-Trong UI backend có nút **Sinh MP3 bằng fal.ai** cho từng bài. Chức năng này chỉ đọc field `description`, lưu file vào `data/uploads/audio`, tự cập nhật `audioUrl`, và mỗi bài chỉ được sinh tối đa 10 lần.
+Trong UI backend có nút **Sinh MP3 bằng fal.ai** cho từng bài. Chức năng này chỉ đọc field `description`, lưu file vào `public/audio/NN.mp3`, tự cập nhật `audioUrl` thành `/audio/NN.mp3`, và mỗi bài chỉ được sinh tối đa 10 lần.
 
 Cần cấu hình `FAL_KEY` trong `.env` trên server rồi restart container:
 

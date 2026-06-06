@@ -7,6 +7,7 @@ CONTAINER_GUIDES_DATA_PATH="${CONTAINER_GUIDES_DATA_PATH:-/app/data/guides.json}
 CONTAINER_GUIDES_DATA_DIR="${CONTAINER_GUIDES_DATA_DIR:-/app/data/guides}"
 HOST_UPLOADS_DIR="${HOST_UPLOADS_DIR:-$APP_DIR/data/uploads}"
 CONTAINER_UPLOADS_DIR="${CONTAINER_UPLOADS_DIR:-/app/data/uploads}"
+CONTAINER_PUBLIC_AUDIO_DIR="${CONTAINER_PUBLIC_AUDIO_DIR:-/app/public/audio}"
 PORT="${PORT:-9000}"
 SSL_DIR="${SSL_DIR:-/etc/nginx/ssl/audioguide}"
 SSL_CERT_PATH="${SSL_CERT_PATH:-$SSL_DIR/origin-selfsigned.pem}"
@@ -153,9 +154,11 @@ set_env_value "PORT" "$PORT"
 set_env_value "GUIDES_DATA_PATH" "$CONTAINER_GUIDES_DATA_PATH"
 set_env_value "GUIDES_DATA_DIR" "$CONTAINER_GUIDES_DATA_DIR"
 set_env_value "UPLOADS_DIR" "$CONTAINER_UPLOADS_DIR"
+set_env_value "PUBLIC_AUDIO_DIR" "$CONTAINER_PUBLIC_AUDIO_DIR"
 
 mkdir -p "$APP_DIR/data/guides" "$HOST_UPLOADS_DIR" "$APP_DIR/public/images/items" "$APP_DIR/public/audio"
 $SUDO chown -R 1001:1001 "$APP_DIR/data"
+$SUDO chown -R 1001:1001 "$APP_DIR/public/audio"
 
 install_origin_cert
 
