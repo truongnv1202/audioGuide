@@ -126,7 +126,7 @@ export default function BackendEditor({ secret, initialGuides }) {
         current.map((guide) => (guide.id === result.data.id ? result.data : guide)),
       );
       setDraft(cloneGuide(result.data));
-      setMessage(`Đã sinh MP3. Còn ${result.generated.remaining}/${result.generated.max} lần.`);
+      setMessage(`Đã sinh MP3 và tự lưu. Còn ${result.generated.remaining}/${result.generated.max} lần.`);
     } catch (error) {
       setMessage(error.message);
     } finally {
