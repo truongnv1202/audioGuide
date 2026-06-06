@@ -12,85 +12,114 @@ const DEFAULT_DOCX_PATH =
   "C:\\Users\\vsp\\Downloads\\[Chiều 23.4. 2026] KB PHÂN KHU 5 - sửa theo góp ý của X03 (1).docx";
 const TOTAL_GUIDES = Number.parseInt(process.env.SEED_TOTAL ?? "24", 10);
 const OUTPUT_PATH = path.join(projectRoot, "src", "data", "seed.js");
-const PLACEHOLDER_DESCRIPTION =
-  "Nội dung thuyết minh sẽ được cập nhật từ file DOCX.";
 
 function normalizeLine(line) {
   return line.replace(/\s+/g, " ").trim();
 }
 
-function stripTitlePrefix(line, fallbackId) {
-  return line
-    .replace(new RegExp(`^(id|mã|bài|điểm|trạm|khu)\\s*[:.\\-]?\\s*${fallbackId}\\s*[:.\\-]?\\s*`, "i"), "")
-    .replace(new RegExp(`^${fallbackId}\\s*[).\\-:]\\s*`), "")
-    .trim();
+function decodeHtml(value) {
+  return value
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&#(\d+);/g, (_, code) => String.fromCharCode(Number(code)));
 }
 
-function getStartedGuideId(line) {
-  const normalized = normalizeLine(line);
-  const patterns = [
-    /^(?:id|mã|bài|điểm|trạm|khu)\s*[:.\-]?\s*(\d{1,2})\b/i,
-    /^(\d{1,2})\s*[).\-:]\s+\S+/,
-  ];
+function stripHtml(value) {
+  return decodeHtml(value.replace(/<[^>]+>/g, " "));
+}
 
-  for (const pattern of patterns) {
-    const match = normalized.match(pattern);
-    if (match) {
-      const id = Number.parseInt(match[1], 10);
-      if (id >= 1 && id <= TOTAL_GUIDES) {
-        return id;
-      }
+function cellText(cellHtml) {
+  const paragraphs = [...cellHtml.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)]
+    .map((match) => normalizeLine(stripHtml(match[1])))
+    .filter(Boolean);
+
+  if (paragraphs.length > 0) {
+    return paragraphs.join("\n");
+  }
+
+  return normalizeLine(stripHtml(cellHtml));
+}
+
+function rowsFromHtml(html) {
+  const rows = [];
+  const tableRows = html.matchAll(/<tr[^>]*>([\s\S]*?)<\/tr>/gi);
+
+  for (const rowMatch of tableRows) {
+    const rowHtml = rowMatch[1];
+    const cells = [...rowHtml.matchAll(/<t[dh][^>]*>([\s\S]*?)<\/t[dh]>/gi)]
+      .map((match) => cellText(match[1]))
+      .filter((_, index) => index < 4);
+
+    if (cells.some(Boolean)) {
+      rows.push(cells);
     }
   }
 
-  return null;
+  return rows;
 }
 
-function splitByDetectedIds(lines) {
-  const starts = lines
-    .map((line, index) => ({ id: getStartedGuideId(line), index }))
-    .filter((item) => item.id !== null);
-
-  if (starts.length < Math.min(6, TOTAL_GUIDES)) {
-    return null;
-  }
-
-  const chunks = new Map();
-  starts.forEach((start, position) => {
-    const next = starts[position + 1];
-    const chunkLines = lines.slice(start.index, next?.index ?? lines.length);
-    chunks.set(start.id, chunkLines);
-  });
-
-  return Array.from({ length: TOTAL_GUIDES }, (_, index) => chunks.get(index + 1) ?? []);
+function cleanContent(value) {
+  return value
+    .split(/\r?\n/)
+    .map(normalizeLine)
+    .filter(Boolean)
+    .filter((line) => !/^\(\d+\s*ký\s*tự\)$/i.test(line));
 }
 
-function splitEvenly(lines) {
-  const chunkSize = Math.max(1, Math.ceil(lines.length / TOTAL_GUIDES));
-  return Array.from({ length: TOTAL_GUIDES }, (_, index) =>
-    lines.slice(index * chunkSize, (index + 1) * chunkSize),
-  );
-}
-
-function buildGuide(id, chunkLines) {
-  const lines = chunkLines.map(normalizeLine).filter(Boolean);
-  const rawTitle = stripTitlePrefix(lines[0] ?? "", id);
-  const maybeSubtitle = lines[1] ?? "";
-  const hasSubtitle =
-    maybeSubtitle.length > 0 &&
-    maybeSubtitle.length <= 80 &&
-    (/^\(.+\)$/.test(maybeSubtitle) || !/[.!?]$/.test(maybeSubtitle));
-  const descriptionLines = lines.slice(hasSubtitle ? 2 : 1);
-  const title = rawTitle || `Audio guide ${String(id).padStart(2, "0")}`;
+function guideFromRow(row) {
+  const id = Number.parseInt(normalizeLine(row[0]), 10);
+  const lines = cleanContent(row[1] ?? "");
+  const title = lines[0] || `Audio guide ${String(id).padStart(2, "0")}`;
+  const subtitle = lines[1] && /^\(.+\)$/.test(lines[1]) ? lines[1] : "";
+  const descriptionStart = subtitle ? 2 : 1;
 
   return {
     id,
     title,
-    subtitle: hasSubtitle ? maybeSubtitle : "",
-    description: descriptionLines.join("\n\n") || PLACEHOLDER_DESCRIPTION,
+    subtitle,
+    description: lines.slice(descriptionStart).join("\n\n"),
     imageUrl: `/images/items/${String(id).padStart(2, "0")}.jpg`,
     audioUrl: `/audio/${String(id).padStart(2, "0")}.mp3`,
   };
+}
+
+function guideRowsFromHtml(html) {
+  return rowsFromHtml(html).filter((row) => {
+    const id = Number.parseInt(normalizeLine(row[0] ?? ""), 10);
+    return Number.isInteger(id) && id >= 1 && id <= TOTAL_GUIDES && row[1];
+  });
+}
+
+function guideRowsFromRawText(rawText) {
+  const lines = rawText
+    .split(/\r?\n/)
+    .map(normalizeLine)
+    .filter(Boolean);
+  const rows = [];
+
+  for (let index = 0; index < lines.length; index += 1) {
+    const id = Number.parseInt(lines[index], 10);
+    if (!Number.isInteger(id) || id < 1 || id > TOTAL_GUIDES) {
+      continue;
+    }
+
+    const nextIndex = lines.findIndex((line, offset) => {
+      if (offset <= index) {
+        return false;
+      }
+
+      const nextId = Number.parseInt(line, 10);
+      return nextId === id + 1;
+    });
+    const contentLines = lines.slice(index + 1, nextIndex === -1 ? lines.length : nextIndex);
+    rows.push([String(id), contentLines.join("\n")]);
+  }
+
+  return rows;
 }
 
 function createSeedFile(guides) {
@@ -105,18 +134,24 @@ export function getGuideById(id) {
 
 async function main() {
   const docxPath = process.env.DOCX_PATH || DEFAULT_DOCX_PATH;
-  const result = await mammoth.extractRawText({ path: docxPath });
-  const lines = result.value
-    .split(/\r?\n/)
-    .map(normalizeLine)
-    .filter((line) => line.length > 0);
+  const htmlResult = await mammoth.convertToHtml({ path: docxPath });
+  let rows = guideRowsFromHtml(htmlResult.value);
 
-  if (lines.length === 0) {
-    throw new Error("DOCX không có nội dung text để tạo seed.");
+  if (rows.length !== TOTAL_GUIDES) {
+    const rawResult = await mammoth.extractRawText({ path: docxPath });
+    rows = guideRowsFromRawText(rawResult.value);
   }
 
-  const chunks = splitByDetectedIds(lines) ?? splitEvenly(lines);
-  const guides = chunks.map((chunkLines, index) => buildGuide(index + 1, chunkLines));
+  if (rows.length !== TOTAL_GUIDES) {
+    throw new Error(`Expected ${TOTAL_GUIDES} guide rows, found ${rows.length}.`);
+  }
+
+  const guides = rows.map(guideFromRow);
+  const ids = guides.map((guide) => guide.id);
+  const expectedIds = Array.from({ length: TOTAL_GUIDES }, (_, index) => index + 1);
+  if (ids.join(",") !== expectedIds.join(",")) {
+    throw new Error(`Guide ids are not sequential: ${ids.join(",")}.`);
+  }
 
   await mkdir(path.dirname(OUTPUT_PATH), { recursive: true });
   await writeFile(OUTPUT_PATH, createSeedFile(guides), "utf8");

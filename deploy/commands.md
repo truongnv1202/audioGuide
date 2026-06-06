@@ -63,20 +63,39 @@ App sẽ chạy nội bộ tại:
 127.0.0.1:9000
 ```
 
-## 5. Cấu hình nginx chung
+## 5. Tạo SSL certificate cho Cloudflare
+
+Trong Cloudflare dashboard, vào `SSL/TLS` > `Overview` và đặt mode là **Full (strict)**.
+
+Tạo Cloudflare Origin Certificate tại `SSL/TLS` > `Origin Server` > `Create Certificate`, dùng hostname `audioguide.gamegiaoduc.co`. Sau đó lưu cert/key vào server:
 
 ```bash
-cp deploy/nginx-audioguide.conf /etc/nginx/conf.d/audioguide.conf
-nginx -t
-systemctl reload nginx
+sudo mkdir -p /etc/nginx/ssl/audioguide
+
+sudo tee /etc/nginx/ssl/audioguide/cloudflare-origin.pem >/dev/null <<'EOF'
+-----BEGIN CERTIFICATE-----
+PASTE_CLOUDFLARE_ORIGIN_CERTIFICATE_HERE
+-----END CERTIFICATE-----
+EOF
+
+sudo tee /etc/nginx/ssl/audioguide/cloudflare-origin.key >/dev/null <<'EOF'
+-----BEGIN PRIVATE KEY-----
+PASTE_CLOUDFLARE_ORIGIN_PRIVATE_KEY_HERE
+-----END PRIVATE KEY-----
+EOF
+
+sudo chmod 644 /etc/nginx/ssl/audioguide/cloudflare-origin.pem
+sudo chmod 600 /etc/nginx/ssl/audioguide/cloudflare-origin.key
 ```
 
-Nếu server dùng certbot:
+Không đưa cert/key thật vào git. Nếu không muốn dùng Cloudflare Origin Certificate, dùng Let's Encrypt DNS challenge rồi sửa `ssl_certificate` và `ssl_certificate_key` trong nginx sang đường dẫn certbot cấp.
+
+## 6. Cấu hình nginx chung
 
 ```bash
-certbot --nginx -d audioguide.gamegiaoduc.co
-nginx -t
-systemctl reload nginx
+sudo cp deploy/nginx-audioguide.conf /etc/nginx/conf.d/audioguide.conf
+sudo nginx -t
+sudo systemctl reload nginx
 ```
 
 ## Deploy nhanh toàn bộ
@@ -99,9 +118,9 @@ sed -i "s/^BACKEND_SECRET=.*/BACKEND_SECRET=$SECRET/" .env
 npm install
 DOCX_PATH="/opt/audioguide/data/source.docx" npm run seed
 docker compose up -d --build
-cp deploy/nginx-audioguide.conf /etc/nginx/conf.d/audioguide.conf
-nginx -t
-systemctl reload nginx
+sudo cp deploy/nginx-audioguide.conf /etc/nginx/conf.d/audioguide.conf
+sudo nginx -t
+sudo systemctl reload nginx
 echo "Frontend: https://audioguide.gamegiaoduc.co/?id=1"
 echo "Backend: https://audioguide.gamegiaoduc.co/backend/$SECRET/guides"
 ```

@@ -1,220 +1,196 @@
 export const guides = [
   {
-    id: 1,
-    title: "Lê Văn Cảng - Người chiến sĩ an ninh bất khuất",
-    subtitle: "(1921 - 1960)",
-    description:
-      "Đồng chí Lê Văn Cảng sinh năm 1921, quê ở xã Đức Lập, huyện Đức Hòa, tỉnh Long An. Khi hy sinh, đồng chí là đảng viên, cán bộ an ninh xã Đức Lập. Trong kháng chiến chống Pháp, đồng chí hoạt động bí mật tại xã, luôn nêu cao tinh thần cách mạng, vượt qua mọi thử thách, bám trụ kiên cường, xây dựng được nhiều cơ sở bảo vệ Đảng, bảo vệ căn cứ cách mạng.",
-    imageUrl: "/images/guide-placeholder.svg",
-    audioUrl: "/audio/01.mp3",
+    "id": 1,
+    "title": "Võ Thị Sáu - Huyền thoại vùng Đất Đỏ",
+    "subtitle": "(1933 - 1952)",
+    "description": "Đồng chí Võ Thị Sáu tên thật là Nguyễn Thị Sáu sinh năm 1933, quê ở xã Phước Thọ, quận Đất Đỏ, tỉnh Bà Rịa (nay là xã Đất Đỏ, TP. Hồ Chí Minh).\n\nĐồng chí Võ Thị Sáu sinh ra trong một gia đình giàu truyền thống cách mạng, làm liên lạc, tiếp tế và cung cấp nhiều tin tức có giá trị cho Công an quận Đất Đỏ. Năm 1947, đồng chí được kết nạp vào Đội Công an xung phong quận Đất Đỏ khi mới 14 tuổi.\n\nVới trí thông minh, nhanh nhẹn, Võ Thị Sáu đã luồn sâu vào vùng tạm chiếm từ thị trấn Đất Đỏ đến Phước Lợi, Long Mỹ, Phước Hải hoàn thành xuất sắc nhiệm vụ liên lạc, nắm tình hình, cung cấp và báo cáo kịp thời cho tổ chức nhiều tin tức quan trọng, đã giúp cho Công an quận Đất Đỏ có kế hoạch chủ động đề phòng và tấn công địch có hiệu quả. Tháng 02/1950, đồng chí dẫn đầu một tổ, dùng lựu đạn tập kích diệt hai tên Cả Đay và Cả Suốt, không may bị địch bắt. Ngày 21/01/1952, đồng chí bị đưa ra Côn Đảo với số tù G.267 và bị giam riêng trong xà lim Sở Cò (nay là trường mẫu giáo Măng Non, huyện Côn Đảo). Đêm 22/01/1952, đồng chí được Chi bộ nhà tù kết nạp vào Đảng Cộng sản Việt Nam.\n\nSáng 23/01/1952, thực dân Pháp đưa Võ Thị Sáu đi hành hình tại Hàng Dương, Côn Đảo. Trước họng súng quân thù đồng chí hiên ngang hô to “Đả đảo thực dân Pháp! Việt Nam muôn năm! Hồ Chí Minh muôn năm!”.\n\nNgày 02/8/1993, Chủ tịch nước Lê Đức Anh ký quyết định số 149 XT/CTN truy tặng đồng chí Võ Thị Sáu danh hiệu Anh hùng Lực lượng vũ trang nhân dân vì “đã lập chiến công đặc biệt xuất sắc trong chiến đấu, giữ vững khí tiết người chiến sĩ công an, nêu gương sáng về chủ nghĩa anh hùng cách mạng”.",
+    "imageUrl": "/images/items/01.jpg",
+    "audioUrl": "/audio/01.mp3"
   },
   {
-    id: 2,
-    title: "Audio guide 02",
-    subtitle: "Đang cập nhật",
-    description:
-      "Nội dung thuyết minh sẽ được cập nhật từ file DOCX bằng lệnh npm run seed:docx.",
-    imageUrl: "/images/guide-placeholder.svg",
-    audioUrl: "/audio/02.mp3",
+    "id": 2,
+    "title": "Bùi Thị Cúc - Điệp báo Công an tỉnh Hưng Yên",
+    "subtitle": "(1930 - 1950)",
+    "description": "Đồng chí Bùi Thị Cúc tên thật là Trần Thị Lan, sinh năm 1930 tại làng Vân Mạc, xã Quang Trung, huyện Ân Thi (nay là xã Xuân Trúc, tỉnh Hưng Yên).\n\nSinh ra trong một gia đình giàu truyền thống cách mạng, đồng chí giác ngộ cách mạng từ rất sớm. Cuối năm 1947 đồng chí được kết nạp vào Đảng Cộng sản Việt Nam - là nữ Đảng viên trẻ nhất xã, làm cán bộ phụ nữ xã, rồi làm cán sự Hội Phụ nữ huyện Ân Thi.\n\nNăm 1948, đồng chí Bùi Thị Cúc được giao nhiệm vụ làm trinh sát điệp báo trong vùng địch hậu tại huyện Ân Thi, tỉnh Hưng Yên, đồng chí đã thu thập nhiều tin tức quan trọng, kịp thời báo cho các tổ chức cách mạng của huyện sơ tán, tránh được nhiều tổn thất cho cách mạng trong những lần địch vây ráp, càn quét.\n\nTháng 12/1949 đồng chí Cúc trở thành cán bộ Công an, được phân công về đội công tác của Công an huyện, làm nhiệm vụ công tác phản gián và địch vận, nắm tình hình, thu thập tin tức, hoạt động của địch trong vùng, với vỏ bọc là cán bộ cầu an, thoái hóa biến chất, buôn bán làm giàu. Sáng ngày 12/5/1950, thực hiện kế hoạch chỉ đạo của tổ chức Công an, đồng chí hiệp đồng cùng đồng đội tiêu diệt tên Nguyễn Doãn Nhi, đối tượng có nhiều tội ác với nhân dân, thu 01 khẩu súng và cặp tài liệu. Sau khi tên Nguyễn Doãn Nhi bị tiêu diệt, địch điên cuồng truy bắt Bùi Thị Cúc và tra tấn dã man. Ngày 15/5/1950, địch đã hành quyết đồng chí trước sự chứng kiến của người thân và bà con quê hương.\n\nGhi nhận công lao và sự hy sinh anh dũng của người Cộng sản trẻ tuổi, người chiến sĩ Công an cách mạng, ngày 15/01/1952, Chủ tịch Hồ Chí Minh đã ký Sắc lệnh số 77/SL truy tặng đồng chí Bùi Thị Cúc Huân chương Độc lập hạng Ba và 6 chữ vàng: “Sống anh dũng, chết vẻ vang”. Ngày 03/8/1995, nhân kỷ niệm 50 năm ngày truyền thống lực lượng Công an nhân dân Việt Nam, liệt sĩ Bùi Thị Cúc được truy tặng danh hiệu Anh hùng Lực lượng vũ trang nhân dân.",
+    "imageUrl": "/images/items/02.jpg",
+    "audioUrl": "/audio/02.mp3"
   },
   {
-    id: 3,
-    title: "Audio guide 03",
-    subtitle: "Đang cập nhật",
-    description:
-      "Nội dung thuyết minh sẽ được cập nhật từ file DOCX bằng lệnh npm run seed:docx.",
-    imageUrl: "/images/guide-placeholder.svg",
-    audioUrl: "/audio/03.mp3",
+    "id": 3,
+    "title": "Lê Bình - Người chỉ huy đội cảm tử quân Quốc gia tự vệ cuộc",
+    "subtitle": "(1924 - 1945)",
+    "description": "Ðồng chí Lê Bình là người con thứ tư trong gia đình có truyền thống cách mạng tại xã Sơn Tân, huyện Hương Sơn, tỉnh Hà Tĩnh. Ngày 30/8/1945, tại trụ sở Hải quân cũ của Pháp ở bến Ninh Kiều, Quốc gia tự vệ cuộc Cần Thơ được thành lập, đánh dấu sự ra đời của lực lượng Công an Cần Thơ, đồng chí Lê Bình được phân công giữ chức Trưởng Quốc gia tự vệ cuộc.\n\nKhi đồng chí Lê Bình chưa kịp đến nhiệm sở thì quân Pháp đã tái chiếm Cần Thơ. Trước tình hình nguy cấp, đồng chí đã có một quyết định táo bạo tổ chức một trận tập kích bất ngờ nhằm giáng đòn mạnh vào kẻ thù, cổ vũ tinh thần kháng chiến trong nhân dân.\n\nNgày 12/11/1945, đồng chí Lê Bình chỉ huy trận đánh vào sở chỉ huy hành quân của Pháp ở Cái Răng, đội cảm tử gồm sáu người (Lê Bình, Bùi Quang Trinh, Lê Nhựt Tảo, Cao Minh Lộc, Trần Chiên và Trần Hữu Nghi), đã cải trang là những người Hoa kiều vào xã Thường Thạnh xin giấy phép đi lại các làng để làm nghề buôn bán. Ngay sau khi áp sát mục tiêu, đội cảm tử đã nổ súng tiêu diệt và làm sát thương nhiều tên địch. Đồng chí Lê Bình đã nhanh chóng hạ cờ địch và treo lá cờ đỏ sao vàng nhằm khích lệ tinh thần nhân dân. Sau những phút lúng túng, quân địch bắt đầu đánh trả, đồng chí Lê Bình và đồng chí Bùi Quang Trinh đã anh dũng hy sinh khi đang chiến đấu ngoan cường.\n\nSự hy sinh của Ðội cảm tử quân để lại dấu ấn sâu đậm trong lòng nhân dân. Ngày 03/8/1998, đồng chí Lê Bình đã được Nhà nước truy tặng danh hiệu Anh hùng Lực lượng vũ trang nhân dân.",
+    "imageUrl": "/images/items/03.jpg",
+    "audioUrl": "/audio/03.mp3"
   },
   {
-    id: 4,
-    title: "Audio guide 04",
-    subtitle: "Đang cập nhật",
-    description:
-      "Nội dung thuyết minh sẽ được cập nhật từ file DOCX bằng lệnh npm run seed:docx.",
-    imageUrl: "/images/guide-placeholder.svg",
-    audioUrl: "/audio/04.mp3",
+    "id": 4,
+    "title": "Bửu Đóa - Người Đội trưởng kiên cường",
+    "subtitle": "(1916 - 1948)",
+    "description": "Đồng chí Bửu Đóa sinh năm 1916 tại Thừa Thiên - Huế trong một gia đình có truyền thống yêu nước. Năm 1936, đồng chí làm công nhân tại Nhà máy đèn Chụt, phường Vĩnh Nguyên, thành phố Nha Trang. Tháng 8/1945, đồng chí tham gia Tổng khởi nghĩa giành chính quyền tại Nha Trang.\n\nSau khi tái chiếm Nam Bộ, thực dân Pháp thẳng tay đàn áp phong trào cách mạng. Ty Công an Khánh Hòa quyết định thành lập Ban ám sát, sau đổi thành Đội Công an xung phong với nhiệm vụ nắm tình hình, tiêu diệt ác ôn, mật thám, Việt gian, bảo vệ quần chúng, cơ sở cách mạng. Đồng chí Bửu Đóa được giao làm Đội trưởng Đội Công an xung phong. Chỉ trong 3 năm đầu cuộc kháng chiến chống thực dân Pháp, đồng chí cùng đồng đội đã lập nhiều chiến công xuất sắc. Từ cuối năm 1945 đến năm 1948, trong tổng số 22 trận đánh khi phối hợp cùng đồng đội, khi độc lập chiến đấu, Bửu Đóa đã tiêu diệt 11 tên Pháp, 9 tên Việt gian và ngụy binh, thuyết phục 10 ngụy binh trở về với cách mạng, phá hủy nhiều phương tiện, thiết bị hoạt động của quân Pháp tại Nha Trang… Đồng chí đã anh dũng hy sinh trong một trận đánh năm 1948 với giặc Pháp tại khu vực Cầu Đá khi mới 32 tuổi.\n\nNgày 25/4/1949, đồng chí được Chủ tịch Hồ Chí Minh ký Sắc lệnh tặng thưởng Huân chương Độc lập hạng Ba. Ngày 21/7/1949, trong cuốn Nội san Rèn luyện (nay là Báo CAND) của Nha Công an Trung ương đã đăng những chiến công của đồng chí và nêu gương trong toàn lực lượng CAND trong Bảng vàng Công an số 17 - 18. Với những chiến công và sự hy sinh anh dũng, đồng chí Bửu Đóa đã được Nha Công an Trung ương tặng thưởng Huy hiệu Công an bằng vàng. Ngày 03/8/1995, Nhà nước đã truy tặng đồng chí Bửu Đóa danh hiệu Anh hùng Lực lượng vũ trang nhân dân.",
+    "imageUrl": "/images/items/04.jpg",
+    "audioUrl": "/audio/04.mp3"
   },
   {
-    id: 5,
-    title: "Audio guide 05",
-    subtitle: "Đang cập nhật",
-    description:
-      "Nội dung thuyết minh sẽ được cập nhật từ file DOCX bằng lệnh npm run seed:docx.",
-    imageUrl: "/images/guide-placeholder.svg",
-    audioUrl: "/audio/05.mp3",
+    "id": 5,
+    "title": "Nguyễn Thị Lợi - Người “tạc hồn” nơi sóng biển khơi",
+    "subtitle": "(1911 - 1950)",
+    "description": "Đồng chí Nguyễn Thị Lợi sinh năm 1911 ở Châu Phú, Châu Đốc, tỉnh An Giang (nay là phường Châu Đốc, tỉnh An Giang).\n\nSau Chiến dịch Việt Bắc - Thu đông 1947, thực dân Pháp đẩy mạnh sách lược “dùng người Việt trị người Việt”, lôi kéo những phần tử ly khai trong hàng ngũ kháng chiến, lập ra những “chiến khu quốc gia”, mở rộng vùng chiếm đóng. Tháng 9/1950 khi nắm được âm mưu của địch định đánh chiếm vùng tự do Thanh - Nghệ - Tĩnh, Tổ điệp báo A13 gồm các đồng chí: Hoàng Đạo (bí số A13); Kim Sơn (A14); Chu Duy Kính (A15); đồng chí Nguyễn Thị Lợi (điệp báo viên bí số A16) được lệnh triển khai kế hoạch đánh thông báo hạm Amyot d’ Inville của thực dân Pháp. Rạng sáng ngày 27/9/1950, trong vai phu nhân Quốc vụ khanh (tức đồng chí Hoàng Đạo - Bí số A13), đồng chí Nguyễn Thị Lợi lấy lý do chữa bệnh mang theo một khối thuốc nổ lớn ngụy trang trong va li hành lý lên tàu… Với tinh thần mưu trí, dũng cảm của các chiến sĩ Điệp báo, đúng như kế hoạch, gần trưa ngày 27/9/1950, Thông báo hạm Amyot d’ Inville đã bị nổ tung trên vùng biển Sầm Sơn, Thanh Hóa, hàng trăm quan, lính thực dân Pháp cùng vũ khí, phương tiện chiến tranh bị tiêu diệt. Đồng chí Nguyễn Thị Lợi đã anh dũng hy sinh.\n\nNgày 03/8/1995, đồng chí Nguyễn Thị Lợi được truy tặng danh hiệu Anh hùng lực lượng vũ trang nhân dân.",
+    "imageUrl": "/images/items/05.jpg",
+    "audioUrl": "/audio/05.mp3"
   },
   {
-    id: 6,
-    title: "Audio guide 06",
-    subtitle: "Đang cập nhật",
-    description:
-      "Nội dung thuyết minh sẽ được cập nhật từ file DOCX bằng lệnh npm run seed:docx.",
-    imageUrl: "/images/guide-placeholder.svg",
-    audioUrl: "/audio/06.mp3",
+    "id": 6,
+    "title": "Lâm Văn Thạnh - Người hùng trước họng súng kẻ thù",
+    "subtitle": "(1957 - 1980)",
+    "description": "Năm 1980, người chiến sĩ An ninh trẻ tuổi Lâm Văn Thạnh, là trinh sát An ninh (Phòng Trinh sát ngoại tuyến) đã xin tham gia “đánh án” F101 - vận động, câu nhử hàng loạt “tướng tá” fulro về hàng cách mạng.\n\nLâm Văn Thạnh được giao nhiệm vụ quan trọng nhất: đóng vai nhân viên của tổ chức phản động quốc tế Caritat tìm cách liên lạc và tiếp cận với nhóm fulro do Ya Duck đang làm thủ lĩnh, truyền đạt các kế hoạch “hợp tác” theo chỉ đạo của Ban chuyên án.\n\nĐồng chí đã 11 lần thâm nhập vào tổ chức fulro, thực hiện thành công 6 lần câu nhử, bắt được hơn 50 tên fulro, đưa chúng ra quy phục, đầu hàng trước cơ quan Công an. Sau chuyến câu nhử thứ 6, bọn fulro đã phát hiện đồng chí Thạnh là Công an nhưng vẫn vờ đón tiếp và hẹn chuyến thứ 7 sẽ đón lúc 4h30 ngày 23/12/1980. Trong chuyến câu nhử thứ 7, đồng chí Lâm Văn Thạnh cùng đồng đội đã bị bắt và tra tấn dã man, 9h sáng ngày 24/12/1980, ba đồng chí bị đưa đi xử tử. Lợi dụng lúc địch đang lên đạn, đồng chí Thạnh đã thu hút sự chú ý của chúng, ra hiệu cho đồng đội lăn xuống vực chạy thoát về đơn vị. Riêng đồng chí đã anh dũng hy sinh khi mới 23 tuổi, với hơn 5 năm khoác trên mình sắc phục của người chiến sĩ An ninh.\n\nNgày 27/8/1982, liệt sĩ Lâm Văn Thạnh được Nhà nước truy tặng danh hiệu cao quý Anh hùng Lực lượng vũ trang nhân dân.",
+    "imageUrl": "/images/items/06.jpg",
+    "audioUrl": "/audio/06.mp3"
   },
   {
-    id: 7,
-    title: "Audio guide 07",
-    subtitle: "Đang cập nhật",
-    description:
-      "Nội dung thuyết minh sẽ được cập nhật từ file DOCX bằng lệnh npm run seed:docx.",
-    imageUrl: "/images/guide-placeholder.svg",
-    audioUrl: "/audio/07.mp3",
+    "id": 7,
+    "title": "Phan Văn Viêm - Người kiên cường chiến đấu đến hơi thở cuối cùng",
+    "subtitle": "(1928 - 1971)",
+    "description": "Đồng chí Phan Văn Viêm sinh năm 1928, quê xã Thụy Ninh, huyện Thái Thụy, tỉnh Thái Bình (nay là xã Tây Thụy Anh, tỉnh Hưng Yên). 19 tuổi ông tham gia hoạt động cách mạng, là du kích, là xã đội phó, 20 tuổi vinh dự được đứng trong hàng ngũ của Đảng.\n\nNăm 1964, khi cuộc chiến tranh chống Mỹ cứu nước đang diễn ra ác liệt, đồng chí Phan Văn Viêm cùng 10 cán bộ Công an Thái Bình tình nguyện lên đường chi viện cho An ninh miền Nam. Ngày 24/4/1965, đồng chí được giao làm Phó đoàn B11, kiêm Trung đội trưởng trung đội 11, cùng tập thể lãnh đạo đoàn B11 chỉ huy lực lượng chi viện cho An ninh tỉnh Kon Tum. Sau đó, đồng chí được điều về Ban An ninh H29. Cuối năm 1969, đồng chí được đề bạt giữ chức Ủy viên Ban An ninh tỉnh Kon Tum, kiêm Trưởng ban An ninh H5 và chỉ huy đội công tác A25. Đồng chí đã lập được nhiều chiến công xuất sắc.\n\nNgày 29/10/1971, sau khi sinh hoạt với cơ sở, đồng chí Viêm và một cán bộ khác là đồng chí Lê trở lại hầm bí mật, không may bị địch phát hiện. Chúng huy động một lực lượng lớn cảnh sát dã chiến, trực thăng quần thảo, kêu gọi các đồng chí đầu hàng. Biết khó có thể ẩn náu, hai đồng chí đã tiêu hủy toàn bộ tài liệu, mỗi người một khẩu súng bung nắp hầm, hướng về phía quân địch nhả đạn. Do chênh lệch lực lượng, hai đồng chí đã chiến đấu đến viên đạn cuối cùng và anh dũng hy sinh.\n\nVới những thành tích xuất sắc trong chiến đấu và sự hy sinh anh dũng ấy, ngày 09/11/2004, Chủ tịch nước đã ký quyết định truy tặng danh hiệu Anh hùng Lực lượng vũ trang nhân dân cho liệt sĩ CAND Phan Văn Viêm.",
+    "imageUrl": "/images/items/07.jpg",
+    "audioUrl": "/audio/07.mp3"
   },
   {
-    id: 8,
-    title: "Audio guide 08",
-    subtitle: "Đang cập nhật",
-    description:
-      "Nội dung thuyết minh sẽ được cập nhật từ file DOCX bằng lệnh npm run seed:docx.",
-    imageUrl: "/images/guide-placeholder.svg",
-    audioUrl: "/audio/08.mp3",
+    "id": 8,
+    "title": "Khúc tráng ca về 12 Chiến sĩ An ninh vũ trang T4",
+    "subtitle": "",
+    "description": "Phân đội An ninh vũ trang T4 gồm 12 đồng chí có nhiệm vụ dẫn đường và bảo vệ đồng chí Võ Văn Kiệt cùng các đồng chí lãnh đạo chủ chốt của Bộ Tư lệnh tiền phương II từ căn cứ Bắc Bình Chánh vào nội thành để chỉ đạo chiến dịch Xuân Mậu Thân 1968.\n\nKhi đoàn Bộ Tư lệnh dừng chân tại khu vực Chợ Thiếc gần trường đua Phú Thọ thì bị địch phát hiện, 12 chiến sĩ gồm các đồng chí Nguyễn Hoàng Ân, Ngô Văn Bạch, Bùi Văn Đức, Phạm Văn Lợi, Bùi Văn Tám, Lê Văn Thình, Nguyễn Văn Đanh, Nguyễn Văn Chụp, Lê Văn Ngọc, Nguyễn Minh Hoàng, Phạm Văn Trung và Lê Văn Tăng do đồng chí Nguyễn Minh Hoàng làm Phân đội trưởng đã chiến đấu kìm chân địch để đoàn rút khỏi khu vực trên an toàn. Suốt 5 ngày đêm từ đêm 30 rạng ngày 31/01/1968 đến 05/02/1968 chống trả nhiều đợt tấn công của một tiểu đoàn biệt động và cảnh sát dã chiến có xe cơ giới yểm trợ, các đồng chí đã bắn cháy 17 xe cơ giới (có 5 xe bọc thép) và diệt 120 tên địch. 10 đồng chí lần lượt hy sinh, còn lại 2 đồng chí là Phạm Văn Trung và Lê Văn Tăng tiếp tục chiến đấu ngoan cường và bị địch bắt, tra tấn mua chuộc không được, cuối cùng chúng đã thủ tiêu.\n\n12 liệt sĩ An ninh vũ trang T4 đã được truy tặng danh hiệu Anh hùng Lực lượng vũ trang nhân dân.",
+    "imageUrl": "/images/items/08.jpg",
+    "audioUrl": "/audio/08.mp3"
   },
   {
-    id: 9,
-    title: "Audio guide 09",
-    subtitle: "Đang cập nhật",
-    description:
-      "Nội dung thuyết minh sẽ được cập nhật từ file DOCX bằng lệnh npm run seed:docx.",
-    imageUrl: "/images/guide-placeholder.svg",
-    audioUrl: "/audio/09.mp3",
+    "id": 9,
+    "title": "Phan Khắc Trình - Trưởng ban điệp báo dạn dày kinh nghiệm",
+    "subtitle": "(1920 - 1951)",
+    "description": "Đồng chí Phan Khắc Trình, tên thật là Dương Xuân Ngô, sinh năm 1920, dân tộc Kinh, quê ở phố Nguyễn Công Trứ, Hà Nội. Khi hy sinh, đồng chí là đảng viên, Phó ban Điệp báo Công an thành phố Hà Nội.\n\nSau khi Cách mạng Tháng Tám thành công, đồng chí gia nhập lực lượng Công an và đã trải qua các cương vị lãnh đạo: Trưởng phòng Chính trị Công an khu 11, Trưởng Công an quận IV, Trưởng Công an liên huyện miền Bắc - Hà Nội và Phó ban Điệp báo phụ trách nội thành của Công an Hà Nội. Đồng chí đã lập nhiều chiến công, cùng đồng đội xây dựng nhiều cơ sở bí mật trong vùng địch tạm chiếm, phát huy tác dụng tốt, cung cấp được nhiều tin tức chính xác, kịp thời giúp ta đối phó thắng lợi với các cuộc tập kích, vây ráp, lùng bắt cán bộ của địch. Đặc biệt, đồng chí đã thuyết phục được ông Bùi Xuân Hợp ở 80 Phan Đình Phùng, Hà Nội, một bồi bếp cho tên quan Pháp Demonpedat, đoạt tài liệu mật “cảnh quan bờ biển Đông Dương”, giúp cấp trên nắm vững và tổ chức đánh vào các doanh trại trú quân, các kho lương thực, vũ khí của quân Pháp giành thắng lợi. Vào lúc 8 giờ sáng ngày 11/6/1951 do bị chỉ điểm, địch đã bắt được Phan Khắc Trình. Chúng tra tấn đồng chí trong nhiều ngày liên tục cực kỳ tàn bạo, dã man nhưng vẫn không lay chuyển được tinh thần và ý chí của đồng chí. Biết không thể khuất phục nổi người chiến sĩ công an dũng cảm, trung kiên, địch đã hèn hạ sát hại đồng chí bằng cách cho vào bao tải, ném xuống sông Hồng.\n\nĐồng chí được tặng thưởng Huân chương Kháng chiến hạng Ba. Ngày 03/8/1995, đồng chí Phan Khắc Trình được Nhà nước truy tặng danh hiệu Anh hùng Lực lượng vũ trang nhân dân.",
+    "imageUrl": "/images/items/09.jpg",
+    "audioUrl": "/audio/09.mp3"
   },
   {
-    id: 10,
-    title: "Audio guide 10",
-    subtitle: "Đang cập nhật",
-    description:
-      "Nội dung thuyết minh sẽ được cập nhật từ file DOCX bằng lệnh npm run seed:docx.",
-    imageUrl: "/images/guide-placeholder.svg",
-    audioUrl: "/audio/10.mp3",
+    "id": 10,
+    "title": "Nguyễn Văn Đẹp - Tấm gương suốt đời vì nước, vì dân",
+    "subtitle": "(1940 - 1968)",
+    "description": "Đồng chí Nguyễn Văn Đẹp sinh năm 1940, quê ở ấp Tân Hoà, xã Đức Lập, huyện Đức Hoà, tỉnh Long An (nay là xã Đức Lập, tỉnh Tây Ninh). Đồng chí sớm giác ngộ cách mạng, tham gia công tác an ninh ấp trong thời kỳ chính quyền Ngô Đình Diệm khủng bố gắt gao, thi hành Luật 10/59. Dù nhiều cơ sở bị phá vỡ, đồng chí vẫn kiên trì hoạt động, xây dựng cơ sở, phát động quần chúng đấu tranh.\n\nĐồng chí tập hợp hồ sơ tội ác, đề xuất tiêu diệt 5 tên tề, điệp nguy hiểm, góp phần phục vụ phong trào Đồng Khởi năm 1960; đồng thời vận động quần chúng nổi dậy, bắt 10 tên gián điệp, giải phóng hoàn toàn ấp Tân Hòa.\n\nTháng 3/1963, địch lấn chiếm ấp Tân Hòa, đồng chí bám trụ chiến đấu, làm chướng ngại vật, gài lựu đạn diệt địch; ban ngày bám hầm bí mật, ban đêm vận động quần chúng. Tháng 6/1963, được bổ sung vào Ban An ninh xã, đồng chí tiếp tục bám ấp, tổ chức diệt ác, làm thất bại bước đầu kế hoạch “bình định”; chỉ có 4 gia đình bị gom vào khu tập trung.\n\nĐầu năm 1964, đồng chí được giao làm Phó Ban An ninh xã, trực tiếp phụ trách ấp Tân Hòa. Trước tình hình địch tăng cường vây ráp, đồng chí chủ động tham mưu trừng trị một số tên tề, ngụy cầm đầu; đồng thời vừa bám trụ hoạt động bí mật, vừa cảm hóa, giáo dục đối tượng, góp phần làm tan rã hàng ngũ địch.\n\nBên cạnh đó, đồng chí trực tiếp chiến đấu, bắn cháy xe tăng và tiêu diệt 2 máy bay trực thăng bằng vũ khí bộ binh. Đồng chí kiên trì bám địa bàn, xây dựng hầm bí mật, bảo vệ cơ sở, đấu tranh làm thất bại các thủ đoạn tình báo, kìm kẹp của địch.\n\nNăm 1968, đồng chí cùng chi bộ vận động nhân dân trở về ấp, ổn định đời sống, củng cố cơ sở cách mạng; 97 gia đình đã quay lại sinh sống, góp phần phục hồi và phát triển phong trào. Trong một chuyến đi công tác, đồng chí Đẹp chẳng may đạp trúng một quả mìn và đã hy sinh.\n\nĐồng chí Nguyễn Văn Đẹp được Nhà nước truy tặng danh hiệu Anh hùng Lực lượng vũ trang nhân dân, ngày 24/01/1976.",
+    "imageUrl": "/images/items/10.jpg",
+    "audioUrl": "/audio/10.mp3"
   },
   {
-    id: 11,
-    title: "Audio guide 11",
-    subtitle: "Đang cập nhật",
-    description:
-      "Nội dung thuyết minh sẽ được cập nhật từ file DOCX bằng lệnh npm run seed:docx.",
-    imageUrl: "/images/guide-placeholder.svg",
-    audioUrl: "/audio/11.mp3",
+    "id": 11,
+    "title": "Nguyễn Thị Hồng - Nữ chiến sĩ kiên trung của vùng đất Kiến Tường",
+    "subtitle": "(1952 - 1970)",
+    "description": "Đồng chí Nguyễn Thị Hồng, sinh năm 1952, quê ở xã Tuyên Bình Tây, huyện Vĩnh Hưng, tỉnh Long An (nay là xã Tuyên Bình, tỉnh Tây Ninh).\n\nĐồng chí tham gia cách mạng từ năm 13 tuổi, làm nhiệm vụ liên lạc, tiếp tế hậu cần cho cán bộ hoạt động bí mật.\n\nTháng 4/1966, đồng chí thoát ly gia đình; năm 1967 được điều về Ban An ninh tỉnh Kiến Tường, làm nhiệm vụ cứu thương, tải đạn…và trực tiếp tham gia nhiều trận đánh diệt ác, trừ gian, phá ấp chiến lược, nhổ đồn bốt địch. Đầu năm 1966, đồng chí cùng đồng đội tiến công ấp chiến lược Long Khốt, bắt sống 3 tên phòng vệ dân sự ác ôn. Trong Tổng tiến công và nổi dậy Tết Mậu Thân 1968, đồng chí cùng đơn vị đánh vào Cửa Đông tỉnh lỵ Kiến Tường, chiến đấu 2 ngày đêm, diệt nhiều tên địch.\n\nTháng 3/1969, đồng chí cùng tổ trinh sát vũ trang đột nhập ấp chiến lược Ống Quới, bắt sống 1 tên tình báo do CIA cài cắm; sau đó tiến công trụ sở xã Thuận Nghĩa Hòa, diệt tên Phó xã trưởng ác ôn. Tháng 6/1969, đồng chí tham gia tập kích ấp chiến lược Kênh 12, diệt tên Oanh - nhân viên phủ Đặc ủy tình báo ngụy.\n\nCuối năm 1969 - đầu năm 1970, địch càn quét vào quê hương, sát hại mẹ và hai chị em gái của đồng chí; cùng thời điểm, ba người anh của đồng chí lần lượt hy sinh ngoài mặt trận. Biến đau thương thành hành động, đồng chí tiếp tục xung phong chiến đấu, tham gia trận ấp Cả Đôi, diệt 4 tên địch, thu vũ khí.\n\nNgày 20/3/1970, tổ trinh sát vũ trang do đồng chí tham gia táo bạo đột nhập ấp chiến lược Bắc Chánh 2, tiêu diệt tên Liên (toán trưởng phòng vệ dân sự), bắn bị thương một trưởng ấp, làm tan rã một trung đội phòng vệ dân sự, thu 11 súng. Trên đường rút về căn cứ, đơn vị rơi vào ổ phục kích; đồng chí dũng cảm chặn đánh địch, tạo điều kiện cho đồng đội rút lui nhưng sau đó anh dũng hy sinh khi vừa tròn 19 tuổi.\n\nĐồng chí được tặng thưởng Huân chương Kháng chiến hạng Nhì và nhiều Bằng khen. Ngày 29/01/1996, Nhà nước truy tặng đồng chí danh hiệu Anh hùng Lực lượng vũ trang nhân dân.",
+    "imageUrl": "/images/items/11.jpg",
+    "audioUrl": "/audio/11.mp3"
   },
   {
-    id: 12,
-    title: "Audio guide 12",
-    subtitle: "Đang cập nhật",
-    description:
-      "Nội dung thuyết minh sẽ được cập nhật từ file DOCX bằng lệnh npm run seed:docx.",
-    imageUrl: "/images/guide-placeholder.svg",
-    audioUrl: "/audio/12.mp3",
+    "id": 12,
+    "title": "Lê Văn Cảng - Người chiến sĩ an ninh bất khuất",
+    "subtitle": "(1921 - 1960)",
+    "description": "Đồng chí Lê Văn Cảng sinh năm 1921, quê ở xã Đức Lập, huyện Đức Hòa, tỉnh Long An (nay là xã Đức Lập, tỉnh Tây Ninh). Khi hy sinh, đồng chí là đảng viên, cán bộ an ninh xã Đức Lập.\n\nTrong kháng chiến chống Pháp (1945 - 1954), đồng chí hoạt động bí mật tại xã, luôn nêu cao tinh thần cách mạng, vượt qua mọi thử thách, bám trụ kiên cường, xây dựng được nhiều cơ sở bảo vệ Đảng, bảo vệ căn cứ cách mạng, góp phần tích cực cùng lực lượng vũ trang chiếm đồn Đức Lập, thu nhiều súng và tài liệu quan trọng.\n\nKhi Mỹ thay chân Pháp xâm lược miền Nam, bọn tay sai Ngô Đình Diệm điên cuồng đàn áp phong trào cách mạng khắp nơi, trong đó có xã Đức Lập, chúng ra sức bắt bớ đảng viên và cơ sở cách mạng. Để bảo vệ và phát triển phong trào. Đồng chí đã đề xuất kế hoạch và trực tiếp tiêu diệt 3 tên cảnh sát ác ôn khét tiếng bốt Hàng Keo làm địch vô cùng tức tối. Chúng ra lệnh truy nã và đã bắt được Lê Văn Cảng vào ngày 10/10/1959 tại thôn Vườn Trầu, Hóc Môn. Sau hơn 5 tháng giam cầm, đánh đập, tra khảo dã man kết hợp với dụ dỗ mua chuộc, nhưng chúng không khai thác được gì. Ngày 06/3/1960 địch đã thi hành bản án tử hình Lê Văn Cảng theo luật 10/59 của Ngô Đình Diệm bằng máy chém tại ngã ba Hòa Khánh, Đức Hòa, Long An. Trước khi xử chém, chúng đã gom trên 500 quần chúng nhân dân để đe dọa hòng khuất phục ý chí đấu tranh của quần chúng. Tuy nhiên địch đã hoàn toàn thất bại trước tinh thần căm thù, quyết đứng lên tiêu diệt Mỹ - ngụy của đồng chí.\n\nNgày 29/01/1996, đồng chí Lê Văn Cảng được Nhà nước truy tặng danh hiệu Anh hùng Lực lượng vũ trang nhân dân.",
+    "imageUrl": "/images/items/12.jpg",
+    "audioUrl": "/audio/12.mp3"
   },
   {
-    id: 13,
-    title: "Audio guide 13",
-    subtitle: "Đang cập nhật",
-    description:
-      "Nội dung thuyết minh sẽ được cập nhật từ file DOCX bằng lệnh npm run seed:docx.",
-    imageUrl: "/images/guide-placeholder.svg",
-    audioUrl: "/audio/13.mp3",
+    "id": 13,
+    "title": "Nguyễn Anh Hào - Chỉ huy điệp báo trong lòng địch",
+    "subtitle": "(1926 - 1968)",
+    "description": "Đồng chí Nguyễn Anh Hào (tức Năm An) sinh năm 1926, quê xã Hòa Bình 1, huyện Tuy Hòa, tỉnh Phú Yên. Khi hy sinh, đồng chí là Ủy viên Ban An ninh tỉnh, phụ trách điệp báo và an ninh đô thị.\n\nTham gia cách mạng từ Cách mạng Tháng Tám 1945, đồng chí từng giữ chức Trưởng Công an xã, sau đó công tác tại Ban bảo vệ chính trị Ty Công an Phú Yên. Năm 1954 tập kết ra Bắc, đến năm 1961 tình nguyện trở lại miền Nam, tiếp tục hoạt động tại Ban An ninh tỉnh.\n\nTrong điều kiện chiến đấu ác liệt, đồng chí bám dân, bám địa bàn, xây dựng lực lượng trong lòng địch, trực tiếp chỉ huy hàng trăm trận đánh, tiêu diệt và làm tan rã nhiều tổ chức tề điệp, phá hàng chục vụ gián điệp, xây dựng hàng trăm cơ sở cách mạng. Riêng cá nhân đồng chí đã trực tiếp chiến đấu nhiều trận, tiêu diệt, bắt sống nhiều tên địch và gây dựng hệ thống cơ sở điệp báo rộng khắp.\n\nNăm 1962, đồng chí trực tiếp tiêu diệt tên xã trưởng ác ôn khét tiếng ở An Thọ, gây hoang mang trong hàng ngũ tay sai. Tháng 6/1966, đồng chí tập kích một toán lính Mỹ, tiêu diệt và bắt sống địch, bảo vệ an toàn hành lang căn cứ.\n\nTrong Tổng tiến công và nổi dậy Tết Mậu Thân 1968, đồng chí chỉ huy lực lượng điệp báo phối hợp tiến công các mục tiêu quan trọng, gây tổn thất lớn cho địch. Khi địch huy động lực lượng lớn bao vây, đồng chí chỉ huy phá vây, đưa cán bộ lãnh đạo rút lui an toàn và anh dũng hy sinh.\n\nVới nhiều chiến công xuất sắc, đồng chí được tặng thưởng nhiều huân chương cao quý. Ngày 21/01/1997, đồng chí được Nhà nước truy tặng danh hiệu Anh hùng Lực lượng vũ trang nhân dân.",
+    "imageUrl": "/images/items/13.jpg",
+    "audioUrl": "/audio/13.mp3"
   },
   {
-    id: 14,
-    title: "Audio guide 14",
-    subtitle: "Đang cập nhật",
-    description:
-      "Nội dung thuyết minh sẽ được cập nhật từ file DOCX bằng lệnh npm run seed:docx.",
-    imageUrl: "/images/guide-placeholder.svg",
-    audioUrl: "/audio/14.mp3",
+    "id": 14,
+    "title": "Văn Tấn Bảy - Người chiến sĩ điệp báo mưu trí, dũng cảm",
+    "subtitle": "(1936 - 1972)",
+    "description": "Đồng chí Văn Tấn Bảy (tức Bảy Nheo) sinh năm 1936, quê ở xã Tân Nhuận Đông, huyện Châu Thành (nay là xã Tân Nhuận Đông, tỉnh Đồng Tháp).\n\nSinh ra trên quê hương giàu truyền thống cách mạng, năm 1960, đồng chí cùng nhân dân Tân Nhuận Đông tham gia phong trào Đồng Khởi và gia nhập đội du kích xã. Trong thời gian này, với tài bắn súng thiện xạ, đồng chí đã tiêu diệt 30 tên địch, khiến quân địch nhiều phen khiếp sợ.\n\nĐầu năm 1964, đồng chí được tuyển vào Tổ điệp báo Phân ban An ninh Vĩnh Long thuộc Ban An ninh tỉnh Vĩnh Long. Trong 8 năm hoạt động (1964 - 1972), đồng chí đã lập nhiều chiến công xuất sắc. Tháng 9/1967, đồng chí đã phối hợp đưa lực lượng trinh sát vũ trang và Đại đội 203 (Tỉnh đội Vĩnh Long) luồn sâu vào nơi đóng quân của địch tại xã Bình Tiên (Châu Thành), tiêu diệt toàn bộ đoàn bình định và trung đội cảnh sát dã chiến, thu 67 khẩu súng (trong đó có 4 trung liên) cùng nhiều đạn dược, quân trang.\n\nTháng 4/1968, thông qua cơ sở điệp báo cài cắm trong hàng ngũ địch, đồng chí phối hợp cùng lực lượng an ninh vũ trang và đội biệt động thị xã Sa Đéc đột nhập Ty Cảnh sát Sa Đéc, tiêu diệt 70 tên địch, thu nhiều vũ khí và tài liệu. Ngày 12/12/1968, khi địch triển khai lực lượng với xe ủi, chất nổ và quân lính nhằm bình định 3 xã An Khánh, Hòa Tân, Tân Nhuận Đông, đồng chí đã bí mật cài mìn phá hủy 2 xe ủi của địch, làm thất bại kế hoạch.\n\nNgày 07/6/1972, trong khi cùng 2 cán bộ điệp báo xuống địa bàn liên lạc với cơ sở, đồng chí rơi vào ổ phục kích của địch và bị thương nặng. Dù vậy, đồng chí vẫn kiên cường chiến đấu, dùng quả lựu đạn cuối cùng tiêu diệt 4 tên địch, làm bị thương 6 tên khác và anh dũng hy sinh.\n\nNgày 22/7/1998, đồng chí được Nhà nước truy tặng danh hiệu Anh hùng Lực lượng vũ trang nhân dân.",
+    "imageUrl": "/images/items/14.jpg",
+    "audioUrl": "/audio/14.mp3"
   },
   {
-    id: 15,
-    title: "Audio guide 15",
-    subtitle: "Đang cập nhật",
-    description:
-      "Nội dung thuyết minh sẽ được cập nhật từ file DOCX bằng lệnh npm run seed:docx.",
-    imageUrl: "/images/guide-placeholder.svg",
-    audioUrl: "/audio/15.mp3",
+    "id": 15,
+    "title": "Nguyễn Thị Tân - Dấu ấn của Nữ chiến sĩ an ninh kiên trung",
+    "subtitle": "(1949 - 1969)",
+    "description": "Đồng chí Nguyễn Thị Tân sinh năm 1949, quê xã Đức Lập Hạ, huyện Đức Hòa, tỉnh Long An.\n\nSớm giác ngộ cách mạng, từ 15 tuổi, đồng chí làm giao liên của tỉnh, vượt qua nhiều khó khăn, đưa chuyển tài liệu bảo đảm an toàn, bí mật. Năm 1966, khi bị địch bắt, đồng chí đã kịp thời tiêu hủy tài liệu; mặc dù bị tra tấn dã man, vẫn kiên quyết không khai báo và được trả tự do.\n\nTháng 8/1967, đồng chí được điều về an ninh xã Đức Lập Hạ, làm nhiệm vụ xây dựng cơ sở trong lòng địch, phát động quần chúng đấu tranh, trừng trị ác ôn, chống âm mưu dồn dân lập “ấp chiến lược”. Đồng chí kiên trì bám đất, bám dân, vận động nhân dân đấu tranh đòi trở về nơi ở cũ, chống bắt bớ, bắn phá. Hoạt động trong ấp chiến lược, đồng chí xây dựng được 20 cơ sở cách mạng, vận động 15 thanh niên tham gia bộ đội, tổ chức đào nhiều hầm bí mật bảo vệ cán bộ.\n\nVới tinh thần mưu trí, dũng cảm, đồng chí nhiều lần hóa trang, luồn sâu vào sào huyệt địch, trực tiếp hoặc cùng tổ công tác trừng trị các tên ác ôn nguy hiểm như Hồng, Đôi, Nhen, Chiến; góp phần làm tan rã hệ thống kìm kẹp, bảo vệ phong trào cách mạng.\n\nTháng 4/1969, trong một trận hoạt động tại ấp chiến lược, đồng chí cùng đồng đội cải trang để qua mắt địch. Khi bị lộ, đồng chí đã dũng cảm chiến đấu, giành được vũ khí, tạo điều kiện cho đồng đội rút lui an toàn. Bị thương nặng, đồng chí vẫn kiên quyết không đầu hàng. Sau đó, đồng chí bị địch bắt, tra tấn dã man nhưng vẫn giữ vững khí tiết, không khai báo và anh dũng hy sinh.\n\nTrong quá trình công tác, đồng chí được tặng 2 danh hiệu Dũng sĩ diệt Mỹ; được TW Hội Liên hiệp Phụ nữ Việt Nam tặng Bằng khen và tặng phẩm mang 8 chữ vàng: “Anh hùng, bất khuất, trung hậu, đảm đang”. Tiểu đội nữ do đồng chí tham gia chiến đấu được tặng thưởng Huân chương Chiến công hạng Nhất.",
+    "imageUrl": "/images/items/15.jpg",
+    "audioUrl": "/audio/15.mp3"
   },
   {
-    id: 16,
-    title: "Audio guide 16",
-    subtitle: "Đang cập nhật",
-    description:
-      "Nội dung thuyết minh sẽ được cập nhật từ file DOCX bằng lệnh npm run seed:docx.",
-    imageUrl: "/images/guide-placeholder.svg",
-    audioUrl: "/audio/16.mp3",
+    "id": 16,
+    "title": "Lê Văn Bì - Cán bộ điệp báo, Ban An ninh tỉnh Cần Thơ",
+    "subtitle": "(1934 - 1971)",
+    "description": "Đồng chí Lê Văn Bì (tức Việt Sơn) sinh năm 1934, quê xã Long Tuyền, TP. Cần Thơ, tỉnh Cần Thơ. Khi hy sinh, đồng chí là đảng viên, cán bộ điệp báo Ban An ninh tỉnh Cần Thơ.\n\nTừ năm 1960 đến 1963, đồng chí tham gia du kích xã, sau đó được tuyển vào công tác điệp báo. Sau Tổng tiến công và nổi dậy Tết Mậu Thân 1968, địch điên cuồng phản công, gây nhiều tổn thất, phong trào quần chúng ở một số vùng xung yếu đứng trước nguy cơ suy giảm. Ban An ninh thành phố Cần Thơ quyết định cử đồng chí về làm Bí thư Đảng ủy xã Long Tuyền - địa bàn chiến lược quan trọng với hệ thống đồn bốt dày đặc nhằm bảo vệ các cơ quan đầu não của Mỹ - ngụy.\n\nTrong điều kiện hoạt động đặc biệt nguy hiểm, ban ngày đồng chí ẩn mình trong hầm bí mật, ban đêm đi từng nhà dân vận động quần chúng bám đất, tham gia đấu tranh. Sau 3 năm kiên trì, đồng chí đã xây dựng được hàng chục cơ sở cách mạng, phục vụ thu thập tin tức, tiếp tế lương thực, thuốc men cho lực lượng.\n\nNgày 10/4/1971, địch mở cuộc càn quét lớn vào xã Long Tuyền, phát hiện nơi ẩn nấp và bắt đồng chí đưa về Ty Cảnh sát tra tấn, dụ dỗ nhằm khai thác tài liệu điệp báo và cơ sở nội thành. Trước mọi cực hình, đồng chí vẫn kiên quyết không khai báo, đồng thời mưu trí tìm cách tiêu diệt địch.\n\nSáng 11/4/1971, đồng chí lợi dụng sơ hở, dẫn địch vào bãi mìn, bất ngờ kích nổ làm 9 tên chết, 14 tên bị thương và anh dũng hy sinh.\n\nĐồng chí được tặng thưởng Huân chương Kháng chiến chống Mỹ cứu nước hạng Nhất. Ngày 22/7/1988, Nhà nước truy tặng đồng chí danh hiệu Anh hùng Lực lượng vũ trang nhân dân.",
+    "imageUrl": "/images/items/16.jpg",
+    "audioUrl": "/audio/16.mp3"
   },
   {
-    id: 17,
-    title: "Audio guide 17",
-    subtitle: "Đang cập nhật",
-    description:
-      "Nội dung thuyết minh sẽ được cập nhật từ file DOCX bằng lệnh npm run seed:docx.",
-    imageUrl: "/images/guide-placeholder.svg",
-    audioUrl: "/audio/17.mp3",
+    "id": 17,
+    "title": "Y Thuyên Ksơr - Người chiến sĩ an ninh Tây Nguyên dũng cảm, kiên cường",
+    "subtitle": "(1945 - 1977)",
+    "description": "Đồng chí Y Thuyên Ksơr (bí danh Ksơr Yroa) sinh năm 1945, dân tộc M’nông, quê xã Yang Mao, huyện Krông Bông, tỉnh Đắk Lắk. Khi hy sinh, đồng chí là Thiếu tá, Trưởng phòng PA16, Công an tỉnh Đắk Lắk.\n\nNgày 13/4/1961, khi mới 16 tuổi, đồng chí thoát ly gia đình tham gia cách mạng, được giao làm trinh sát tỉnh đội. Với tinh thần dũng cảm, đồng chí nhiều lần bí mật đột nhập đồn địch, nắm tình hình, phục vụ chiến đấu. Sau đó, đồng chí công tác trong đội vũ trang tuyên truyền, trực tiếp vào buôn làng vận động quần chúng tham gia kháng chiến. Ngày 16/3/1963, đồng chí được kết nạp vào Đảng.\n\nNăm 1965, đồng chí được điều về Ban An ninh B5, làm nhiệm vụ khai thác can phạm. Bằng tinh thần trách nhiệm cao, đồng chí đã phát hiện nhiều trường hợp địch cài cắm nội gián, kịp thời báo cáo cấp trên xử lý.\n\nNăm 1968, với cương vị Phó Ban An ninh H9 (Krông Bông), đồng chí tích cực vận động quần chúng, bảo vệ căn cứ, tham gia Tổng tiến công và nổi dậy Tết Mậu Thân 1968, chỉ huy lực lượng đấu tranh chính trị, góp phần bảo vệ an toàn lực lượng và củng cố phong trào cách mạng tại địa phương. Năm 1972, đồng chí cùng lực lượng phối hợp tấn công ấp Chí An, bắt giữ nhiều đối tượng tề ngụy, tổ chức điều tra, phân loại, xử lý kịp thời.\n\nSau năm 1975, tình hình an ninh Tây Nguyên phức tạp do hoạt động của tổ chức fulro. Đồng chí trực tiếp xuống cơ sở, tham gia truy quét, xây dựng phong trào, ổn định đời sống nhân dân.\n\nĐêm 22/02/1977, tại buôn Kóp, xã Ea Pốk, huyện Krông Pắc, đồng chí cùng tổ công tác bị lực lượng fulro tập kích. Trong tình thế chiến đấu ác liệt, đồng chí bình tĩnh nổ súng tiêu diệt địch. Khi súng bị kẹt, đồng chí đã chiến đấu giáp lá cà, dùng báng súng và tay không đánh trả quyết liệt đến hơi thở cuối cùng và anh dũng hy sinh.\n\nĐồng chí được tặng thưởng Huân chương Chiến thắng hạng Nhất, Huân chương Giải phóng hạng Ba, Huân chương Chiến công hạng Nhì. Ngày 29/01/1996, đồng chí được Nhà nước phong tặng danh hiệu Anh hùng Lực lượng vũ trang nhân dân.",
+    "imageUrl": "/images/items/17.jpg",
+    "audioUrl": "/audio/17.mp3"
   },
   {
-    id: 18,
-    title: "Audio guide 18",
-    subtitle: "Đang cập nhật",
-    description:
-      "Nội dung thuyết minh sẽ được cập nhật từ file DOCX bằng lệnh npm run seed:docx.",
-    imageUrl: "/images/guide-placeholder.svg",
-    audioUrl: "/audio/18.mp3",
+    "id": 18,
+    "title": "Lê Văn Cổ - Tấm gương kiên trung vùng đất Cà Mau",
+    "subtitle": "(1917 - 1969)",
+    "description": "Đồng chí Lê Văn Cổ (tức Năm Đản), Đảng viên Đảng Cộng sản Việt Nam, sinh năm 1917, dân tộc Kinh, quê ở xã Lương Thế Trân, huyện Cái Nước (nay là xã Lương Thế Trân, tỉnh Cà Mau).\n\nSinh ra trong một gia đình nông dân nghèo, cuộc sống gắn liền với nghề cày thuê, đồng chí lớn lên trong hoàn cảnh quê hương nằm sâu trong vùng địch kiểm soát. Trước sự kìm kẹp tàn bạo của kẻ thù, tháng 3/1941, đồng chí đã sớm tham gia cách mạng, dấn thân vào con đường đấu tranh giải phóng quê hương.\n\nTrong suốt 24 năm hoạt động cách mạng, dù ở bất kỳ cương vị hay hoàn cảnh nào, đồng chí cũng luôn hoàn thành xuất sắc nhiệm vụ được giao. Đồng chí kiên trì bám trụ địa bàn, bám dân để chiến đấu và xây dựng cơ sở cách mạng. Khi vợ qua đời, đồng chí đã gửi các con nhỏ cho người thân chăm sóc để tiếp tục toàn tâm cho công tác và nhiệm vụ chiến đấu.\n\nVới tinh thần dũng cảm, mưu trí, đồng chí đã cùng đồng đội tiêu diệt hàng chục tên tình báo, mật báo, tề xã, ấp trưởng ác ôn. Riêng bản thân đồng chí đã trực tiếp tiêu diệt 11 tên ác ôn trong những điều kiện hết sức nguy hiểm, góp phần bảo vệ cơ sở cách mạng và hỗ trợ quần chúng đứng lên đấu tranh giành quyền làm chủ.\n\nTrong những chiến công tiêu biểu của đồng chí có thể kể đến: thực hiện chỉ đạo của cấp ủy, đồng chí đã tổ chức đột nhập vùng địch, dùng lựu đạn tiêu diệt tên xã trưởng Hoàng - một đối tượng đặc biệt nguy hiểm - cùng một tên bảo vệ, sau đó rút lui an toàn. Tại ấp Chánh, sau thời gian theo dõi quy luật hoạt động của nhóm tề ác ôn, đêm 20/01/1968, đồng chí cùng hai chiến sĩ bất ngờ tấn công, tiêu diệt gọn 6 tên.\n\nNgày 10/8/1969, trong khi tham gia bảo vệ Hội nghị Ban Chấp hành xã, khi bị địch phát hiện và bao vây, đồng chí đã dũng cảm chiến đấu, dùng lựu đạn tiêu diệt tên chỉ huy Quách Hồng Quân cùng đồng bọn, góp phần bảo vệ lực lượng. Trong trận chiến đấu ác liệt đó, đồng chí đã anh dũng hy sinh.\n\nVới những đóng góp to lớn, ngày 13/8/1980, Nhà nước đã truy tặng đồng chí danh hiệu Anh hùng Lực lượng vũ trang nhân dân, ghi nhận tinh thần chiến đấu kiên cường và sự hy sinh cao cả vì sự nghiệp cách mạng.",
+    "imageUrl": "/images/items/18.jpg",
+    "audioUrl": "/audio/18.mp3"
   },
   {
-    id: 19,
-    title: "Audio guide 19",
-    subtitle: "Đang cập nhật",
-    description:
-      "Nội dung thuyết minh sẽ được cập nhật từ file DOCX bằng lệnh npm run seed:docx.",
-    imageUrl: "/images/guide-placeholder.svg",
-    audioUrl: "/audio/19.mp3",
+    "id": 19,
+    "title": "Phạm Thành Lượng - Người chiến sĩ kiên cường bảo vệ căn cứ Trung ương Cục",
+    "subtitle": "(1948 - 1975)",
+    "description": "Đồng chí Phạm Thành Lượng sinh năm 1948, quê ở xã Vĩnh Bình Nam, huyện Vĩnh Thuận, tỉnh Kiên Giang (nay là xã Vĩnh Bình, tỉnh An Giang), dân tộc Kinh, đảng viên Đảng Cộng sản Việt Nam, Trung đội trưởng Trung đoàn 180 An ninh vũ trang, Ban An ninh Trung ương Cục miền Nam.\n\nSinh ra trong gia đình nông dân nghèo, đồng chí sớm giác ngộ cách mạng, từ nhỏ đã tham gia phục vụ phong trào tại địa phương. Nhập ngũ năm 1965, đồng chí nhanh chóng trưởng thành, hoàn thành tốt nhiệm vụ bảo vệ và chiến đấu. Từ năm 1968, đồng chí công tác tại Trung đoàn 180, trực tiếp bảo vệ cán bộ cao cấp và tham gia nhiều trận chiến đấu, góp phần giữ vững căn cứ Trung ương Cục.\n\nVới tinh thần dũng cảm, mưu trí, đồng chí đã tham gia nhiều trận đánh ác liệt, tiêu biểu là trận ngày 19/9/1969, cùng đơn vị đánh bại nhiều đợt tấn công của địch, tiêu diệt hàng chục tên, riêng đồng chí diệt nhiều tên địch, góp phần bảo vệ vững chắc khu căn cứ.\n\nTrong Tổng tiến công mùa Xuân 1975, đồng chí được giao nhiệm vụ đánh vào đồn Mỏ Công - một vị trí phòng thủ kiên cố của địch. Trước tình huống chiến đấu khó khăn, khi lực lượng bị tổn thất, đồng chí đã dũng cảm ôm bộc phá mở đường, dẫn đầu tổ xung kích tiến công. Dù bị thương nặng, đồng chí vẫn kiên cường chiến đấu, tiêu diệt địch, giữ vững trận địa, tạo điều kiện cho đơn vị làm chủ hoàn toàn đồn Mỏ Công.\n\nDo vết thương quá nặng, đồng chí đã anh dũng hy sinh ngay trong trận đánh, góp phần giải phóng địa bàn, mở rộng khu căn cứ phục vụ Chiến dịch Hồ Chí Minh.\n\nNgày 24/01/1976, Chính phủ Cách mạng lâm thời Cộng hòa miền Nam Việt Nam truy tặng đồng chí danh hiệu Anh hùng Lực lượng vũ trang nhân dân, ghi nhận tinh thần chiến đấu anh dũng và những chiến công xuất sắc của đồng chí.",
+    "imageUrl": "/images/items/19.jpg",
+    "audioUrl": "/audio/19.mp3"
   },
   {
-    id: 20,
-    title: "Audio guide 20",
-    subtitle: "Đang cập nhật",
-    description:
-      "Nội dung thuyết minh sẽ được cập nhật từ file DOCX bằng lệnh npm run seed:docx.",
-    imageUrl: "/images/guide-placeholder.svg",
-    audioUrl: "/audio/20.mp3",
+    "id": 20,
+    "title": "Trần Thị Tính - Bông hoa kiên cường của đất Khánh Hòa",
+    "subtitle": "(1951 - 1972)",
+    "description": "Đồng chí Trần Thị Tính (tức Trần Thị Thộ), sinh năm 1951, quê ở xã Diên An, huyện Khánh Xương (nay là xã Diên An, tỉnh Khánh Hòa), dân tộc Kinh, đoàn viên Thanh niên Cộng sản Hồ Chí Minh, cán bộ An ninh tỉnh Khánh Hòa.\n\nSinh ra trong một gia đình có truyền thống cách mạng, đồng chí sớm được giáo dục và giác ngộ lý tưởng. Mới 15 tuổi, đồng chí đã tham gia rải truyền đơn, treo cờ, dán khẩu hiệu, trực tiếp hoạt động trong lòng địch. Sau đó, đồng chí được giao làm trinh sát vũ trang, xây dựng cơ sở, bám dân, nắm tình hình và cung cấp nhiều tin tức quan trọng, góp phần phát triển phong trào cách mạng tại địa phương.\n\nVới tinh thần dũng cảm, mưu trí, đồng chí thường xuyên thọc sâu vào vùng địch, tổ chức đào hầm bí mật, giấu quân, gài mìn diệt địch và bảo vệ cơ sở cách mạng. Nhận nhiệm vụ đưa cán bộ vào nội thành Nha Trang, đồng chí cùng tổ công tác đã vượt qua nhiều nguy hiểm, bảo đảm an toàn cho lực lượng.\n\nĐêm 18/6/1972, khi dẫn đoàn cán bộ vượt qua vùng địch kiểm soát, đồng chí phát hiện địch phục kích. Trong tình thế hiểm nghèo, đồng chí chủ động nổ súng thu hút hỏa lực, tổ chức chặn đánh để bảo vệ đoàn cán bộ rút lui. Dù bị thương nặng, đồng chí vẫn kiên cường chiến đấu, dùng lựu đạn và súng tiêu diệt nhiều tên địch. Khi hết đạn, đồng chí phá hủy vũ khí, chiến đấu đến hơi thở cuối cùng và anh dũng hy sinh.\n\nNgày 06/6/1976, Nhà nước truy tặng đồng chí danh hiệu Anh hùng Lực lượng vũ trang nhân dân và Huân chương Giải phóng hạng Nhì, ghi nhận tấm gương chiến đấu kiên cường và sự hy sinh cao cả vì sự nghiệp cách mạng.",
+    "imageUrl": "/images/items/20.jpg",
+    "audioUrl": "/audio/20.mp3"
   },
   {
-    id: 21,
-    title: "Audio guide 21",
-    subtitle: "Đang cập nhật",
-    description:
-      "Nội dung thuyết minh sẽ được cập nhật từ file DOCX bằng lệnh npm run seed:docx.",
-    imageUrl: "/images/guide-placeholder.svg",
-    audioUrl: "/audio/21.mp3",
+    "id": 21,
+    "title": "Trần Văn Hoàng - Lá chắn kiên cường bảo vệ Khu ủy Sài Gòn Gia Định",
+    "subtitle": "(1938 - 1972)",
+    "description": "Đồng chí Trần Văn Hoàng (bí danh Minh Thông), sinh năm 1938, dân tộc Kinh, quê ở xã Tân Hiệp, huyện Lái Thiêu, tỉnh Bình Long (nay thuộc tỉnh Bình Dương), đảng viên Đảng Cộng sản Việt Nam, Đại đội trưởng đơn vị bảo vệ Khu ủy Sài Gòn - Gia Định.\n\nSau khi hoàn thành nhiệm vụ mở đường Trường Sơn và đưa quân vào Nam, năm 1967, đồng chí được điều về đơn vị bảo vệ Khu ủy, trực tiếp làm nhiệm vụ bảo vệ Bộ Tư lệnh tiền phương 2 do Võ Văn Kiệt làm Tư lệnh. Trong quá trình công tác, đồng chí luôn thể hiện tinh thần dũng cảm, mưu trí, bảo vệ tuyệt đối an toàn các đồng chí lãnh đạo và xây dựng nhiều căn cứ vững chắc.\n\nTừ năm 1967 đến 1972, đồng chí đã tham gia và chỉ huy nhiều trận chiến đấu, tiêu diệt và làm bị thương hàng trăm tên Mỹ - ngụy. Tiêu biểu là trận tại ấp 3, xã Quy Đức (Bình Chánh), đồng chí chỉ huy tổ nhỏ thọc sâu chia cắt đội hình địch, phối hợp đánh bật nhiều đợt tấn công, diệt và làm bị thương hơn 100 tên, bắn rơi 1 máy bay, bảo vệ an toàn căn cứ.\n\nTrong nhiều tình huống nguy hiểm, đồng chí trực tiếp chỉ huy chiến đấu, chặn đánh các mũi tiến công của địch, góp phần bảo vệ an toàn cơ quan đầu não của cách mạng. Trước những trận càn lớn của địch, đồng chí luôn thể hiện quyết tâm cao, chỉ huy đơn vị chiến đấu kiên cường, đẩy lùi nhiều cuộc tấn công quy mô lớn.\n\nĐồng chí đã anh dũng hy sinh trong khi chỉ huy đơn vị chiến đấu chống địch phản kích tại Vĩnh Tuy (tỉnh Rạch Giá cũ, nay thuộc Kiên Giang).\n\nVới những thành tích đặc biệt xuất sắc, đồng chí được tặng thưởng nhiều huân chương cao quý. Ngày 06/11/1978, Nhà nước truy tặng đồng chí danh hiệu Anh hùng Lực lượng vũ trang nhân dân, ghi nhận tấm gương chiến đấu kiên cường và sự hy sinh cao cả vì sự nghiệp cách mạng.",
+    "imageUrl": "/images/items/21.jpg",
+    "audioUrl": "/audio/21.mp3"
   },
   {
-    id: 22,
-    title: "Audio guide 22",
-    subtitle: "Đang cập nhật",
-    description:
-      "Nội dung thuyết minh sẽ được cập nhật từ file DOCX bằng lệnh npm run seed:docx.",
-    imageUrl: "/images/guide-placeholder.svg",
-    audioUrl: "/audio/22.mp3",
+    "id": 22,
+    "title": "Lê Văn Kỉnh - Tấm gương bất khuất vùng Triệu Phong",
+    "subtitle": "(1940 - 1965)",
+    "description": "Đồng chí Lê Văn Kỉnh sinh năm 1940, dân tộc Kinh, quê ở xã Triệu Sơn, huyện Triệu Phong (nay là xã Triệu Cơ, tỉnh Quảng Trị), đảng viên Đảng Cộng sản Việt Nam, Trưởng Ban An ninh xã.\n\nSinh ra trong một gia đình nghèo, sớm phải đi làm thuê nuôi em, đồng chí chứng kiến cảnh địch đàn áp gia đình nên sớm tham gia cách mạng. Từ đó, đồng chí tích cực hoạt động, vận động nhân dân nổi dậy diệt ác, phá kìm, giành quyền làm chủ.\n\nVới tinh thần dũng cảm, kiên cường, đồng chí đã cùng lực lượng an ninh trừ gian, khiến bọn tề, ngụy, ác ôn hoang mang lo sợ, ráo riết truy lùng và treo thưởng để bắt. Trong những đợt càn quét ác liệt, đồng chí vẫn bám trụ, chịu đói khát, giữ vững ý chí, không khuất phục trước mọi thủ đoạn dụ dỗ của địch. Đồng chí trực tiếp tiêu diệt tên xã trưởng cùng một số ác ôn nguy hiểm, phối hợp bắt nhiều đối tượng gian ác, góp phần bảo vệ cơ sở cách mạng.\n\nĐầu năm 1965, trong một trận phục kích, đồng chí bị địch bắt. Dù bị tra tấn dã man, đồng chí vẫn kiên trung, không khai báo. Sáng hôm sau, địch đưa đồng chí ra xử bắn trước nhân dân nhằm uy hiếp tinh thần cách mạng. Trước họng súng kẻ thù, đồng chí hiên ngang hô vang: “Hồ Chí Minh muôn năm! Đả đảo đế quốc Mỹ và bè lũ tay sai!”, rồi anh dũng hy sinh trong tư thế oai phong, lẫm liệt.\n\nNgày 06/11/1978, Nhà nước đã truy tặng đồng chí danh hiệu Anh hùng Lực lượng vũ trang nhân dân, ghi nhận tinh thần chiến đấu kiên cường và sự hy sinh cao cả vì sự nghiệp cách mạng.",
+    "imageUrl": "/images/items/22.jpg",
+    "audioUrl": "/audio/22.mp3"
   },
   {
-    id: 23,
-    title: "Audio guide 23",
-    subtitle: "Đang cập nhật",
-    description:
-      "Nội dung thuyết minh sẽ được cập nhật từ file DOCX bằng lệnh npm run seed:docx.",
-    imageUrl: "/images/guide-placeholder.svg",
-    audioUrl: "/audio/23.mp3",
+    "id": 23,
+    "title": "Trương Thành Công - Dấu ấn anh hùng trên đất Tiền Giang",
+    "subtitle": "(1952 - 1973)",
+    "description": "Đồng chí Trương Thành Công (tức Trương Thành Chơi), sinh năm 1952, quê ở xã Quờn Long, huyện Chợ Gạo, tỉnh Mỹ Tho (nay thuộc tỉnh Tiền Giang), dân tộc Kinh, đảng viên Đảng Cộng sản Việt Nam, Tiểu đội phó An ninh vũ trang, Ban An ninh nhân dân tỉnh Mỹ Tho.\n\nSinh ra trong gia đình nông dân nghèo, sớm giác ngộ cách mạng, tháng 6/1969, khi mới 15 tuổi, đồng chí đã tham gia lực lượng trinh sát vũ trang. Từ năm 1970, đồng chí công tác trong lực lượng An ninh vũ trang tỉnh, luôn nêu cao tinh thần cảnh giác, kiên cường bảo vệ an toàn cơ quan Tỉnh ủy trong căn cứ cách mạng.\n\nTrong các đợt địch càn quét quy mô lớn năm 1971 - 1973, đồng chí cùng đơn vị chiến đấu dũng cảm, nhiều lần dùng lựu đạn chặn đánh các mũi tiến công, bẻ gãy các cuộc tấn công của địch, giữ vững căn cứ. Tiêu biểu, trong trận tháng 5/1971, đồng chí cùng đơn vị chiến đấu liên tục 10 ngày đêm, đánh bại lực lượng lớn địch, trực tiếp tiêu diệt nhiều tên. Các trận sau đó, đồng chí tiếp tục lập nhiều chiến công, có trận chiến đấu 23 ngày đêm, tiêu diệt hàng chục tên địch, góp phần bảo vệ an toàn căn cứ.\n\nNgày 09/5/1973, trong một trận chiến đấu ác liệt, đồng chí bị thương nặng và rơi vào tay địch. Dù bị tra tấn dã man, đồng chí vẫn kiên trung, không khai báo và đã anh dũng hy sinh.\n\nNgày 24/01/1976, Chính phủ Cách mạng lâm thời Cộng hòa miền Nam Việt Nam truy tặng đồng chí danh hiệu Anh hùng Lực lượng vũ trang nhân dân, ghi nhận tấm gương chiến đấu kiên cường, mưu trí và sự hy sinh cao cả vì sự nghiệp cách mạng.",
+    "imageUrl": "/images/items/23.jpg",
+    "audioUrl": "/audio/23.mp3"
   },
   {
-    id: 24,
-    title: "Audio guide 24",
-    subtitle: "Đang cập nhật",
-    description:
-      "Nội dung thuyết minh sẽ được cập nhật từ file DOCX bằng lệnh npm run seed:docx.",
-    imageUrl: "/images/guide-placeholder.svg",
-    audioUrl: "/audio/24.mp3",
-  },
+    "id": 24,
+    "title": "Phạm Văn Nhờ - Kiên cường nơi tuyến lửa",
+    "subtitle": "(1939 - 1975)",
+    "description": "Đồng chí Phạm Văn Nhờ (tức Mười Nhờ), sinh năm 1939, quê xã Long Bình, huyện Long Mỹ, tỉnh Cần Thơ, xuất thân trong gia đình nông dân nghèo, sớm tham gia cách mạng. Năm 1960, trong phong trào Đồng Khởi, đồng chí gia nhập du kích xã Long Bình; tháng 4/1962 được kết nạp vào Đoàn Thanh niên Lao động Việt Nam.\n\nNăm 1963, đồng chí được điều về đơn vị C.2012 làm nhiệm vụ bảo vệ Tỉnh uỷ. Từ đó đến năm 1975, đồng chí đảm nhiệm nhiều chức vụ chỉ huy từ tiểu đội phó đến đại đội trưởng, luôn kiên cường bám trụ, bảo vệ an toàn cơ quan lãnh đạo, hoàn thành xuất sắc nhiệm vụ. Đơn vị do đồng chí phụ trách được tuyên dương Anh hùng Lực lượng vũ trang nhân dân năm 1977.\n\nTrong chiến đấu, đồng chí lập nhiều chiến công tiêu biểu: tháng 5/1965, chỉ huy phối hợp đánh địch tại Long Thạnh (Phụng Hiệp), góp phần tiêu diệt, làm bị thương gần 200 tên; năm 1970, trong trận tập kích tại Kênh Ngang (Hiệp Hưng), đã chỉ huy bảo vệ an toàn hội nghị Tỉnh uỷ và trực tiếp tiêu diệt 5 tên địch. Trước khó khăn thiếu vũ khí (1969 - 1970), đồng chí phát động tự chế tạo mìn, lựu đạn từ bom đạn lép, góp phần nâng cao hiệu quả chiến đấu.\n\nNăm 1972 - 1973, đồng chí chỉ huy lực lượng bao vây, bức rút nhiều đồn địch, mở rộng vùng giải phóng, đồng thời kịp thời tổ chức di chuyển cơ quan, bảo toàn lực lượng trước các cuộc tiến công lớn của địch.\n\nTháng 3/1975, trong khi trinh sát chuẩn bị chiến dịch, đồng chí bị thương nặng và hy sinh. Đồng chí được tặng Huân chương Chiến thắng hạng Nhất, Huân chương Giải phóng hạng Ba; ngày 28/8/1981 được Nhà nước truy tặng danh hiệu Anh hùng Lực lượng vũ trang nhân dân.",
+    "imageUrl": "/images/items/24.jpg",
+    "audioUrl": "/audio/24.mp3"
+  }
 ];
 
 export function getGuideById(id) {

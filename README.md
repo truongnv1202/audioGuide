@@ -104,14 +104,56 @@ docker compose up -d --build
 
 Container bind nội bộ tại `127.0.0.1:9000`.
 
+## Cloudflare SSL tránh lỗi origin
+
+Khi chạy sau Cloudflare, đặt **SSL/TLS encryption mode** trong Cloudflare là **Full (strict)**. Không dùng `Flexible` vì dễ gây redirect loop hoặc lỗi HTTPS giữa Cloudflare và nginx.
+
+Cách nhanh nhất là dùng **Cloudflare Origin Certificate**:
+
+1. Vào Cloudflare dashboard > `SSL/TLS` > `Origin Server` > `Create Certificate`.
+2. Hostnames nên có `audioguide.gamegiaoduc.co` và có thể thêm `*.gamegiaoduc.co` nếu dùng chung cho subdomain khác.
+3. Lưu certificate và private key vào server, ví dụ:
+
+```bash
+mkdir -p /etc/nginx/ssl/audioguide
+
+tee /etc/nginx/ssl/audioguide/cloudflare-origin.pem >/dev/null <<'EOF'
+-----BEGIN CERTIFICATE-----
+PASTE_CLOUDFLARE_ORIGIN_CERTIFICATE_HERE
+-----END CERTIFICATE-----
+EOF
+
+tee /etc/nginx/ssl/audioguide/cloudflare-origin.key >/dev/null <<'EOF'
+-----BEGIN PRIVATE KEY-----
+PASTE_CLOUDFLARE_ORIGIN_PRIVATE_KEY_HERE
+-----END PRIVATE KEY-----
+EOF
+
+chmod 644 /etc/nginx/ssl/audioguide/cloudflare-origin.pem
+chmod 600 /etc/nginx/ssl/audioguide/cloudflare-origin.key
+```
+
+Không commit cert/key thật vào repository. Nếu không dùng Cloudflare Origin Certificate, có thể dùng Let's Encrypt với DNS challenge cho `audioguide.gamegiaoduc.co`, rồi trỏ `ssl_certificate` và `ssl_certificate_key` sang đường dẫn certbot cấp.
+
 ## Nginx reverse proxy
 
-Thêm vào nginx chung:
+Thêm vào nginx chung. File mẫu nằm tại `deploy/nginx-audioguide.conf`:
 
 ```nginx
 server {
     listen 80;
     server_name audioguide.gamegiaoduc.co;
+
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443 ssl http2;
+    server_name audioguide.gamegiaoduc.co;
+
+    ssl_certificate /etc/nginx/ssl/audioguide/cloudflare-origin.pem;
+    ssl_certificate_key /etc/nginx/ssl/audioguide/cloudflare-origin.key;
+    ssl_protocols TLSv1.2 TLSv1.3;
 
     client_max_body_size 20m;
 
@@ -149,7 +191,7 @@ server {
 }
 ```
 
-Sau khi cấu hình SSL bằng certbot/nginx hiện có, reload nginx:
+Sau khi copy config và cert/key, test rồi reload nginx:
 
 ```bash
 nginx -t
