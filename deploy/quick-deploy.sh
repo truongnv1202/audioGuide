@@ -3,7 +3,6 @@ set -euo pipefail
 
 DOMAIN="${DOMAIN:-audioguide.gamegiaoduc.co}"
 APP_DIR="${APP_DIR:-/opt/audioGuide}"
-HOST_GUIDES_DATA_PATH="${HOST_GUIDES_DATA_PATH:-$APP_DIR/data/guides.json}"
 CONTAINER_GUIDES_DATA_PATH="${CONTAINER_GUIDES_DATA_PATH:-/app/data/guides.json}"
 HOST_UPLOADS_DIR="${HOST_UPLOADS_DIR:-$APP_DIR/data/uploads}"
 CONTAINER_UPLOADS_DIR="${CONTAINER_UPLOADS_DIR:-/app/data/uploads}"
@@ -135,15 +134,6 @@ set_env_value "UPLOADS_DIR" "$CONTAINER_UPLOADS_DIR"
 mkdir -p "$HOST_UPLOADS_DIR"
 
 install_origin_cert
-
-if [ ! -f "$HOST_GUIDES_DATA_PATH" ]; then
-  docker run --rm \
-    -v "$APP_DIR:/app" \
-    -w /app \
-    -e GUIDES_DATA_PATH="$CONTAINER_GUIDES_DATA_PATH" \
-    node:22-alpine \
-    sh -lc "npm install && npm run seed"
-fi
 
 docker compose up -d --build
 

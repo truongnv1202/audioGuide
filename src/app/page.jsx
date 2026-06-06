@@ -84,7 +84,7 @@ export default async function Home({ searchParams }) {
               </div>
             </div>
 
-            <article className="guide-scrollbar min-h-0 flex-1 overflow-y-auto pr-1 text-[clamp(15px,3.9vw,40px)] leading-[1.42] tracking-[-0.015em] text-[#554237]">
+            <article className="guide-scrollbar min-h-0 flex-1 overflow-y-auto pr-1 text-justify text-[clamp(15px,3.9vw,40px)] leading-[1.42] tracking-[-0.015em] text-[#554237]">
               {guide.description.split("\n").map((paragraph) => (
                 <p key={paragraph} className="mb-[clamp(10px,1.7dvh,22px)]">
                   {paragraph}

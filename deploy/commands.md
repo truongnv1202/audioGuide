@@ -127,12 +127,18 @@ chmod +x deploy/quick-deploy.sh
 Script sẽ tự:
 
 - Tạo/cập nhật `.env` và `BACKEND_SECRET`.
-- Tạo seed tĩnh từ `seed.js` bằng container `node:22-alpine` nếu chưa có `data/guides.json`.
 - Tạo thư mục `data/uploads` để lưu ảnh/audio upload.
 - Build/chạy Docker bằng `docker compose up -d --build`.
 - Tự tạo cert/key vào `/etc/nginx/ssl/audioguide` nếu chưa có.
 - Ghi site config vào `/etc/nginx/conf.d/audioguide.conf`.
 - Chạy `nginx -t` và `systemctl reload nginx`.
+
+Khi cần tạo lại dữ liệu seed thì chạy riêng:
+
+```bash
+cd /opt/audioGuide
+docker run --rm -v "$PWD:/app" -w /app -e GUIDES_DATA_PATH=/app/data/guides.json node:22-alpine sh -lc "npm install && npm run seed"
+```
 
 Hoặc chạy thủ công:
 
@@ -141,7 +147,6 @@ cd /opt/audioGuide
 cp .env.example .env
 SECRET="$(openssl rand -hex 24)"
 sed -i "s/^BACKEND_SECRET=.*/BACKEND_SECRET=$SECRET/" .env
-docker run --rm -v "$PWD:/app" -w /app -e GUIDES_DATA_PATH=/app/data/guides.json node:22-alpine sh -lc "npm install && npm run seed"
 docker compose up -d --build
 sudo cp deploy/nginx-audioguide.conf /etc/nginx/conf.d/audioguide.conf
 sudo nginx -t
