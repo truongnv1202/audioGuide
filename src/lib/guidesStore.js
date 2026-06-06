@@ -1,4 +1,4 @@
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 import { normalizeGuideDisplay } from "@/lib/guideDefaults";
@@ -20,33 +20,69 @@ export function getGuidesDataPath() {
   return process.env.GUIDES_DATA_PATH || path.join(process.cwd(), "data", "guides.json");
 }
 
+export function getGuidesDataDir() {
+  return process.env.GUIDES_DATA_DIR || path.join(path.dirname(getGuidesDataPath()), "guides");
+}
+
+function guideFileName(id) {
+  return `${String(id).padStart(2, "0")}.json`;
+}
+
+function guideFilePath(id) {
+  return path.join(getGuidesDataDir(), guideFileName(id));
+}
+
+async function writeGuide(guide) {
+  await mkdir(getGuidesDataDir(), { recursive: true });
+  await writeFile(guideFilePath(guide.id), `${JSON.stringify(guide, null, 2)}\n`, "utf8");
+}
+
 async function writeGuides(guides) {
-  const dataPath = getGuidesDataPath();
-  await mkdir(path.dirname(dataPath), { recursive: true });
-  await writeFile(dataPath, `${JSON.stringify(guides, null, 2)}\n`, "utf8");
+  await mkdir(getGuidesDataDir(), { recursive: true });
+  await Promise.all(guides.map((guide) => writeGuide(guide)));
 }
 
 export async function ensureGuidesFile() {
+  await mkdir(getGuidesDataDir(), { recursive: true });
+
   try {
-    await readFile(getGuidesDataPath(), "utf8");
+    const files = await readdir(getGuidesDataDir());
+
+    if (files.some((file) => /^\d+\.json$/.test(file))) {
+      return;
+    }
   } catch (error) {
     if (error.code !== "ENOENT") {
       throw error;
     }
-
-    await writeGuides(createSampleGuides());
   }
+
+  try {
+    const raw = await readFile(getGuidesDataPath(), "utf8");
+    const parsed = JSON.parse(raw);
+
+    if (Array.isArray(parsed)) {
+      await writeGuides(parsed.map((guide) => normalizeGuideDisplay(guide)));
+      return;
+    }
+  } catch (error) {
+    if (error.code !== "ENOENT") {
+      throw error;
+    }
+  }
+
+  await writeGuides(createSampleGuides());
 }
 
 export async function getGuides() {
   await ensureGuidesFile();
 
-  const raw = await readFile(getGuidesDataPath(), "utf8");
-  const parsed = JSON.parse(raw);
-
-  if (!Array.isArray(parsed)) {
-    throw new Error("guides.json must contain an array");
-  }
+  const files = (await readdir(getGuidesDataDir()))
+    .filter((file) => /^\d+\.json$/.test(file))
+    .sort((left, right) => left.localeCompare(right));
+  const parsed = await Promise.all(
+    files.map(async (file) => JSON.parse(await readFile(path.join(getGuidesDataDir(), file), "utf8"))),
+  );
 
   return parsed
     .map((guide) => normalizeGuideDisplay(guide))
@@ -61,10 +97,9 @@ export async function getGuideById(id) {
 
 export async function updateGuideById(id, payload) {
   const numericId = Number(id);
-  const guides = await getGuides();
-  const index = guides.findIndex((guide) => guide.id === numericId);
+  const guide = await getGuideById(numericId);
 
-  if (index === -1) {
+  if (!guide) {
     return null;
   }
 
@@ -82,7 +117,7 @@ export async function updateGuideById(id, payload) {
       !Array.isArray(payload[field])
     ) {
       updates[field] = {
-        ...(guides[index][field] || {}),
+        ...(guide[field] || {}),
         ...payload[field],
       };
     }
@@ -100,14 +135,14 @@ export async function updateGuideById(id, payload) {
     updates.title2 = updates.subtitle;
   }
 
-  guides[index] = {
-    ...guides[index],
+  const updatedGuide = {
+    ...guide,
     ...updates,
     id: numericId,
   };
 
-  await writeGuides(guides);
-  return guides[index];
+  await writeGuide(updatedGuide);
+  return normalizeGuideDisplay(updatedGuide);
 }
 
 export async function resetSampleGuides() {

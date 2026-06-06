@@ -65,6 +65,7 @@ export default async function Home({ searchParams }) {
                     fontSize: line.size,
                     lineHeight: layout.lineHeight,
                     marginTop: index === 0 ? 0 : layout.gap,
+                  whiteSpace: "pre-line",
                   }}
                 >
                   {line.text}

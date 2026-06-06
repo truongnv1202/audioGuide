@@ -11,6 +11,7 @@ services:
       PORT: ${PORT:-9000}
       BACKEND_SECRET: ${BACKEND_SECRET:-change-this-backend-secret}
       GUIDES_DATA_PATH: ${GUIDES_DATA_PATH:-/app/data/guides.json}
+      GUIDES_DATA_DIR: ${GUIDES_DATA_DIR:-/app/data/guides}
       UPLOADS_DIR: ${UPLOADS_DIR:-/app/data/uploads}
     ports:
       - "127.0.0.1:${PORT:-9000}:${PORT:-9000}"

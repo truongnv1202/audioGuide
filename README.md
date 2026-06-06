@@ -31,12 +31,12 @@ Chạy:
 npm run seed
 ```
 
-Script dùng dữ liệu đã nhúng sẵn trong `seed.js` và tạo `data/guides.json` với 24 bài.
+Script dùng dữ liệu đã nhúng sẵn trong `seed.js` và tạo `data/guides/01.json` ... `data/guides/24.json`. File `data/guides.json` vẫn được ghi thêm để backup/tương thích.
 
 Nếu muốn chỉ định nơi lưu JSON khác:
 
 ```bash
-GUIDES_DATA_PATH="/duong/dan/guides.json" npm run seed
+GUIDES_DATA_PATH="/duong/dan/guides.json" GUIDES_DATA_DIR="/duong/dan/guides" npm run seed
 ```
 
 Nếu muốn tạo lại 24 bài mẫu rỗng:
@@ -46,6 +46,17 @@ npm run seed:samples
 ```
 
 Khi chạy Docker, thư mục `data/` được mount vào container để nội dung đã sửa không mất khi rebuild.
+
+Mỗi bài được lưu độc lập tại:
+
+```text
+data/guides/01.json
+data/guides/02.json
+...
+data/guides/24.json
+```
+
+Nếu đang có file cũ `data/guides.json`, ứng dụng sẽ tự migrate sang các file riêng trong lần đọc đầu tiên.
 
 ## Ảnh và audio
 
@@ -90,7 +101,15 @@ Sau khi copy ảnh/audio mới lên server, chạy lại `./deploy/quick-deploy.
 
 ## API backend
 
-Backend không còn nằm ở `/api/guides` công khai. Link backend dùng secret trong `.env`:
+Backend không còn nằm ở `/api/guides` công khai. Link backend dùng secret trong `.env`.
+
+UI sửa bài:
+
+```text
+GET /backend/{BACKEND_SECRET}
+```
+
+API JSON:
 
 ```text
 GET /backend/{BACKEND_SECRET}/guides
@@ -102,11 +121,19 @@ POST /backend/{BACKEND_SECRET}/guides/1/upload
 Ví dụ nếu `.env` có `BACKEND_SECRET=abc123`:
 
 ```text
+https://audioguide.gamegiaoduc.co/backend/abc123
 https://audioguide.gamegiaoduc.co/backend/abc123/guides
 https://audioguide.gamegiaoduc.co/backend/abc123/guides/1
 ```
 
 Nên đổi `BACKEND_SECRET` trước khi deploy production.
+
+Trên server lấy link backend UI thật:
+
+```bash
+SECRET="$(grep '^BACKEND_SECRET=' /opt/audioGuide/.env | cut -d= -f2-)"
+echo "https://audioguide.gamegiaoduc.co/backend/$SECRET"
+```
 
 Ví dụ chỉnh bài số 1:
 
@@ -142,7 +169,7 @@ curl -X PATCH "https://audioguide.gamegiaoduc.co/backend/abc123/guides/1" \
 
 Các field có thể sửa: `title`, `subtitle`, `title1`, `title2`, `title3`, `description`, `imageUrl`, `audioUrl`, `titleLayout`, `imageLayout`.
 
-`titleLayout` cấu hình vị trí/cỡ chữ phần tiêu đề theo từng bài. `imageLayout.foregroundPosition` chỉnh độ lệch ảnh thật trong hero, `backgroundPosition` chỉnh vị trí ảnh nền, `backgroundOpacity` chỉnh độ mờ ảnh nền, `overlayOpacity` chỉnh độ che của lớp vàng từ `0` đến `1`.
+`title1`, `title2`, `title3` hỗ trợ xuống dòng. Dòng nào để trống sẽ tự ẩn khỏi giao diện. `titleLayout` cấu hình vị trí/cỡ chữ phần tiêu đề theo từng bài. `imageLayout.foregroundPosition` chỉnh độ lệch ảnh thật trong hero, `backgroundPosition` chỉnh vị trí ảnh nền, `backgroundOpacity` chỉnh độ mờ ảnh nền, `overlayOpacity` chỉnh độ che của lớp vàng từ `0` đến `1`.
 
 Upload ảnh và MP3 cho bài số 1:
 
@@ -189,7 +216,7 @@ Khi cần tạo lại dữ liệu seed:
 
 ```bash
 cd /opt/audioGuide
-docker run --rm -v "$PWD:/app" -w /app -e GUIDES_DATA_PATH=/app/data/guides.json node:22-alpine sh -lc "npm install && npm run seed"
+docker run --rm -v "$PWD:/app" -w /app -e GUIDES_DATA_PATH=/app/data/guides.json -e GUIDES_DATA_DIR=/app/data/guides node:22-alpine sh -lc "npm install && npm run seed"
 ```
 
 Hoặc chạy từng bước:

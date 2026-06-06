@@ -3,6 +3,25 @@ import path from "node:path";
 
 const outputPath =
   process.env.GUIDES_DATA_PATH || path.join(process.cwd(), "data", "guides.json");
+const outputDir =
+  process.env.GUIDES_DATA_DIR || path.join(path.dirname(outputPath), "guides");
+const defaultTitleLayout = {
+  left: "clamp(16px, 4.3vw, 48px)",
+  top: "clamp(34px, 5dvh, 92px)",
+  width: "56%",
+  align: "left",
+  gap: "6px",
+  title1Size: "clamp(22px, 5.85vw, 68px)",
+  title2Size: "clamp(16px, 4.5vw, 52px)",
+  title3Size: "clamp(16px, 4.5vw, 52px)",
+  lineHeight: "1.05",
+};
+const defaultImageLayout = {
+  foregroundPosition: "85% center",
+  backgroundPosition: "center",
+  backgroundOpacity: 1,
+  overlayOpacity: 0.8,
+};
 
 const guides = [
   {
@@ -199,8 +218,28 @@ const guides = [
   }
 ];
 
-await mkdir(path.dirname(outputPath), { recursive: true });
-await writeFile(outputPath, `${JSON.stringify(guides, null, 2)}\n`, "utf8");
+const guidesWithDisplay = guides.map((guide) => ({
+  ...guide,
+  title1: guide.title,
+  title2: guide.subtitle,
+  title3: "",
+  titleLayout: defaultTitleLayout,
+  imageLayout: defaultImageLayout,
+}));
 
+await mkdir(outputDir, { recursive: true });
+await Promise.all(
+  guidesWithDisplay.map((guide) =>
+    writeFile(
+      path.join(outputDir, `${String(guide.id).padStart(2, "0")}.json`),
+      `${JSON.stringify(guide, null, 2)}\n`,
+      "utf8",
+    ),
+  ),
+);
+await mkdir(path.dirname(outputPath), { recursive: true });
+await writeFile(outputPath, `${JSON.stringify(guidesWithDisplay, null, 2)}\n`, "utf8");
+
+console.log(`Created ${outputDir}`);
 console.log(`Created ${outputPath}`);
-console.log(`Total guides: ${guides.length}`);
+console.log(`Total guides: ${guidesWithDisplay.length}`);

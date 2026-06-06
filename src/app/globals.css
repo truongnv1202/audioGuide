@@ -94,3 +94,17 @@ a {
 .guide-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+.backend-input {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid #dfc271;
+  background: #fffdf4;
+  padding: 10px 12px;
+  outline: none;
+}
+
+.backend-input:focus {
+  border-color: #c99719;
+  box-shadow: 0 0 0 3px rgba(212, 161, 29, 0.15);
+}

@@ -4,6 +4,7 @@ set -euo pipefail
 DOMAIN="${DOMAIN:-audioguide.gamegiaoduc.co}"
 APP_DIR="${APP_DIR:-/opt/audioGuide}"
 CONTAINER_GUIDES_DATA_PATH="${CONTAINER_GUIDES_DATA_PATH:-/app/data/guides.json}"
+CONTAINER_GUIDES_DATA_DIR="${CONTAINER_GUIDES_DATA_DIR:-/app/data/guides}"
 HOST_UPLOADS_DIR="${HOST_UPLOADS_DIR:-$APP_DIR/data/uploads}"
 CONTAINER_UPLOADS_DIR="${CONTAINER_UPLOADS_DIR:-/app/data/uploads}"
 PORT="${PORT:-9000}"
@@ -150,9 +151,10 @@ if [ -z "$SECRET" ] || [ "$SECRET" = "change-this-backend-secret" ]; then
 fi
 set_env_value "PORT" "$PORT"
 set_env_value "GUIDES_DATA_PATH" "$CONTAINER_GUIDES_DATA_PATH"
+set_env_value "GUIDES_DATA_DIR" "$CONTAINER_GUIDES_DATA_DIR"
 set_env_value "UPLOADS_DIR" "$CONTAINER_UPLOADS_DIR"
 
-mkdir -p "$HOST_UPLOADS_DIR" "$APP_DIR/public/images/items" "$APP_DIR/public/audio"
+mkdir -p "$APP_DIR/data/guides" "$HOST_UPLOADS_DIR" "$APP_DIR/public/images/items" "$APP_DIR/public/audio"
 
 install_origin_cert
 
@@ -163,7 +165,7 @@ $SUDO nginx -t
 $SUDO systemctl reload nginx
 
 echo "Frontend: https://$DOMAIN/?id=1"
-echo "Backend:  https://$DOMAIN/backend/$SECRET/guides"
+echo "Backend:  https://$DOMAIN/backend/$SECRET"
 echo "Nginx:    $NGINX_CONF"
 echo "Cert:     $SSL_CERT_PATH"
 echo "Cloudflare SSL/TLS mode: Full (not Full strict) when using this self-signed cert"

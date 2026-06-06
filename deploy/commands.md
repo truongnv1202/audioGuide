@@ -15,7 +15,7 @@ Tạo file môi trường:
 cp .env.example .env
 SECRET="$(openssl rand -hex 24)"
 sed -i "s/^BACKEND_SECRET=.*/BACKEND_SECRET=$SECRET/" .env
-echo "Backend secret URL: https://audioguide.gamegiaoduc.co/backend/$SECRET/guides"
+echo "Backend UI: https://audioguide.gamegiaoduc.co/backend/$SECRET"
 ```
 
 ```bash
@@ -25,6 +25,7 @@ docker run --rm \
   -v "$PWD:/app" \
   -w /app \
   -e GUIDES_DATA_PATH=/app/data/guides.json \
+  -e GUIDES_DATA_DIR=/app/data/guides \
   node:22-alpine \
   sh -lc "npm install && npm run seed"
 ```
@@ -32,7 +33,7 @@ docker run --rm \
 Kết quả sẽ ghi vào:
 
 ```text
-data/guides.json
+data/guides/01.json ... data/guides/24.json
 ```
 
 ## 3. Đặt ảnh và audio
@@ -97,11 +98,18 @@ App sẽ chạy nội bộ tại:
 
 ## 4.1. Chỉnh nội dung qua backend
 
-Sau deploy, lấy `BACKEND_SECRET` trong `.env` rồi gọi:
+Sau deploy, mở UI backend:
 
 ```bash
 SECRET="$(grep '^BACKEND_SECRET=' .env | cut -d= -f2-)"
+echo "https://audioguide.gamegiaoduc.co/backend/$SECRET"
+```
 
+Mỗi bài lưu riêng trong `data/guides/NN.json`, nên có thể sửa/backup từng bài độc lập.
+
+API vẫn dùng được nếu muốn gọi bằng `curl`:
+
+```bash
 curl -X PATCH "https://audioguide.gamegiaoduc.co/backend/$SECRET/guides/1" \
   -H "Content-Type: application/json" \
   -d '{
@@ -186,7 +194,7 @@ Khi cần tạo lại dữ liệu seed thì chạy riêng:
 
 ```bash
 cd /opt/audioGuide
-docker run --rm -v "$PWD:/app" -w /app -e GUIDES_DATA_PATH=/app/data/guides.json node:22-alpine sh -lc "npm install && npm run seed"
+docker run --rm -v "$PWD:/app" -w /app -e GUIDES_DATA_PATH=/app/data/guides.json -e GUIDES_DATA_DIR=/app/data/guides node:22-alpine sh -lc "npm install && npm run seed"
 ```
 
 Hoặc chạy thủ công:
@@ -201,5 +209,5 @@ sudo cp deploy/nginx-audioguide.conf /etc/nginx/conf.d/audioguide.conf
 sudo nginx -t
 sudo systemctl reload nginx
 echo "Frontend: https://audioguide.gamegiaoduc.co/?id=1"
-echo "Backend: https://audioguide.gamegiaoduc.co/backend/$SECRET/guides"
+echo "Backend: https://audioguide.gamegiaoduc.co/backend/$SECRET"
 ```
