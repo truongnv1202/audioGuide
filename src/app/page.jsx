@@ -31,7 +31,7 @@ export default async function Home({ searchParams }) {
           <div className="pointer-events-none absolute inset-0 opacity-50 mix-blend-screen [background-image:radial-gradient(circle_at_22%_18%,rgba(255,255,255,.9)_0_1px,transparent_2px),radial-gradient(circle_at_72%_12%,rgba(255,255,255,.7)_0_1px,transparent_2px)] [background-size:36px_36px,54px_54px]" />
           <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[38%] bg-gradient-to-b from-transparent via-[#fff0a4]/70 to-[#fff7d6]" />
 
-          <h1 className="relative z-20 text-center font-serif text-[clamp(16px,4vw,42px)] font-black tracking-[-0.03em] text-[#2e211a]">
+          <h1 className="relative z-20 text-center text-[clamp(16px,4vw,42px)] font-black tracking-[-0.03em] text-[#2e211a]">
             AudioGuide
           </h1>
 
@@ -44,11 +44,11 @@ export default async function Home({ searchParams }) {
           </div>
 
           <div className="relative z-20 mt-[clamp(34px,7.8dvh,118px)] max-w-[58%]">
-            <h2 className="font-serif text-[clamp(23px,6.25vw,70px)] font-black leading-[1.04] tracking-[-0.05em] text-[#352720] drop-shadow-[0_1px_0_rgba(255,246,196,0.45)]">
+            <h2 className="text-[clamp(23px,6.25vw,70px)] font-black leading-[1.04] tracking-[-0.05em] text-[#352720] drop-shadow-[0_1px_0_rgba(255,246,196,0.45)]">
               {guide.title}
             </h2>
             {guide.subtitle ? (
-              <p className="mt-[clamp(12px,2.4dvh,34px)] font-serif text-[clamp(22px,5.8vw,64px)] font-black leading-none tracking-[-0.05em] text-[#352720]">
+              <p className="mt-[clamp(12px,2.4dvh,34px)] text-[clamp(22px,5.8vw,64px)] font-black leading-none tracking-[-0.05em] text-[#352720]">
                 {guide.subtitle}
               </p>
             ) : null}
@@ -77,7 +77,7 @@ export default async function Home({ searchParams }) {
                 <path d="M3 2.1C6.2 2.1 9.3 3 12 4.6v15.3C9.2 18.4 6.1 17.6 3 17.6c-1 0-1.9.1-2.8.3V3.1C1.1 2.5 2 2.1 3 2.1Zm22 0c1 0 1.9.4 2.8 1v14.8c-.9-.2-1.8-.3-2.8-.3-3.1 0-6.2.8-9 2.3V4.6C18.7 3 21.8 2.1 25 2.1ZM13 3.7h2v17.1h-2V3.7Z" />
               </svg>
               <div>
-                <h3 className="font-serif text-[clamp(20px,4.8vw,48px)] font-black leading-none tracking-[-0.04em] text-[#594234]">
+                <h3 className="text-[clamp(20px,4.8vw,48px)] font-black leading-none tracking-[-0.04em] text-[#594234]">
                   Nội dung thuyết minh
                 </h3>
                 <div className="mt-[clamp(7px,1.4vw,14px)] h-px w-[clamp(128px,34vw,340px)] bg-[#d7a73a]" />

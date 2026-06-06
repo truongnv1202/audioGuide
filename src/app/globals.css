@@ -1,14 +1,15 @@
-@import "@fontsource/lato/400.css";
-@import "@fontsource/lato/700.css";
-@import "@fontsource/lato/900.css";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+@import "@fontsource/inter/900.css";
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Lato", sans-serif;
+  --font-sans: "Inter", sans-serif;
 }
 
 :root {
-  --font-lato: "Lato", sans-serif;
+  --font-inter: "Inter", sans-serif;
   --guide-paper: #fff8e8;
   --guide-gold: #f5be55;
   --guide-deep: #3d332d;
@@ -34,7 +35,7 @@ body {
   background:
     radial-gradient(circle at 50% 5%, rgba(255, 255, 255, 0.85), transparent 28rem),
     linear-gradient(180deg, #f5f1e5 0%, #ffd982 56%, #fff4cf 100%);
-  font-family: var(--font-lato);
+  font-family: var(--font-inter);
 }
 
 .guide-screen {

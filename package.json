@@ -12,7 +12,7 @@
     "seed:samples": "node seed.js"
   },
   "dependencies": {
-    "@fontsource/lato": "latest",
+    "@fontsource/inter": "latest",
     "@tailwindcss/postcss": "latest",
     "next": "latest",
     "react": "latest",
