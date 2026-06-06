@@ -19,8 +19,7 @@ echo "Backend secret URL: https://audioguide.gamegiaoduc.co/backend/$SECRET/guid
 ```
 
 ```bash
-npm install
-npm run seed
+docker run --rm -v "$PWD:/app" -w /app -e GUIDES_DATA_PATH=/app/data/guides.json node:22-alpine sh -lc "npm install && npm run seed"
 ```
 
 Kết quả sẽ ghi vào:
@@ -121,7 +120,7 @@ chmod +x deploy/quick-deploy.sh
 Script sẽ tự:
 
 - Tạo/cập nhật `.env` và `BACKEND_SECRET`.
-- Chạy `npm install` và `npm run seed`.
+- Tạo seed mẫu bằng container `node:22-alpine` nếu chưa có `data/guides.json`.
 - Tạo thư mục `data/uploads` để lưu ảnh/audio upload.
 - Build/chạy Docker bằng `docker compose up -d --build`.
 - Tự tạo cert/key vào `/etc/nginx/ssl/audioguide` nếu chưa có.
@@ -135,8 +134,7 @@ cd /opt/audioGuide
 cp .env.example .env
 SECRET="$(openssl rand -hex 24)"
 sed -i "s/^BACKEND_SECRET=.*/BACKEND_SECRET=$SECRET/" .env
-npm install
-npm run seed
+docker run --rm -v "$PWD:/app" -w /app -e GUIDES_DATA_PATH=/app/data/guides.json node:22-alpine sh -lc "npm install && npm run seed"
 docker compose up -d --build
 sudo cp deploy/nginx-audioguide.conf /etc/nginx/conf.d/audioguide.conf
 sudo nginx -t

@@ -113,7 +113,6 @@ server {
 EOF
 }
 
-require_command npm
 require_command docker
 require_command nginx
 require_command openssl
@@ -137,9 +136,13 @@ mkdir -p "$HOST_UPLOADS_DIR"
 
 install_origin_cert
 
-npm install
 if [ ! -f "$HOST_GUIDES_DATA_PATH" ]; then
-  GUIDES_DATA_PATH="$HOST_GUIDES_DATA_PATH" npm run seed
+  docker run --rm \
+    -v "$APP_DIR:/app" \
+    -w /app \
+    -e GUIDES_DATA_PATH=/app/data/guides.json \
+    node:22-alpine \
+    sh -lc "npm install && npm run seed"
 fi
 
 docker compose up -d --build

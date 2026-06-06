@@ -133,7 +133,7 @@ chmod +x deploy/quick-deploy.sh
 ./deploy/quick-deploy.sh
 ```
 
-Script này tự tạo/cập nhật `.env`, seed dữ liệu, tạo thư mục upload, build Docker, tự tạo self-signed SSL cert nếu chưa có, ghi nginx site config và reload nginx.
+Script này tự tạo/cập nhật `.env`, seed dữ liệu bằng container `node:22-alpine`, tạo thư mục upload, build Docker, tự tạo self-signed SSL cert nếu chưa có, ghi nginx site config và reload nginx. Server không cần dùng Node/npm cài sẵn.
 
 Hoặc chạy từng bước:
 
@@ -141,8 +141,7 @@ Hoặc chạy từng bước:
 cd /opt/audioGuide
 cp .env.example .env
 # sửa BACKEND_SECRET trong .env trước khi chạy
-npm install
-npm run seed
+docker run --rm -v "$PWD:/app" -w /app -e GUIDES_DATA_PATH=/app/data/guides.json node:22-alpine sh -lc "npm install && npm run seed"
 docker compose up -d --build
 ```
 
