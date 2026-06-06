@@ -155,6 +155,7 @@ set_env_value "GUIDES_DATA_DIR" "$CONTAINER_GUIDES_DATA_DIR"
 set_env_value "UPLOADS_DIR" "$CONTAINER_UPLOADS_DIR"
 
 mkdir -p "$APP_DIR/data/guides" "$HOST_UPLOADS_DIR" "$APP_DIR/public/images/items" "$APP_DIR/public/audio"
+$SUDO chown -R 1001:1001 "$APP_DIR/data"
 
 install_origin_cert
 
