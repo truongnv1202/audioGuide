@@ -105,11 +105,26 @@ SECRET="$(grep '^BACKEND_SECRET=' .env | cut -d= -f2-)"
 curl -X PATCH "https://audioguide.gamegiaoduc.co/backend/$SECRET/guides/1" \
   -H "Content-Type: application/json" \
   -d '{
-    "title": "Tiêu đề mới",
-    "subtitle": "Tiêu đề phụ",
+    "title1": "Tiêu đề dòng 1",
+    "title2": "Tiêu đề dòng 2",
+    "title3": "Tiêu đề dòng 3",
     "description": "Nội dung mới",
     "imageUrl": "/images/items/01.jpg",
-    "audioUrl": "/audio/01.mp3"
+    "audioUrl": "/audio/01.mp3",
+    "titleLayout": {
+      "left": "16px",
+      "top": "38px",
+      "width": "56%",
+      "title1Size": "clamp(22px, 5.85vw, 68px)",
+      "title2Size": "clamp(16px, 4.5vw, 52px)",
+      "title3Size": "clamp(14px, 4vw, 44px)"
+    },
+    "imageLayout": {
+      "foregroundPosition": "85% center",
+      "backgroundPosition": "center",
+      "backgroundOpacity": 1,
+      "overlayOpacity": 0.8
+    }
   }'
 ```
 

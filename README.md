@@ -114,15 +114,35 @@ Ví dụ chỉnh bài số 1:
 curl -X PATCH "https://audioguide.gamegiaoduc.co/backend/abc123/guides/1" \
   -H "Content-Type: application/json" \
   -d '{
-    "title": "Tiêu đề mới",
-    "subtitle": "(1921 - 1960)",
+    "title1": "Tiêu đề dòng 1",
+    "title2": "Tiêu đề dòng 2",
+    "title3": "Tiêu đề dòng 3",
     "description": "Nội dung mới của bài thuyết minh.",
     "imageUrl": "/images/items/01.jpg",
-    "audioUrl": "/audio/01.mp3"
+    "audioUrl": "/audio/01.mp3",
+    "titleLayout": {
+      "left": "16px",
+      "top": "38px",
+      "width": "56%",
+      "align": "left",
+      "gap": "6px",
+      "title1Size": "clamp(22px, 5.85vw, 68px)",
+      "title2Size": "clamp(16px, 4.5vw, 52px)",
+      "title3Size": "clamp(14px, 4vw, 44px)",
+      "lineHeight": "1.05"
+    },
+    "imageLayout": {
+      "foregroundPosition": "85% center",
+      "backgroundPosition": "center",
+      "backgroundOpacity": 1,
+      "overlayOpacity": 0.8
+    }
   }'
 ```
 
-Các field có thể sửa: `title`, `subtitle`, `description`, `imageUrl`, `audioUrl`.
+Các field có thể sửa: `title`, `subtitle`, `title1`, `title2`, `title3`, `description`, `imageUrl`, `audioUrl`, `titleLayout`, `imageLayout`.
+
+`titleLayout` cấu hình vị trí/cỡ chữ phần tiêu đề theo từng bài. `imageLayout.foregroundPosition` chỉnh độ lệch ảnh thật trong hero, `backgroundPosition` chỉnh vị trí ảnh nền, `backgroundOpacity` chỉnh độ mờ ảnh nền, `overlayOpacity` chỉnh độ che của lớp vàng từ `0` đến `1`.
 
 Upload ảnh và MP3 cho bài số 1:
 

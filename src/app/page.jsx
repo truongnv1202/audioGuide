@@ -11,6 +11,14 @@ function clampId(value) {
   return Number.isNaN(parsed) ? 1 : parsed;
 }
 
+function titleLines(guide) {
+  return [
+    { key: "title1", text: guide.title1, size: guide.titleLayout?.title1Size },
+    { key: "title2", text: guide.title2, size: guide.titleLayout?.title2Size },
+    { key: "title3", text: guide.title3, size: guide.titleLayout?.title3Size },
+  ].filter((line) => String(line.text || "").trim());
+}
+
 export default async function Home({ searchParams }) {
   const params = await searchParams;
   const id = clampId(params?.id);
@@ -19,6 +27,9 @@ export default async function Home({ searchParams }) {
   if (!guide) {
     notFound();
   }
+
+  const layout = guide.titleLayout || {};
+  const titles = titleLines(guide);
 
   return (
     <main className="min-h-dvh bg-[#fff7d6]">
@@ -31,20 +42,36 @@ export default async function Home({ searchParams }) {
             <HeroGuideImage
               src={guide.imageUrl}
               alt={guide.title}
+              imageLayout={guide.imageLayout}
             />
           </div>
           <div className="hero-vignette pointer-events-none absolute inset-0 z-10" />
 
-          <div className="relative z-20 max-w-[56%]">
-            <h2 className="text-[clamp(22px,5.85vw,68px)] font-black leading-[1.05] tracking-[-0.045em] text-[#352720] drop-shadow-[0_1px_0_rgba(255,246,196,0.45)]">
-              {guide.title}
-            </h2>
-            {guide.subtitle ? (
-              <p className="mt-[clamp(6px,1.2dvh,18px)] text-[clamp(16px,4.5vw,52px)] font-black leading-none tracking-[-0.045em] text-[#352720]">
-                {guide.subtitle}
-              </p>
-            ) : null}
-          </div>
+          {titles.length > 0 ? (
+            <div
+              className="absolute z-20 tracking-[-0.045em] text-[#352720] drop-shadow-[0_1px_0_rgba(255,246,196,0.45)]"
+              style={{
+                left: layout.left,
+                top: layout.top,
+                width: layout.width,
+                textAlign: layout.align,
+              }}
+            >
+              {titles.map((line, index) => (
+                <p
+                  key={line.key}
+                  className="font-black"
+                  style={{
+                    fontSize: line.size,
+                    lineHeight: layout.lineHeight,
+                    marginTop: index === 0 ? 0 : layout.gap,
+                  }}
+                >
+                  {line.text}
+                </p>
+              ))}
+            </div>
+          ) : null}
         </section>
 
         <div className="relative z-20 flex min-h-0 flex-1 flex-col gap-[clamp(8px,1.2dvh,20px)] px-[clamp(16px,4.3vw,48px)] pb-[clamp(18px,3dvh,42px)] pt-[5px]">

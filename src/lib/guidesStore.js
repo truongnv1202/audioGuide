@@ -1,9 +1,20 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
+import { normalizeGuideDisplay } from "@/lib/guideDefaults";
 import { createSampleGuides } from "@/lib/sampleGuides";
 
-const EDITABLE_FIELDS = ["title", "subtitle", "description", "imageUrl", "audioUrl"];
+const EDITABLE_STRING_FIELDS = [
+  "title",
+  "subtitle",
+  "title1",
+  "title2",
+  "title3",
+  "description",
+  "imageUrl",
+  "audioUrl",
+];
+const EDITABLE_OBJECT_FIELDS = ["titleLayout", "imageLayout"];
 
 export function getGuidesDataPath() {
   return process.env.GUIDES_DATA_PATH || path.join(process.cwd(), "data", "guides.json");
@@ -37,7 +48,9 @@ export async function getGuides() {
     throw new Error("guides.json must contain an array");
   }
 
-  return parsed.sort((left, right) => left.id - right.id);
+  return parsed
+    .map((guide) => normalizeGuideDisplay(guide))
+    .sort((left, right) => left.id - right.id);
 }
 
 export async function getGuideById(id) {
@@ -56,10 +69,36 @@ export async function updateGuideById(id, payload) {
   }
 
   const updates = Object.fromEntries(
-    EDITABLE_FIELDS
+    EDITABLE_STRING_FIELDS
       .filter((field) => Object.prototype.hasOwnProperty.call(payload, field))
       .map((field) => [field, String(payload[field] ?? "")]),
   );
+
+  for (const field of EDITABLE_OBJECT_FIELDS) {
+    if (
+      Object.prototype.hasOwnProperty.call(payload, field) &&
+      payload[field] &&
+      typeof payload[field] === "object" &&
+      !Array.isArray(payload[field])
+    ) {
+      updates[field] = {
+        ...(guides[index][field] || {}),
+        ...payload[field],
+      };
+    }
+  }
+
+  if (Object.prototype.hasOwnProperty.call(updates, "title1")) {
+    updates.title = updates.title1;
+  } else if (Object.prototype.hasOwnProperty.call(updates, "title")) {
+    updates.title1 = updates.title;
+  }
+
+  if (Object.prototype.hasOwnProperty.call(updates, "title2")) {
+    updates.subtitle = updates.title2;
+  } else if (Object.prototype.hasOwnProperty.call(updates, "subtitle")) {
+    updates.title2 = updates.subtitle;
+  }
 
   guides[index] = {
     ...guides[index],
