@@ -12,6 +12,7 @@
     "seed:docx": "node seed.js"
   },
   "dependencies": {
+    "@fontsource/lato": "latest",
     "@tailwindcss/postcss": "latest",
     "mammoth": "latest",
     "next": "latest",

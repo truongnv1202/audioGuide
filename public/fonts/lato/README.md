@@ -1,17 +1,9 @@
-# Self-hosted Lato fonts
+# Lato font
 
-Place the Lato font files used by `src/app/globals.css` in this directory:
+The app uses `@fontsource/lato` from `package.json`, imported in `src/app/globals.css`:
 
-- `Lato-Regular.ttf`
-- `Lato-Bold.ttf`
-- `Lato-Black.ttf`
+- `@fontsource/lato/400.css`
+- `@fontsource/lato/700.css`
+- `@fontsource/lato/900.css`
 
-Official source: Google Fonts repository, `ofl/lato`.
-
-Direct font URLs verified from Google Fonts:
-
-- `https://fonts.gstatic.com/s/lato/v25/S6uyw4BMUTPHvxk.ttf` -> `Lato-Regular.ttf`
-- `https://fonts.gstatic.com/s/lato/v25/S6u9w4BMUTPHh6UVew8.ttf` -> `Lato-Bold.ttf`
-- `https://fonts.gstatic.com/s/lato/v25/S6u9w4BMUTPHh50Xew8.ttf` -> `Lato-Black.ttf`
-
-The app references only `/fonts/lato/...` paths at runtime, so it does not depend on browser-installed Lato or a remote font stylesheet.
+During `npm install` and Docker build, the font files are installed into `node_modules` and bundled by Next.js. There is no runtime dependency on browser-installed fonts or Google Fonts.
