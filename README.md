@@ -147,6 +147,7 @@ curl -X PATCH "https://audioguide.gamegiaoduc.co/backend/abc123/guides/1" \
     "description": "Nội dung mới của bài thuyết minh.",
     "imageUrl": "/images/items/01.jpg",
     "audioUrl": "/audio/01.mp3",
+    "playbackRate": 1,
     "titleLayout": {
       "left": "16px",
       "top": "38px",
@@ -167,9 +168,9 @@ curl -X PATCH "https://audioguide.gamegiaoduc.co/backend/abc123/guides/1" \
   }'
 ```
 
-Các field có thể sửa: `title`, `subtitle`, `title1`, `title2`, `title3`, `description`, `imageUrl`, `audioUrl`, `titleLayout`, `imageLayout`.
+Các field có thể sửa: `title`, `subtitle`, `title1`, `title2`, `title3`, `description`, `imageUrl`, `audioUrl`, `playbackRate`, `titleLayout`, `imageLayout`.
 
-`title1`, `title2`, `title3` hỗ trợ xuống dòng. Dòng nào để trống sẽ tự ẩn khỏi giao diện. `titleLayout` cấu hình vị trí/cỡ chữ phần tiêu đề theo từng bài. `imageLayout.foregroundPosition` chỉnh độ lệch ảnh thật trong hero, `backgroundPosition` chỉnh vị trí ảnh nền, `backgroundOpacity` chỉnh độ mờ ảnh nền, `overlayOpacity` chỉnh độ che của lớp vàng từ `0` đến `1`.
+`playbackRate` cấu hình tốc độ phát MP3 theo từng bài, ví dụ `0.9`, `1`, `1.25`, `1.5`. `title1`, `title2`, `title3` hỗ trợ xuống dòng. Dòng nào để trống sẽ tự ẩn khỏi giao diện. `titleLayout` cấu hình vị trí/cỡ chữ phần tiêu đề theo từng bài. `imageLayout.foregroundPosition` chỉnh độ lệch ảnh thật trong hero, `backgroundPosition` chỉnh vị trí ảnh nền, `backgroundOpacity` chỉnh độ mờ ảnh nền, `overlayOpacity` chỉnh độ che của lớp vàng từ `0` đến `1`.
 
 Upload ảnh và MP3 cho bài số 1:
 

@@ -22,6 +22,7 @@ export function createSampleGuides(total = TOTAL_SAMPLE_GUIDES) {
       imageUrl: `/images/items/${paddedId}.jpg`,
       imageLayout: DEFAULT_IMAGE_LAYOUT,
       audioUrl: `/audio/${paddedId}.mp3`,
+      playbackRate: 1,
     };
   });
 }

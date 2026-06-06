@@ -14,6 +14,16 @@ function formatTime(value) {
   return `${minutes}:${seconds}`;
 }
 
+function playbackRate(value) {
+  const numeric = Number(value);
+
+  if (!Number.isFinite(numeric) || numeric <= 0) {
+    return 1;
+  }
+
+  return Math.min(Math.max(numeric, 0.5), 2);
+}
+
 export default function AudioGuidePlayer({ guide }) {
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -30,6 +40,7 @@ export default function AudioGuidePlayer({ guide }) {
   );
 
   const progress = duration > 0 ? Math.min(currentTime / duration, 1) : 0;
+  const rate = playbackRate(guide.playbackRate);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -38,6 +49,8 @@ export default function AudioGuidePlayer({ guide }) {
     }
 
     setAudioError("");
+    audio.defaultPlaybackRate = rate;
+    audio.playbackRate = rate;
     const handleLoaded = () => setDuration(audio.duration || 0);
     const handleTime = () => setCurrentTime(audio.currentTime || 0);
     const handlePause = () => setIsPlaying(false);
@@ -60,7 +73,7 @@ export default function AudioGuidePlayer({ guide }) {
       audio.removeEventListener("play", handlePlay);
       audio.removeEventListener("ended", handleEnded);
     };
-  }, [guide.audioUrl]);
+  }, [guide.audioUrl, rate]);
 
   async function togglePlayback() {
     const audio = audioRef.current;

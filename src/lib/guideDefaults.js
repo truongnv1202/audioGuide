@@ -17,6 +17,16 @@ export const DEFAULT_IMAGE_LAYOUT = {
   overlayOpacity: 0.8,
 };
 
+export function normalizePlaybackRate(value) {
+  const numeric = Number(value);
+
+  if (!Number.isFinite(numeric) || numeric <= 0) {
+    return 1;
+  }
+
+  return Math.min(Math.max(numeric, 0.5), 2);
+}
+
 export function normalizeGuideDisplay(guide) {
   const title = String(guide.title ?? "");
   const subtitle = String(guide.subtitle ?? "");
@@ -28,6 +38,7 @@ export function normalizeGuideDisplay(guide) {
     title1: String(guide.title1 ?? title),
     title2: String(guide.title2 ?? subtitle),
     title3: String(guide.title3 ?? ""),
+    playbackRate: normalizePlaybackRate(guide.playbackRate),
     titleLayout: {
       ...DEFAULT_TITLE_LAYOUT,
       ...(guide.titleLayout && typeof guide.titleLayout === "object" ? guide.titleLayout : {}),

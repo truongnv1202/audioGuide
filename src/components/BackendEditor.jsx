@@ -232,6 +232,14 @@ export default function BackendEditor({ secret, initialGuides }) {
                       className="backend-input"
                     />
                   </Field>
+                  <NumberInput
+                    label="Tốc độ MP3"
+                    value={draft.playbackRate}
+                    min={0.5}
+                    max={2}
+                    step={0.05}
+                    onChange={(value) => updateField("playbackRate", value)}
+                  />
                 </div>
                 <form onSubmit={uploadMedia} className="mt-3 grid gap-3 md:grid-cols-[1fr_1fr_auto]">
                   <input name="image" type="file" accept="image/*" className="backend-input" />
@@ -305,14 +313,14 @@ function TextInput({ label, value, onChange }) {
   );
 }
 
-function NumberInput({ label, value, onChange }) {
+function NumberInput({ label, value, min = 0, max = 1, step = 0.05, onChange }) {
   return (
     <Field label={label}>
       <input
         type="number"
-        min="0"
-        max="1"
-        step="0.05"
+        min={min}
+        max={max}
+        step={step}
         value={numberValue(value)}
         onChange={(event) => onChange(Number(event.target.value))}
         className="backend-input"

@@ -225,6 +225,7 @@ const guidesWithDisplay = guides.map((guide) => ({
   title3: "",
   titleLayout: defaultTitleLayout,
   imageLayout: defaultImageLayout,
+  playbackRate: 1,
 }));
 
 await mkdir(outputDir, { recursive: true });
