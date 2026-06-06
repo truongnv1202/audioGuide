@@ -56,6 +56,12 @@ body {
   backdrop-filter: blur(4px);
 }
 
+.hero-photo-frame {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .hero-photo {
   filter: grayscale(1) contrast(1.08) sepia(0.08);
 }

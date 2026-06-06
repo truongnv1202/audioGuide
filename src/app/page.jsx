@@ -27,11 +27,15 @@ export default async function Home({ searchParams }) {
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_9%,rgba(255,255,255,0.92),transparent_25%),radial-gradient(circle_at_76%_13%,rgba(255,255,255,0.62),transparent_18%),linear-gradient(150deg,#fff3ad_0%,#f3ce77_52%,#fff4bb_100%)]" />
           <div className="pointer-events-none absolute inset-0 opacity-45 mix-blend-screen [background-image:radial-gradient(circle_at_22%_18%,rgba(255,255,255,.9)_0_1px,transparent_2px),radial-gradient(circle_at_72%_12%,rgba(255,255,255,.7)_0_1px,transparent_2px)] [background-size:36px_36px,54px_54px]" />
 
-          <div className="absolute inset-x-0 bottom-0 z-0 h-[70%]">
+          <div
+            className="hero-photo-frame absolute inset-x-[5px] bottom-[5px] top-[5px] z-0 flex items-center justify-center overflow-hidden"
+            style={{ backgroundImage: `url("${guide.imageUrl}")` }}
+          >
+            <div className="absolute inset-0 bg-[#fff3ad]/80" />
             <GuideImage
               src={guide.imageUrl}
               alt={guide.title}
-              className="hero-photo h-full w-full object-cover object-center opacity-85 grayscale contrast-110 mix-blend-multiply"
+              className="hero-photo relative z-10 h-full max-w-full object-contain object-center opacity-90 grayscale contrast-110 mix-blend-multiply"
             />
           </div>
           <div className="hero-vignette pointer-events-none absolute inset-0 z-10" />
@@ -48,7 +52,7 @@ export default async function Home({ searchParams }) {
           </div>
         </section>
 
-        <div className="relative z-20 flex min-h-0 flex-1 flex-col gap-[clamp(8px,1.2dvh,20px)] px-[clamp(16px,4.3vw,48px)] pb-[clamp(18px,3dvh,42px)] pt-[clamp(8px,1.2dvh,20px)]">
+        <div className="relative z-20 flex min-h-0 flex-1 flex-col gap-[clamp(8px,1.2dvh,20px)] px-[clamp(16px,4.3vw,48px)] pb-[clamp(18px,3dvh,42px)] pt-0">
           <AudioGuidePlayer guide={guide} />
 
           <section className="content-card flex min-h-0 flex-1 flex-col overflow-hidden rounded-[clamp(10px,3vw,30px)] border border-[#e5c565] bg-[#fffdf3]/95 px-[clamp(16px,4.2vw,48px)] pb-[clamp(14px,2.2dvh,32px)] pt-[clamp(18px,2.8dvh,36px)] shadow-[0_3px_10px_rgba(151,110,25,0.24)]">
