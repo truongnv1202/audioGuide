@@ -20,51 +20,35 @@ export default async function Home({ searchParams }) {
     notFound();
   }
 
-  const label =
-    guide.badge || (id === 1 ? "ANH HÙNG\nLỰC LƯỢNG VŨ TRANG NHÂN DÂN" : "");
-
   return (
     <main className="min-h-dvh bg-[#fff7d6]">
       <div className="guide-screen mx-auto flex min-h-dvh w-full max-w-[1080px] flex-col overflow-hidden text-[#3f3028]">
-        <section className="relative h-[46dvh] min-h-[350px] shrink-0 overflow-hidden px-[clamp(16px,4.3vw,48px)] pt-[clamp(58px,7.8dvh,126px)]">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(255,255,255,0.92),transparent_22%),radial-gradient(circle_at_74%_18%,rgba(255,255,255,0.55),transparent_18%),linear-gradient(150deg,#fff2a6_0%,#f5d27c_44%,#f2c86e_100%)]" />
-          <div className="pointer-events-none absolute inset-0 opacity-50 mix-blend-screen [background-image:radial-gradient(circle_at_22%_18%,rgba(255,255,255,.9)_0_1px,transparent_2px),radial-gradient(circle_at_72%_12%,rgba(255,255,255,.7)_0_1px,transparent_2px)] [background-size:36px_36px,54px_54px]" />
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[38%] bg-gradient-to-b from-transparent via-[#fff0a4]/70 to-[#fff7d6]" />
+        <section className="relative h-[clamp(288px,38dvh,730px)] shrink-0 overflow-hidden px-[clamp(16px,4.3vw,48px)] pt-[clamp(34px,5dvh,92px)]">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_9%,rgba(255,255,255,0.92),transparent_25%),radial-gradient(circle_at_76%_13%,rgba(255,255,255,0.62),transparent_18%),linear-gradient(150deg,#fff3ad_0%,#f3ce77_52%,#fff4bb_100%)]" />
+          <div className="pointer-events-none absolute inset-0 opacity-45 mix-blend-screen [background-image:radial-gradient(circle_at_22%_18%,rgba(255,255,255,.9)_0_1px,transparent_2px),radial-gradient(circle_at_72%_12%,rgba(255,255,255,.7)_0_1px,transparent_2px)] [background-size:36px_36px,54px_54px]" />
 
-          <h1 className="relative z-20 text-center text-[clamp(16px,4vw,42px)] font-black tracking-[-0.03em] text-[#2e211a]">
-            AudioGuide
-          </h1>
-
-          <div className="absolute inset-x-0 bottom-0 z-0 h-[82%]">
+          <div className="absolute inset-x-0 bottom-0 z-0 h-[70%]">
             <GuideImage
               src={guide.imageUrl}
               alt={guide.title}
-              className="h-full w-full object-cover object-center opacity-80 grayscale contrast-110 mix-blend-multiply"
+              className="hero-photo h-full w-full object-cover object-center opacity-85 grayscale contrast-110 mix-blend-multiply"
             />
           </div>
+          <div className="hero-vignette pointer-events-none absolute inset-0 z-10" />
 
-          <div className="relative z-20 mt-[clamp(34px,7.8dvh,118px)] max-w-[58%]">
-            <h2 className="text-[clamp(23px,6.25vw,70px)] font-black leading-[1.04] tracking-[-0.05em] text-[#352720] drop-shadow-[0_1px_0_rgba(255,246,196,0.45)]">
+          <div className="relative z-20 max-w-[56%]">
+            <h2 className="text-[clamp(22px,5.85vw,68px)] font-black leading-[1.05] tracking-[-0.045em] text-[#352720] drop-shadow-[0_1px_0_rgba(255,246,196,0.45)]">
               {guide.title}
             </h2>
             {guide.subtitle ? (
-              <p className="mt-[clamp(12px,2.4dvh,34px)] text-[clamp(22px,5.8vw,64px)] font-black leading-none tracking-[-0.05em] text-[#352720]">
+              <p className="mt-[clamp(6px,1.2dvh,18px)] text-[clamp(16px,4.5vw,52px)] font-black leading-none tracking-[-0.045em] text-[#352720]">
                 {guide.subtitle}
               </p>
-            ) : null}
-            {label ? (
-              <div className="mt-[clamp(16px,2.5dvh,34px)] inline-flex max-w-[90%] flex-col items-center justify-center bg-[#f5c62c] px-[clamp(14px,3.4vw,38px)] py-[clamp(6px,1.5vw,16px)] text-center text-[clamp(8px,2vw,20px)] font-black uppercase leading-[1.15] tracking-[-0.02em] text-[#6b4b08] shadow-[0_3px_0_rgba(160,122,14,0.5)] [clip-path:polygon(0_0,100%_0,100%_82%,95%_82%,95%_100%,5%_100%,5%_82%,0_82%)]">
-                {label.split("\n").map((line) => (
-                  <span key={line} className="block">
-                    {line}
-                  </span>
-                ))}
-              </div>
             ) : null}
           </div>
         </section>
 
-        <div className="relative z-20 -mt-[clamp(18px,2.5dvh,34px)] flex min-h-0 flex-1 flex-col gap-[clamp(10px,1.5dvh,24px)] px-[clamp(16px,4.3vw,48px)] pb-[clamp(18px,3dvh,42px)]">
+        <div className="relative z-20 flex min-h-0 flex-1 flex-col gap-[clamp(8px,1.2dvh,20px)] px-[clamp(16px,4.3vw,48px)] pb-[clamp(18px,3dvh,42px)] pt-[clamp(8px,1.2dvh,20px)]">
           <AudioGuidePlayer guide={guide} />
 
           <section className="content-card flex min-h-0 flex-1 flex-col overflow-hidden rounded-[clamp(10px,3vw,30px)] border border-[#e5c565] bg-[#fffdf3]/95 px-[clamp(16px,4.2vw,48px)] pb-[clamp(14px,2.2dvh,32px)] pt-[clamp(18px,2.8dvh,36px)] shadow-[0_3px_10px_rgba(151,110,25,0.24)]">

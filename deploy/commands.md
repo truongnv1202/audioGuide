@@ -48,6 +48,18 @@ public/images/items/01.jpg ... public/images/items/24.jpg
 public/audio/01.mp3 ... public/audio/24.mp3
 ```
 
+Nếu cần lấy ảnh từ DOCX nguồn trên máy local, chạy:
+
+```bash
+python scripts/extract-docx-images.py
+```
+
+Sau đó copy thư mục ảnh lên server:
+
+```bash
+rsync -av public/images/items/ user@server:/opt/audioGuide/public/images/items/
+```
+
 Trên server, các URL này được Nginx phục vụ trực tiếp từ thư mục `public`:
 
 ```text

@@ -49,6 +49,16 @@ body {
   backdrop-filter: blur(4px);
 }
 
+.hero-photo {
+  filter: grayscale(1) contrast(1.08) sepia(0.08);
+}
+
+.hero-vignette {
+  background:
+    radial-gradient(ellipse at 50% 66%, transparent 30%, rgba(255, 236, 148, 0.25) 58%, #fff3ad 86%),
+    linear-gradient(180deg, rgba(255, 243, 173, 0) 42%, rgba(255, 247, 214, 0.92) 100%);
+}
+
 @media (orientation: portrait) and (min-width: 900px) {
   body {
     background:
@@ -63,15 +73,10 @@ a {
 }
 
 .guide-scrollbar {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(108, 67, 40, 0.35) transparent;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .guide-scrollbar::-webkit-scrollbar {
-  width: 4px;
-}
-
-.guide-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(108, 67, 40, 0.35);
-  border-radius: 999px;
+  display: none;
 }

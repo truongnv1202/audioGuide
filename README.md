@@ -65,11 +65,25 @@ public/audio/24.mp3
 
 Nếu ảnh chưa có, giao diện tự dùng ảnh placeholder. Nếu audio chưa có, nút play sẽ báo thiếu file.
 
+Để trích xuất lại 24 ảnh từ file DOCX nguồn trên máy local:
+
+```bash
+python scripts/extract-docx-images.py
+```
+
+Script đọc file DOCX trong `Downloads` và ghi ảnh vào `public/images/items`. Các ảnh luôn có alias `01.jpg` ... `24.jpg` để khớp `imageUrl` trong dữ liệu seed.
+
 Khi deploy tại `/opt/audioGuide`, Nginx phục vụ trực tiếp:
 
 ```text
 https://audioguide.gamegiaoduc.co/images/items/21.jpg -> /opt/audioGuide/public/images/items/21.jpg
 https://audioguide.gamegiaoduc.co/audio/21.mp3 -> /opt/audioGuide/public/audio/21.mp3
+```
+
+Copy ảnh đã trích xuất lên server:
+
+```bash
+rsync -av public/images/items/ user@server:/opt/audioGuide/public/images/items/
 ```
 
 Sau khi copy ảnh/audio mới lên server, chạy lại `./deploy/quick-deploy.sh` hoặc `sudo nginx -t && sudo systemctl reload nginx`.
