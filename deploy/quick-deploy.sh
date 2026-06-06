@@ -5,6 +5,8 @@ DOMAIN="${DOMAIN:-audioguide.gamegiaoduc.co}"
 APP_DIR="${APP_DIR:-/opt/audioGuide}"
 HOST_GUIDES_DATA_PATH="${HOST_GUIDES_DATA_PATH:-$APP_DIR/data/guides.json}"
 CONTAINER_GUIDES_DATA_PATH="${CONTAINER_GUIDES_DATA_PATH:-/app/data/guides.json}"
+HOST_UPLOADS_DIR="${HOST_UPLOADS_DIR:-$APP_DIR/data/uploads}"
+CONTAINER_UPLOADS_DIR="${CONTAINER_UPLOADS_DIR:-/app/data/uploads}"
 PORT="${PORT:-9000}"
 SSL_DIR="${SSL_DIR:-/etc/nginx/ssl/audioguide}"
 SSL_CERT_PATH="${SSL_CERT_PATH:-$SSL_DIR/origin-selfsigned.pem}"
@@ -74,7 +76,7 @@ server {
     ssl_certificate_key $SSL_KEY_PATH;
     ssl_protocols TLSv1.2 TLSv1.3;
 
-    client_max_body_size 20m;
+    client_max_body_size 100m;
 
     location /_next/static/ {
         proxy_pass http://127.0.0.1:$PORT;
@@ -129,6 +131,9 @@ if [ -z "$SECRET" ] || [ "$SECRET" = "change-this-backend-secret" ]; then
 fi
 set_env_value "PORT" "$PORT"
 set_env_value "GUIDES_DATA_PATH" "$CONTAINER_GUIDES_DATA_PATH"
+set_env_value "UPLOADS_DIR" "$CONTAINER_UPLOADS_DIR"
+
+mkdir -p "$HOST_UPLOADS_DIR"
 
 install_origin_cert
 

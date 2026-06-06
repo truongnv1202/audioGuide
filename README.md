@@ -67,6 +67,7 @@ Backend không còn nằm ở `/api/guides` công khai. Link backend dùng secre
 GET /backend/{BACKEND_SECRET}/guides
 GET /backend/{BACKEND_SECRET}/guides/1
 PATCH /backend/{BACKEND_SECRET}/guides/1
+POST /backend/{BACKEND_SECRET}/guides/1/upload
 ```
 
 Ví dụ nếu `.env` có `BACKEND_SECRET=abc123`:
@@ -94,6 +95,26 @@ curl -X PATCH "https://audioguide.gamegiaoduc.co/backend/abc123/guides/1" \
 
 Các field có thể sửa: `title`, `subtitle`, `description`, `imageUrl`, `audioUrl`.
 
+Upload ảnh và MP3 cho bài số 1:
+
+```bash
+curl -X POST "https://audioguide.gamegiaoduc.co/backend/abc123/guides/1/upload" \
+  -F "image=@/duong/dan/anh-01.jpg" \
+  -F "audio=@/duong/dan/audio-01.mp3"
+```
+
+Có thể upload riêng từng loại:
+
+```bash
+curl -X POST "https://audioguide.gamegiaoduc.co/backend/abc123/guides/1/upload" \
+  -F "image=@/duong/dan/anh-01.png"
+
+curl -X POST "https://audioguide.gamegiaoduc.co/backend/abc123/guides/1/upload" \
+  -F "audio=@/duong/dan/audio-01.mp3"
+```
+
+File upload được lưu trong `data/uploads` và được phục vụ qua `/media/images/...` hoặc `/media/audio/...`. Sau khi upload, backend tự cập nhật `imageUrl` và `audioUrl` của bài.
+
 Reset lại 24 bài mẫu:
 
 ```bash
@@ -112,7 +133,7 @@ chmod +x deploy/quick-deploy.sh
 ./deploy/quick-deploy.sh
 ```
 
-Script này tự tạo/cập nhật `.env`, seed dữ liệu, build Docker, tự tạo self-signed SSL cert nếu chưa có, ghi nginx site config và reload nginx.
+Script này tự tạo/cập nhật `.env`, seed dữ liệu, tạo thư mục upload, build Docker, tự tạo self-signed SSL cert nếu chưa có, ghi nginx site config và reload nginx.
 
 Hoặc chạy từng bước:
 
@@ -161,7 +182,7 @@ server {
     ssl_certificate_key /etc/nginx/ssl/audioguide/origin-selfsigned.key;
     ssl_protocols TLSv1.2 TLSv1.3;
 
-    client_max_body_size 20m;
+    client_max_body_size 100m;
 
     location /_next/static/ {
         proxy_pass http://127.0.0.1:9000;

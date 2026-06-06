@@ -73,6 +73,16 @@ curl -X PATCH "https://audioguide.gamegiaoduc.co/backend/$SECRET/guides/1" \
   }'
 ```
 
+Upload ảnh và MP3 cho bài số 1:
+
+```bash
+curl -X POST "https://audioguide.gamegiaoduc.co/backend/$SECRET/guides/1/upload" \
+  -F "image=@/duong/dan/anh-01.jpg" \
+  -F "audio=@/duong/dan/audio-01.mp3"
+```
+
+File upload được lưu trong `data/uploads`, đã được mount vào container qua volume Docker.
+
 ## 5. Tự tạo SSL certificate cho origin
 
 ```bash
@@ -112,6 +122,7 @@ Script sẽ tự:
 
 - Tạo/cập nhật `.env` và `BACKEND_SECRET`.
 - Chạy `npm install` và `npm run seed`.
+- Tạo thư mục `data/uploads` để lưu ảnh/audio upload.
 - Build/chạy Docker bằng `docker compose up -d --build`.
 - Tự tạo cert/key vào `/etc/nginx/ssl/audioguide` nếu chưa có.
 - Ghi site config vào `/etc/nginx/conf.d/audioguide.conf`.
