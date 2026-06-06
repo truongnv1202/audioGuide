@@ -10,5 +10,8 @@ services:
       NODE_ENV: production
       PORT: ${PORT:-9000}
       BACKEND_SECRET: ${BACKEND_SECRET:-change-this-backend-secret}
+      GUIDES_DATA_PATH: ${GUIDES_DATA_PATH:-/app/data/guides.json}
     ports:
       - "127.0.0.1:${PORT:-9000}:${PORT:-9000}"
+    volumes:
+      - ./data:/app/data

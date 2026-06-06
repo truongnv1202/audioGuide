@@ -3,7 +3,9 @@ import { notFound } from "next/navigation";
 
 import AudioGuidePlayer from "@/components/AudioGuidePlayer";
 import GuideImage from "@/components/GuideImage";
-import { getGuideById, guides } from "@/data/seed";
+import { getGuideById, getGuides } from "@/lib/guidesStore";
+
+export const dynamic = "force-dynamic";
 
 function clampId(value) {
   const parsed = Number.parseInt(value ?? "1", 10);
@@ -13,7 +15,10 @@ function clampId(value) {
 export default async function Home({ searchParams }) {
   const params = await searchParams;
   const id = clampId(params?.id);
-  const guide = getGuideById(id);
+  const [guides, guide] = await Promise.all([
+    getGuides(),
+    getGuideById(id),
+  ]);
 
   if (!guide) {
     notFound();

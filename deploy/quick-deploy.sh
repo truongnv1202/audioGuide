@@ -3,7 +3,8 @@ set -euo pipefail
 
 DOMAIN="${DOMAIN:-audioguide.gamegiaoduc.co}"
 APP_DIR="${APP_DIR:-/opt/audioGuide}"
-DOCX_PATH="${DOCX_PATH:-/opt/audioGuide/data/source.docx}"
+HOST_GUIDES_DATA_PATH="${HOST_GUIDES_DATA_PATH:-$APP_DIR/data/guides.json}"
+CONTAINER_GUIDES_DATA_PATH="${CONTAINER_GUIDES_DATA_PATH:-/app/data/guides.json}"
 PORT="${PORT:-9000}"
 SSL_DIR="${SSL_DIR:-/etc/nginx/ssl/audioguide}"
 SSL_CERT_PATH="${SSL_CERT_PATH:-$SSL_DIR/origin-selfsigned.pem}"
@@ -127,12 +128,14 @@ if [ -z "$SECRET" ] || [ "$SECRET" = "change-this-backend-secret" ]; then
   set_env_value "BACKEND_SECRET" "$SECRET"
 fi
 set_env_value "PORT" "$PORT"
-set_env_value "DOCX_PATH" "$DOCX_PATH"
+set_env_value "GUIDES_DATA_PATH" "$CONTAINER_GUIDES_DATA_PATH"
 
 install_origin_cert
 
 npm install
-DOCX_PATH="$DOCX_PATH" npm run seed
+if [ ! -f "$HOST_GUIDES_DATA_PATH" ]; then
+  GUIDES_DATA_PATH="$HOST_GUIDES_DATA_PATH" npm run seed
+fi
 
 docker compose up -d --build
 

@@ -23,13 +23,7 @@ npm run dev
 
 Mở `http://localhost:9000/?id=1`.
 
-## Tạo dữ liệu seed từ DOCX
-
-Script mặc định đọc file:
-
-```text
-C:\Users\vsp\Downloads\[Chiều 23.4. 2026] KB PHÂN KHU 5 - sửa theo góp ý của X03 (1).docx
-```
+## Tạo dữ liệu seed mẫu
 
 Chạy:
 
@@ -37,13 +31,15 @@ Chạy:
 npm run seed
 ```
 
-Hoặc chỉ định file khác:
+Script sẽ tạo `data/guides.json` với 24 bài mẫu để biên tập sau qua backend.
+
+Nếu muốn lưu ở file khác:
 
 ```bash
-DOCX_PATH="/duong/dan/file.docx" npm run seed
+GUIDES_DATA_PATH="/duong/dan/guides.json" npm run seed
 ```
 
-Script sẽ ghi đè `src/data/seed.js` với 24 bản ghi.
+Khi chạy Docker, thư mục `data/` được mount vào container để nội dung đã sửa không mất khi rebuild.
 
 ## Ảnh và audio
 
@@ -70,6 +66,7 @@ Backend không còn nằm ở `/api/guides` công khai. Link backend dùng secre
 ```text
 GET /backend/{BACKEND_SECRET}/guides
 GET /backend/{BACKEND_SECRET}/guides/1
+PATCH /backend/{BACKEND_SECRET}/guides/1
 ```
 
 Ví dụ nếu `.env` có `BACKEND_SECRET=abc123`:
@@ -81,6 +78,30 @@ https://audioguide.gamegiaoduc.co/backend/abc123/guides/1
 
 Nên đổi `BACKEND_SECRET` trước khi deploy production.
 
+Ví dụ chỉnh bài số 1:
+
+```bash
+curl -X PATCH "https://audioguide.gamegiaoduc.co/backend/abc123/guides/1" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "Tiêu đề mới",
+    "subtitle": "(1921 - 1960)",
+    "description": "Nội dung mới của bài thuyết minh.",
+    "imageUrl": "/images/items/01.jpg",
+    "audioUrl": "/audio/01.mp3"
+  }'
+```
+
+Các field có thể sửa: `title`, `subtitle`, `description`, `imageUrl`, `audioUrl`.
+
+Reset lại 24 bài mẫu:
+
+```bash
+curl -X POST "https://audioguide.gamegiaoduc.co/backend/abc123/guides" \
+  -H "Content-Type: application/json" \
+  -d '{"action":"reset-samples"}'
+```
+
 ## Deploy Docker tại `/opt/audioGuide`
 
 Triển khai nhanh:
@@ -88,7 +109,6 @@ Triển khai nhanh:
 ```bash
 cd /opt/audioGuide
 chmod +x deploy/quick-deploy.sh
-DOCX_PATH="/opt/audioGuide/data/source.docx" \
 ./deploy/quick-deploy.sh
 ```
 

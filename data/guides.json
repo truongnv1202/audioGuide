@@ -1,0 +1,194 @@
+[
+  {
+    "id": 1,
+    "title": "Bài thuyết minh 01",
+    "subtitle": "Tiêu đề phụ hoặc mốc thời gian",
+    "description": "Đây là nội dung mẫu cho bài thuyết minh số 01.\n\nBạn có thể chỉnh sửa tiêu đề, tiêu đề phụ, nội dung, đường dẫn ảnh và audio thông qua backend bí mật.\n\nGợi ý biên tập: viết nội dung thành các đoạn ngắn để dễ đọc trên màn hình điện thoại.",
+    "imageUrl": "/images/items/01.jpg",
+    "audioUrl": "/audio/01.mp3"
+  },
+  {
+    "id": 2,
+    "title": "Bài thuyết minh 02",
+    "subtitle": "Tiêu đề phụ hoặc mốc thời gian",
+    "description": "Đây là nội dung mẫu cho bài thuyết minh số 02.\n\nBạn có thể chỉnh sửa tiêu đề, tiêu đề phụ, nội dung, đường dẫn ảnh và audio thông qua backend bí mật.\n\nGợi ý biên tập: viết nội dung thành các đoạn ngắn để dễ đọc trên màn hình điện thoại.",
+    "imageUrl": "/images/items/02.jpg",
+    "audioUrl": "/audio/02.mp3"
+  },
+  {
+    "id": 3,
+    "title": "Bài thuyết minh 03",
+    "subtitle": "Tiêu đề phụ hoặc mốc thời gian",
+    "description": "Đây là nội dung mẫu cho bài thuyết minh số 03.\n\nBạn có thể chỉnh sửa tiêu đề, tiêu đề phụ, nội dung, đường dẫn ảnh và audio thông qua backend bí mật.\n\nGợi ý biên tập: viết nội dung thành các đoạn ngắn để dễ đọc trên màn hình điện thoại.",
+    "imageUrl": "/images/items/03.jpg",
+    "audioUrl": "/audio/03.mp3"
+  },
+  {
+    "id": 4,
+    "title": "Bài thuyết minh 04",
+    "subtitle": "Tiêu đề phụ hoặc mốc thời gian",
+    "description": "Đây là nội dung mẫu cho bài thuyết minh số 04.\n\nBạn có thể chỉnh sửa tiêu đề, tiêu đề phụ, nội dung, đường dẫn ảnh và audio thông qua backend bí mật.\n\nGợi ý biên tập: viết nội dung thành các đoạn ngắn để dễ đọc trên màn hình điện thoại.",
+    "imageUrl": "/images/items/04.jpg",
+    "audioUrl": "/audio/04.mp3"
+  },
+  {
+    "id": 5,
+    "title": "Bài thuyết minh 05",
+    "subtitle": "Tiêu đề phụ hoặc mốc thời gian",
+    "description": "Đây là nội dung mẫu cho bài thuyết minh số 05.\n\nBạn có thể chỉnh sửa tiêu đề, tiêu đề phụ, nội dung, đường dẫn ảnh và audio thông qua backend bí mật.\n\nGợi ý biên tập: viết nội dung thành các đoạn ngắn để dễ đọc trên màn hình điện thoại.",
+    "imageUrl": "/images/items/05.jpg",
+    "audioUrl": "/audio/05.mp3"
+  },
+  {
+    "id": 6,
+    "title": "Bài thuyết minh 06",
+    "subtitle": "Tiêu đề phụ hoặc mốc thời gian",
+    "description": "Đây là nội dung mẫu cho bài thuyết minh số 06.\n\nBạn có thể chỉnh sửa tiêu đề, tiêu đề phụ, nội dung, đường dẫn ảnh và audio thông qua backend bí mật.\n\nGợi ý biên tập: viết nội dung thành các đoạn ngắn để dễ đọc trên màn hình điện thoại.",
+    "imageUrl": "/images/items/06.jpg",
+    "audioUrl": "/audio/06.mp3"
+  },
+  {
+    "id": 7,
+    "title": "Bài thuyết minh 07",
+    "subtitle": "Tiêu đề phụ hoặc mốc thời gian",
+    "description": "Đây là nội dung mẫu cho bài thuyết minh số 07.\n\nBạn có thể chỉnh sửa tiêu đề, tiêu đề phụ, nội dung, đường dẫn ảnh và audio thông qua backend bí mật.\n\nGợi ý biên tập: viết nội dung thành các đoạn ngắn để dễ đọc trên màn hình điện thoại.",
+    "imageUrl": "/images/items/07.jpg",
+    "audioUrl": "/audio/07.mp3"
+  },
+  {
+    "id": 8,
+    "title": "Bài thuyết minh 08",
+    "subtitle": "Tiêu đề phụ hoặc mốc thời gian",
+    "description": "Đây là nội dung mẫu cho bài thuyết minh số 08.\n\nBạn có thể chỉnh sửa tiêu đề, tiêu đề phụ, nội dung, đường dẫn ảnh và audio thông qua backend bí mật.\n\nGợi ý biên tập: viết nội dung thành các đoạn ngắn để dễ đọc trên màn hình điện thoại.",
+    "imageUrl": "/images/items/08.jpg",
+    "audioUrl": "/audio/08.mp3"
+  },
+  {
+    "id": 9,
+    "title": "Bài thuyết minh 09",
+    "subtitle": "Tiêu đề phụ hoặc mốc thời gian",
+    "description": "Đây là nội dung mẫu cho bài thuyết minh số 09.\n\nBạn có thể chỉnh sửa tiêu đề, tiêu đề phụ, nội dung, đường dẫn ảnh và audio thông qua backend bí mật.\n\nGợi ý biên tập: viết nội dung thành các đoạn ngắn để dễ đọc trên màn hình điện thoại.",
+    "imageUrl": "/images/items/09.jpg",
+    "audioUrl": "/audio/09.mp3"
+  },
+  {
+    "id": 10,
+    "title": "Bài thuyết minh 10",
+    "subtitle": "Tiêu đề phụ hoặc mốc thời gian",
+    "description": "Đây là nội dung mẫu cho bài thuyết minh số 10.\n\nBạn có thể chỉnh sửa tiêu đề, tiêu đề phụ, nội dung, đường dẫn ảnh và audio thông qua backend bí mật.\n\nGợi ý biên tập: viết nội dung thành các đoạn ngắn để dễ đọc trên màn hình điện thoại.",
+    "imageUrl": "/images/items/10.jpg",
+    "audioUrl": "/audio/10.mp3"
+  },
+  {
+    "id": 11,
+    "title": "Bài thuyết minh 11",
+    "subtitle": "Tiêu đề phụ hoặc mốc thời gian",
+    "description": "Đây là nội dung mẫu cho bài thuyết minh số 11.\n\nBạn có thể chỉnh sửa tiêu đề, tiêu đề phụ, nội dung, đường dẫn ảnh và audio thông qua backend bí mật.\n\nGợi ý biên tập: viết nội dung thành các đoạn ngắn để dễ đọc trên màn hình điện thoại.",
+    "imageUrl": "/images/items/11.jpg",
+    "audioUrl": "/audio/11.mp3"
+  },
+  {
+    "id": 12,
+    "title": "Bài thuyết minh 12",
+    "subtitle": "Tiêu đề phụ hoặc mốc thời gian",
+    "description": "Đây là nội dung mẫu cho bài thuyết minh số 12.\n\nBạn có thể chỉnh sửa tiêu đề, tiêu đề phụ, nội dung, đường dẫn ảnh và audio thông qua backend bí mật.\n\nGợi ý biên tập: viết nội dung thành các đoạn ngắn để dễ đọc trên màn hình điện thoại.",
+    "imageUrl": "/images/items/12.jpg",
+    "audioUrl": "/audio/12.mp3"
+  },
+  {
+    "id": 13,
+    "title": "Bài thuyết minh 13",
+    "subtitle": "Tiêu đề phụ hoặc mốc thời gian",
+    "description": "Đây là nội dung mẫu cho bài thuyết minh số 13.\n\nBạn có thể chỉnh sửa tiêu đề, tiêu đề phụ, nội dung, đường dẫn ảnh và audio thông qua backend bí mật.\n\nGợi ý biên tập: viết nội dung thành các đoạn ngắn để dễ đọc trên màn hình điện thoại.",
+    "imageUrl": "/images/items/13.jpg",
+    "audioUrl": "/audio/13.mp3"
+  },
+  {
+    "id": 14,
+    "title": "Bài thuyết minh 14",
+    "subtitle": "Tiêu đề phụ hoặc mốc thời gian",
+    "description": "Đây là nội dung mẫu cho bài thuyết minh số 14.\n\nBạn có thể chỉnh sửa tiêu đề, tiêu đề phụ, nội dung, đường dẫn ảnh và audio thông qua backend bí mật.\n\nGợi ý biên tập: viết nội dung thành các đoạn ngắn để dễ đọc trên màn hình điện thoại.",
+    "imageUrl": "/images/items/14.jpg",
+    "audioUrl": "/audio/14.mp3"
+  },
+  {
+    "id": 15,
+    "title": "Bài thuyết minh 15",
+    "subtitle": "Tiêu đề phụ hoặc mốc thời gian",
+    "description": "Đây là nội dung mẫu cho bài thuyết minh số 15.\n\nBạn có thể chỉnh sửa tiêu đề, tiêu đề phụ, nội dung, đường dẫn ảnh và audio thông qua backend bí mật.\n\nGợi ý biên tập: viết nội dung thành các đoạn ngắn để dễ đọc trên màn hình điện thoại.",
+    "imageUrl": "/images/items/15.jpg",
+    "audioUrl": "/audio/15.mp3"
+  },
+  {
+    "id": 16,
+    "title": "Bài thuyết minh 16",
+    "subtitle": "Tiêu đề phụ hoặc mốc thời gian",
+    "description": "Đây là nội dung mẫu cho bài thuyết minh số 16.\n\nBạn có thể chỉnh sửa tiêu đề, tiêu đề phụ, nội dung, đường dẫn ảnh và audio thông qua backend bí mật.\n\nGợi ý biên tập: viết nội dung thành các đoạn ngắn để dễ đọc trên màn hình điện thoại.",
+    "imageUrl": "/images/items/16.jpg",
+    "audioUrl": "/audio/16.mp3"
+  },
+  {
+    "id": 17,
+    "title": "Bài thuyết minh 17",
+    "subtitle": "Tiêu đề phụ hoặc mốc thời gian",
+    "description": "Đây là nội dung mẫu cho bài thuyết minh số 17.\n\nBạn có thể chỉnh sửa tiêu đề, tiêu đề phụ, nội dung, đường dẫn ảnh và audio thông qua backend bí mật.\n\nGợi ý biên tập: viết nội dung thành các đoạn ngắn để dễ đọc trên màn hình điện thoại.",
+    "imageUrl": "/images/items/17.jpg",
+    "audioUrl": "/audio/17.mp3"
+  },
+  {
+    "id": 18,
+    "title": "Bài thuyết minh 18",
+    "subtitle": "Tiêu đề phụ hoặc mốc thời gian",
+    "description": "Đây là nội dung mẫu cho bài thuyết minh số 18.\n\nBạn có thể chỉnh sửa tiêu đề, tiêu đề phụ, nội dung, đường dẫn ảnh và audio thông qua backend bí mật.\n\nGợi ý biên tập: viết nội dung thành các đoạn ngắn để dễ đọc trên màn hình điện thoại.",
+    "imageUrl": "/images/items/18.jpg",
+    "audioUrl": "/audio/18.mp3"
+  },
+  {
+    "id": 19,
+    "title": "Bài thuyết minh 19",
+    "subtitle": "Tiêu đề phụ hoặc mốc thời gian",
+    "description": "Đây là nội dung mẫu cho bài thuyết minh số 19.\n\nBạn có thể chỉnh sửa tiêu đề, tiêu đề phụ, nội dung, đường dẫn ảnh và audio thông qua backend bí mật.\n\nGợi ý biên tập: viết nội dung thành các đoạn ngắn để dễ đọc trên màn hình điện thoại.",
+    "imageUrl": "/images/items/19.jpg",
+    "audioUrl": "/audio/19.mp3"
+  },
+  {
+    "id": 20,
+    "title": "Bài thuyết minh 20",
+    "subtitle": "Tiêu đề phụ hoặc mốc thời gian",
+    "description": "Đây là nội dung mẫu cho bài thuyết minh số 20.\n\nBạn có thể chỉnh sửa tiêu đề, tiêu đề phụ, nội dung, đường dẫn ảnh và audio thông qua backend bí mật.\n\nGợi ý biên tập: viết nội dung thành các đoạn ngắn để dễ đọc trên màn hình điện thoại.",
+    "imageUrl": "/images/items/20.jpg",
+    "audioUrl": "/audio/20.mp3"
+  },
+  {
+    "id": 21,
+    "title": "Bài thuyết minh 21",
+    "subtitle": "Tiêu đề phụ hoặc mốc thời gian",
+    "description": "Đây là nội dung mẫu cho bài thuyết minh số 21.\n\nBạn có thể chỉnh sửa tiêu đề, tiêu đề phụ, nội dung, đường dẫn ảnh và audio thông qua backend bí mật.\n\nGợi ý biên tập: viết nội dung thành các đoạn ngắn để dễ đọc trên màn hình điện thoại.",
+    "imageUrl": "/images/items/21.jpg",
+    "audioUrl": "/audio/21.mp3"
+  },
+  {
+    "id": 22,
+    "title": "Bài thuyết minh 22",
+    "subtitle": "Tiêu đề phụ hoặc mốc thời gian",
+    "description": "Đây là nội dung mẫu cho bài thuyết minh số 22.\n\nBạn có thể chỉnh sửa tiêu đề, tiêu đề phụ, nội dung, đường dẫn ảnh và audio thông qua backend bí mật.\n\nGợi ý biên tập: viết nội dung thành các đoạn ngắn để dễ đọc trên màn hình điện thoại.",
+    "imageUrl": "/images/items/22.jpg",
+    "audioUrl": "/audio/22.mp3"
+  },
+  {
+    "id": 23,
+    "title": "Bài thuyết minh 23",
+    "subtitle": "Tiêu đề phụ hoặc mốc thời gian",
+    "description": "Đây là nội dung mẫu cho bài thuyết minh số 23.\n\nBạn có thể chỉnh sửa tiêu đề, tiêu đề phụ, nội dung, đường dẫn ảnh và audio thông qua backend bí mật.\n\nGợi ý biên tập: viết nội dung thành các đoạn ngắn để dễ đọc trên màn hình điện thoại.",
+    "imageUrl": "/images/items/23.jpg",
+    "audioUrl": "/audio/23.mp3"
+  },
+  {
+    "id": 24,
+    "title": "Bài thuyết minh 24",
+    "subtitle": "Tiêu đề phụ hoặc mốc thời gian",
+    "description": "Đây là nội dung mẫu cho bài thuyết minh số 24.\n\nBạn có thể chỉnh sửa tiêu đề, tiêu đề phụ, nội dung, đường dẫn ảnh và audio thông qua backend bí mật.\n\nGợi ý biên tập: viết nội dung thành các đoạn ngắn để dễ đọc trên màn hình điện thoại.",
+    "imageUrl": "/images/items/24.jpg",
+    "audioUrl": "/audio/24.mp3"
+  }
+]

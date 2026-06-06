@@ -9,12 +9,11 @@
     "start": "next start -p 9000",
     "lint": "eslint .",
     "seed": "node seed.js",
-    "seed:docx": "node seed.js"
+    "seed:samples": "node seed.js"
   },
   "dependencies": {
     "@fontsource/lato": "latest",
     "@tailwindcss/postcss": "latest",
-    "mammoth": "latest",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest"

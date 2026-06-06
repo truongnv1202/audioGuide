@@ -1,1 +1,1 @@
-import "./scripts/docx-to-seed.mjs";
+import "./scripts/seed-sample-guides.mjs";
