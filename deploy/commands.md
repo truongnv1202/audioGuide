@@ -119,6 +119,7 @@ curl -X PATCH "https://audioguide.gamegiaoduc.co/backend/$SECRET/guides/1" \
     "description": "Nội dung mới",
     "imageUrl": "/images/items/01.jpg",
     "audioUrl": "/audio/01.mp3",
+    "playbackRate": 1,
     "titleLayout": {
       "left": "16px",
       "top": "38px",
