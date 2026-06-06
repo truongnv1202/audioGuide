@@ -56,7 +56,8 @@ body {
   backdrop-filter: blur(4px);
 }
 
-.hero-photo-frame {
+.hero-image-frame {
+  position: relative;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
