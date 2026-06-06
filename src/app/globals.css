@@ -23,6 +23,11 @@ html {
   background: #f3f0e7;
 }
 
+html,
+body {
+  min-height: 100%;
+}
+
 body {
   margin: 0;
   color: var(--guide-deep);
@@ -30,6 +35,14 @@ body {
     radial-gradient(circle at 50% 5%, rgba(255, 255, 255, 0.85), transparent 28rem),
     linear-gradient(180deg, #f5f1e5 0%, #ffd982 56%, #fff4cf 100%);
   font-family: var(--font-lato);
+}
+
+@media (orientation: portrait) and (min-width: 900px) {
+  body {
+    background:
+      radial-gradient(circle at 50% 2%, rgba(255, 255, 255, 0.9), transparent 42rem),
+      linear-gradient(180deg, #f5f1e5 0%, #fff8e8 9%, #ffd873 62%, #fff2c6 100%);
+  }
 }
 
 button,

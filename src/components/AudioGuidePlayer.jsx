@@ -92,36 +92,36 @@ export default function AudioGuidePlayer({ guide }) {
   }
 
   return (
-    <section className="rounded-[2rem] bg-[#ffd776]/70 px-6 py-6 shadow-[0_-14px_45px_rgba(168,101,32,0.16)] backdrop-blur">
+    <section className="rounded-[clamp(32px,6vw,64px)] bg-[#ffd776]/70 px-[clamp(24px,5vw,60px)] py-[clamp(22px,3.8dvh,52px)] shadow-[0_-14px_45px_rgba(168,101,32,0.16)] backdrop-blur">
       <audio ref={audioRef} preload="metadata" src={guide.audioUrl}>
         <track kind="captions" />
       </audio>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-[clamp(16px,3.2vw,36px)]">
         <button
           type="button"
           onClick={togglePlayback}
-          className="grid size-11 shrink-0 place-items-center rounded-full bg-[var(--guide-accent)] text-white shadow-lg shadow-[#9d4549]/25 transition active:scale-95"
+          className="grid size-[clamp(44px,8vw,92px)] shrink-0 place-items-center rounded-full bg-[var(--guide-accent)] text-white shadow-lg shadow-[#9d4549]/25 transition active:scale-95"
           aria-label={isPlaying ? "Tạm dừng audio" : "Phát audio"}
         >
           {isPlaying ? (
-            <span className="flex gap-1">
-              <span className="h-4 w-1.5 rounded-full bg-current" />
-              <span className="h-4 w-1.5 rounded-full bg-current" />
+            <span className="flex gap-[clamp(4px,0.7vw,8px)]">
+              <span className="h-[clamp(16px,3vw,34px)] w-[clamp(6px,1vw,11px)] rounded-full bg-current" />
+              <span className="h-[clamp(16px,3vw,34px)] w-[clamp(6px,1vw,11px)] rounded-full bg-current" />
             </span>
           ) : (
-            <span className="ml-1 h-0 w-0 border-y-[8px] border-l-[12px] border-y-transparent border-l-current" />
+            <span className="ml-1 h-0 w-0 border-y-[clamp(8px,1.6vw,18px)] border-l-[clamp(12px,2.3vw,26px)] border-y-transparent border-l-current" />
           )}
         </button>
 
-        <span className="w-12 shrink-0 font-semibold text-[#6f4a42]">
+        <span className="w-[clamp(48px,9vw,104px)] shrink-0 text-[clamp(16px,3.1vw,34px)] font-semibold text-[#6f4a42]">
           {formatTime(currentTime)}
         </span>
 
         <button
           type="button"
           onClick={handleSeek}
-          className="relative flex h-11 flex-1 items-center justify-between overflow-hidden rounded-full px-1"
+          className="relative flex h-[clamp(44px,7vw,84px)] flex-1 items-center justify-between overflow-hidden rounded-full px-1"
           aria-label="Tua audio"
         >
           <span
@@ -135,19 +135,19 @@ export default function AudioGuidePlayer({ guide }) {
                 // eslint-disable-next-line react/no-array-index-key
                 key={index}
                 className={active ? "z-10 w-px rounded-full bg-[#9d4549]" : "z-10 w-px rounded-full bg-[#e7b960]"}
-                style={{ height }}
+                style={{ height: `clamp(${height}px, ${height / 5}vw, ${height * 2.1}px)` }}
               />
             );
           })}
         </button>
 
-        <span className="w-12 shrink-0 text-right font-semibold text-[#6f4a42]">
+        <span className="w-[clamp(48px,9vw,104px)] shrink-0 text-right text-[clamp(16px,3.1vw,34px)] font-semibold text-[#6f4a42]">
           {formatTime(duration)}
         </span>
       </div>
 
       {audioError ? (
-        <p className="mt-3 text-center text-sm font-semibold text-[#8b3d40]">
+        <p className="mt-3 text-center text-[clamp(14px,2.5vw,28px)] font-semibold text-[#8b3d40]">
           {audioError}
         </p>
       ) : null}
