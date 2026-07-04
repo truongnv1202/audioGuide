@@ -48,22 +48,48 @@ function SceneCandle({ candle }) {
   );
 }
 
+function SceneEmber({ ember }) {
+  const style = {
+    left: `${ember.x}%`,
+    top: `${ember.y}%`,
+    "--ember-size": `${ember.size}px`,
+    "--ember-opacity": ember.opacity,
+    "--ember-blur": `${ember.blur}px`,
+    "--flicker-delay": `${ember.flickerDelay}s`,
+    "--flicker-duration": `${ember.flickerDuration || 2}s`,
+  };
+
+  return <div className="memorial-scene-ember" style={style} />;
+}
+
 export default function MemorialCandleRoom({ userCandles }) {
-  const ambientCandles = useMemo(() => createAmbientCandles(), []);
+  const ambientItems = useMemo(() => createAmbientCandles(), []);
+  const ambientCandles = ambientItems.filter((item) => item.kind === "candle");
+  const ambientEmbers = ambientItems.filter((item) => item.kind === "ember");
+  const userSceneCandles = userCandles.filter((item) => item.kind !== "ember");
 
   return (
-    <div className="memorial-candle-room pointer-events-none fixed inset-0 z-[5] overflow-hidden">
+    <div className="memorial-candle-room pointer-events-none fixed inset-0 z-[1] overflow-hidden" aria-hidden="true">
+      <div className="memorial-room-corridor">
+        <div className="memorial-room-corridor-floor" />
+        <div className="memorial-room-corridor-haze" />
+      </div>
+
       <div className="memorial-room-floor" />
       <div className="memorial-room-walls" />
       <div className="memorial-room-vignette absolute inset-0" />
       <div className="memorial-room-ceiling-glow absolute inset-0" />
       <div className="memorial-room-ambient-pulse absolute inset-0" />
+      <div className="memorial-room-sparkle-shimmer absolute inset-0" />
 
       <div className="memorial-candle-stage absolute inset-0">
+        {ambientEmbers.map((ember) => (
+          <SceneEmber key={ember.id} ember={ember} />
+        ))}
         {ambientCandles.map((candle) => (
           <SceneCandle key={candle.id} candle={candle} />
         ))}
-        {userCandles.map((candle) => (
+        {userSceneCandles.map((candle) => (
           <SceneCandle key={candle.id} candle={candle} />
         ))}
       </div>

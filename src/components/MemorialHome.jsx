@@ -101,10 +101,12 @@ export default function MemorialHome({ guides, initialCount, marqueeText }) {
 
       <div className="memorial-scroll relative z-10 min-h-0 flex-1 overflow-x-hidden overflow-y-auto overscroll-y-contain">
         <div className="memorial-scroll-inner mx-auto w-full max-w-[1080px] px-[clamp(6px,1.8vw,14px)] pb-[clamp(12px,2dvh,18px)] pt-[clamp(8px,1.6dvh,14px)]">
-          <div className="memorial-grid">
-            {guides.map((guide) => (
-              <HeroCard key={guide.id} guide={guide} />
-            ))}
+          <div className="memorial-grid-stage">
+            <div className="memorial-grid">
+              {guides.map((guide) => (
+                <HeroCard key={guide.id} guide={guide} />
+              ))}
+            </div>
           </div>
         </div>
       </div>

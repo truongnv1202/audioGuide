@@ -1,4 +1,8 @@
-const AMBIENT_COUNT = 148;
+const MAX_CANDLES = 108;
+const EMBER_COUNT = 240;
+const FLOOR_ROWS = 11;
+const COLS_PER_ROW = 14;
+const AISLE_COUNT = 36;
 
 function mulberry32(seed) {
   return function next() {
@@ -10,74 +14,110 @@ function mulberry32(seed) {
 }
 
 function depthProfile(depth, random) {
-  const scale = 0.14 + depth * 1.18;
-  const opacity = 0.22 + depth * 0.78;
-  const blur = depth < 0.22 ? 2.4 : depth < 0.48 ? 1.1 : depth < 0.72 ? 0.35 : 0;
-  const z = -280 + depth * 260;
-  const tiltX = -4 + depth * 10 + (random() - 0.5) * 3;
+  const scale = 0.1 + depth * 1.28;
+  const opacity = 0.18 + depth * 0.82;
+  const blur = depth < 0.18 ? 2.8 : depth < 0.42 ? 1.4 : depth < 0.68 ? 0.45 : 0;
+  const z = -340 + depth * 320;
+  const tiltX = -6 + depth * 14 + (random() - 0.5) * 4;
 
   return { scale, opacity, blur, z, tiltX };
 }
 
-export function createAmbientCandles(count = AMBIENT_COUNT) {
-  const random = mulberry32(20260404);
-  const candles = [];
+function createCandle(id, x, y, depth, random) {
+  return {
+    id,
+    kind: "candle",
+    x,
+    y,
+    ...depthProfile(depth, random),
+    depth,
+    flickerDelay: random() * 3,
+    swayDelay: random() * 4.5,
+    swayDuration: 2.2 + random() * 2.6,
+  };
+}
+
+function pushFloorGrid(candles, random) {
+  for (let row = 0; row < FLOOR_ROWS && candles.length < MAX_CANDLES - AISLE_COUNT; row += 1) {
+    const depth = row / (FLOOR_ROWS - 1);
+    const y = 24 + depth * depth * 74;
+
+    for (let col = 0; col < COLS_PER_ROW && candles.length < MAX_CANDLES - AISLE_COUNT; col += 1) {
+      if (row < 3 && random() > 0.55) {
+        continue;
+      }
+
+      if (row > 2 && random() > 0.9) {
+        continue;
+      }
+
+      const lane = col / (COLS_PER_ROW - 1);
+      const x = -16 + lane * 132 + (random() - 0.5) * (10 - depth * 6);
+
+      candles.push(createCandle(`floor-${row}-${col}`, x, y + (random() - 0.5) * 2, 0.26 + depth * 0.74, random));
+    }
+  }
+}
+
+function pushSideAisles(candles, random) {
+  for (let index = 0; index < AISLE_COUNT && candles.length < MAX_CANDLES; index += 1) {
+    const depth = random();
+    const leftSide = index % 2 === 0;
+    const x = leftSide ? -8 + random() * 12 : 96 + random() * 12;
+    const y = 10 + depth * 88;
+
+    candles.push(createCandle(`aisle-${index}`, x, y, depth, random));
+  }
+}
+
+function createEmbers(random, count) {
+  const embers = [];
 
   for (let index = 0; index < count; index += 1) {
     const depth = random();
-    const lane = index % 5;
-    let x;
-    let y;
 
-    if (lane === 0) {
-      x = random() * 100;
-      y = 52 + depth * 46;
-    } else if (lane === 1) {
-      x = random() * 18;
-      y = 18 + depth * 78;
-    } else if (lane === 2) {
-      x = 82 + random() * 18;
-      y = 18 + depth * 78;
-    } else if (lane === 3) {
-      x = 8 + random() * 84;
-      y = 8 + depth * 38;
-    } else {
-      x = random() * 100;
-      y = 28 + depth * 62;
-    }
-
-    const profile = depthProfile(depth, random);
-
-    candles.push({
-      id: `ambient-${index}`,
-      x,
-      y,
-      ...profile,
-      depth,
-      flickerDelay: random() * 2.8,
-      swayDelay: random() * 4,
-      swayDuration: 2.4 + random() * 2.8,
+    embers.push({
+      id: `ember-${index}`,
+      kind: "ember",
+      x: -22 + random() * 144,
+      y: 2 + depth * 62,
+      size: 2 + random() * 5.5,
+      opacity: 0.2 + random() * 0.72,
+      blur: depth < 0.35 ? 1.8 : 0.5,
+      flickerDelay: random() * 4,
+      flickerDuration: 1.2 + random() * 2.6,
     });
   }
 
-  return candles;
+  return embers;
+}
+
+export function createAmbientCandles() {
+  const random = mulberry32(20260404);
+  const candles = [];
+
+  pushFloorGrid(candles, random);
+  pushSideAisles(candles, random);
+
+  return [...createEmbers(random, EMBER_COUNT), ...candles];
 }
 
 export function createUserCandle(id) {
-  const depth = 0.62 + Math.random() * 0.36;
+  const depth = 0.78 + Math.random() * 0.2;
   const profile = depthProfile(depth, () => Math.random());
 
   return {
     id,
-    x: 6 + Math.random() * 88,
-    y: 58 + Math.random() * 38,
+    kind: "candle",
+    x: -6 + Math.random() * 112,
+    y: 84 + Math.random() * 14,
     ...profile,
-    opacity: 0.96,
+    opacity: 0.98,
     blur: 0,
     depth,
     flickerDelay: Math.random() * 1.5,
     swayDelay: Math.random() * 2,
-    swayDuration: 2.2 + Math.random() * 2.2,
+    swayDuration: 2 + Math.random() * 2,
     isNew: true,
   };
 }
