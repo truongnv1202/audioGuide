@@ -180,7 +180,7 @@ a {
   isolation: isolate;
   display: flex;
   flex: 1 1 auto;
-  min-height: calc(100dvh - clamp(34px, 6.5dvh, 52px) - clamp(130px, 24dvh, 190px) - clamp(92px, 15dvh, 124px));
+  min-height: calc(100dvh - clamp(34px, 6.5dvh, 52px) - clamp(43px, 8dvh, 63px) - clamp(92px, 15dvh, 124px));
   flex-direction: column;
   border: 1px solid rgba(74, 58, 40, 0.42);
   border-radius: 10px;
@@ -193,14 +193,14 @@ a {
 
 .memorial-candle-gap {
   flex-shrink: 0;
-  height: clamp(112px, 18dvh, 168px);
-  margin-top: clamp(10px, 2dvh, 18px);
+  height: clamp(37px, 6dvh, 56px);
+  margin-top: clamp(3px, 0.7dvh, 6px);
 }
 
 .memorial-actions {
   display: flex;
   justify-content: center;
-  margin-top: clamp(12px, 2.2dvh, 20px);
+  margin-top: clamp(4px, 0.75dvh, 7px);
   padding:
     clamp(10px, 2dvh, 16px)
     clamp(12px, 3vw, 20px)
@@ -740,16 +740,53 @@ a {
 
 .memorial-static-scene {
   z-index: 1;
+  background: #120e0b;
+}
+
+.memorial-candle-bg-image {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 58%;
+}
+
+.memorial-static-scene picture {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.memorial-candle-bg-overlay {
+  background:
+    linear-gradient(180deg, rgba(23, 18, 15, 0.72) 0%, rgba(23, 18, 15, 0.28) 22%, rgba(18, 14, 11, 0.06) 48%, rgba(18, 14, 11, 0.18) 78%, rgba(18, 14, 11, 0.52) 100%),
+    radial-gradient(ellipse 95% 85% at 50% 42%, transparent 32%, rgba(0, 0, 0, 0.42) 100%);
+  pointer-events: none;
+}
+
+@media (orientation: portrait) {
+  .memorial-candle-bg-image {
+    object-fit: cover;
+    object-position: center 52%;
+  }
+}
+
+@media (orientation: landscape) {
+  .memorial-candle-bg-image {
+    object-position: center 62%;
+  }
 }
 
 .memorial-flying-candle {
   position: fixed;
   z-index: 4;
-  width: clamp(18px, 5vw, 32px);
+  width: clamp(22px, 6vw, 38px);
   left: var(--fly-from-x);
   top: var(--fly-from-y);
   transform: translate(-50%, -100%);
-  animation: memorial-flying-candle 1.85s cubic-bezier(0.22, 0.68, 0.28, 1) forwards;
+  animation: memorial-flying-candle 4.8s ease-in-out forwards;
   pointer-events: none;
 }
 
@@ -757,9 +794,34 @@ a {
   display: block;
   width: 100%;
   height: auto;
+  animation: memorial-flying-candle-glow 4.8s ease-in-out forwards;
   filter:
-    drop-shadow(0 0 8px rgba(255, 180, 70, 0.95))
-    drop-shadow(0 0 16px rgba(255, 120, 30, 0.55));
+    drop-shadow(0 0 10px rgba(255, 190, 80, 0.95))
+    drop-shadow(0 0 20px rgba(255, 130, 35, 0.65));
+}
+
+@keyframes memorial-flying-candle-glow {
+  0% {
+    filter: drop-shadow(0 0 4px rgba(255, 160, 60, 0.4));
+  }
+
+  6%,
+  68% {
+    filter:
+      drop-shadow(0 0 14px rgba(255, 200, 90, 1))
+      drop-shadow(0 0 28px rgba(255, 140, 40, 0.85))
+      drop-shadow(0 0 42px rgba(255, 100, 20, 0.45));
+  }
+
+  35% {
+    filter:
+      drop-shadow(0 0 18px rgba(255, 220, 120, 1))
+      drop-shadow(0 0 34px rgba(255, 150, 45, 0.95));
+  }
+
+  100% {
+    filter: drop-shadow(0 0 2px rgba(255, 120, 30, 0.2));
+  }
 }
 
 @keyframes memorial-flying-candle {
@@ -770,23 +832,32 @@ a {
     transform: translate(-50%, -100%) scale(0.35);
   }
 
-  12% {
+  6% {
     opacity: 1;
-    transform: translate(-50%, -100%) scale(1.05);
+    transform: translate(-50%, -100%) scale(1.12);
   }
 
-  72% {
-    left: var(--fly-to-x);
-    top: var(--fly-to-y);
+  8%,
+  68% {
+    left: var(--fly-from-x);
+    top: var(--fly-from-y);
     opacity: 1;
-    transform: translate(-50%, -100%) scale(0.92);
+    transform: translate(-50%, -100%) scale(1);
+  }
+
+  36% {
+    transform: translate(-50%, -100%) scale(1.08);
+  }
+
+  52% {
+    transform: translate(-50%, -100%) scale(0.98);
   }
 
   100% {
     left: var(--fly-to-x);
     top: var(--fly-to-y);
     opacity: 0;
-    transform: translate(-50%, -100%) scale(0.55);
+    transform: translate(-50%, -100%) scale(0.18);
   }
 }
 
@@ -870,26 +941,40 @@ a {
   }
 }
 
-@media (orientation: landscape) {
-  .memorial-grid {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    grid-template-rows: repeat(4, minmax(0, 1fr));
+@media (orientation: landscape) and (hover: none) and (pointer: coarse) {
+  .memorial-scroll-inner {
+    min-height: auto;
   }
 
   .memorial-grid-stage {
-    min-height: calc(
-      100dvh - clamp(26px, 5dvh, 38px) - clamp(56px, 12dvh, 88px) - clamp(64px, 11dvh, 84px)
-    );
-    padding: clamp(4px, 0.9dvh, 8px) clamp(4px, 1vw, 8px);
+    flex: 0 0 auto;
+    min-height: auto;
+  }
+
+  .memorial-grid {
+    flex: none;
+    height: auto;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: none;
+    grid-auto-rows: auto;
+  }
+
+  .memorial-card {
+    height: auto;
+  }
+
+  .memorial-card-photo {
+    flex: none;
+    aspect-ratio: 3 / 4;
   }
 
   .memorial-candle-gap {
-    height: clamp(52px, 10dvh, 88px);
-    margin-top: clamp(6px, 1.2dvh, 12px);
+    height: clamp(17px, 3.4dvh, 29px);
+    margin-top: clamp(2px, 0.4dvh, 4px);
   }
 
   .memorial-actions {
-    margin-top: clamp(6px, 1.2dvh, 12px);
+    margin-top: clamp(2px, 0.4dvh, 4px);
     padding-top: clamp(6px, 1.2dvh, 10px);
   }
 
@@ -910,6 +995,22 @@ a {
     min-width: clamp(180px, 38vw, 320px);
     padding-block: clamp(6px, 1.2dvh, 10px);
     font-size: clamp(11px, 2.2vw, 16px);
+  }
+}
+
+@media (orientation: landscape) and (hover: hover) and (pointer: fine) {
+  .memorial-candle-gap {
+    height: clamp(17px, 3.4dvh, 29px);
+    margin-top: clamp(2px, 0.4dvh, 4px);
+  }
+
+  .memorial-actions {
+    margin-top: clamp(2px, 0.4dvh, 4px);
+    padding-top: clamp(6px, 1.2dvh, 10px);
+  }
+
+  .memorial-marquee-wrap {
+    padding-block: 0.35rem;
   }
 }
 

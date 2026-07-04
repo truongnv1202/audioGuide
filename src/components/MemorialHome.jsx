@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 
 import MemorialCandleRoom from "@/components/MemorialCandleRoom";
 import { useMemorialOrientation } from "@/hooks/useMemorialLayout";
-import { createUserCandle } from "@/lib/memorialCandles";
+import { createUserCandle, USER_CANDLE_HOLD_MS, USER_CANDLE_TOTAL_MS } from "@/lib/memorialCandles";
 
 function formatCount(value) {
   return new Intl.NumberFormat("vi-VN").format(value);
@@ -52,10 +52,10 @@ export default function MemorialHome({ guides, initialCount, marqueeText }) {
   const [lighting, setLighting] = useState(false);
   const [userCandles, setUserCandles] = useState([]);
   const landscape = useMemorialOrientation();
+  const lightBtnRef = useRef(null);
 
   const removeUserCandle = useCallback((id) => {
     setUserCandles((current) => current.filter((candle) => candle.id !== id));
-    setLighting(false);
   }, []);
 
   async function lightCandle() {
@@ -66,7 +66,17 @@ export default function MemorialHome({ guides, initialCount, marqueeText }) {
     setLighting(true);
 
     const id = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
-    const newCandle = createUserCandle(id);
+    const button = lightBtnRef.current;
+    let fromX = 50;
+    let fromY = 88;
+
+    if (button) {
+      const rect = button.getBoundingClientRect();
+      fromX = ((rect.left + rect.width / 2) / window.innerWidth) * 100;
+      fromY = ((rect.top + rect.height * 0.12) / window.innerHeight) * 100;
+    }
+
+    const newCandle = createUserCandle(id, { fromX, fromY });
 
     setUserCandles((current) => [...current, newCandle]);
 
@@ -84,8 +94,12 @@ export default function MemorialHome({ guides, initialCount, marqueeText }) {
     }
 
     window.setTimeout(() => {
+      setLighting(false);
+    }, USER_CANDLE_HOLD_MS);
+
+    window.setTimeout(() => {
       removeUserCandle(id);
-    }, 1900);
+    }, USER_CANDLE_TOTAL_MS);
   }
 
   const marqueeContent = String(marqueeText || "").trim() || "Hoà Bình không dễ có • ";
@@ -120,8 +134,9 @@ export default function MemorialHome({ guides, initialCount, marqueeText }) {
 
           <section className="memorial-actions relative z-20 shrink-0">
             <div className="inline-flex w-full flex-col items-center">
-              <button
-                type="button"
+            <button
+              ref={lightBtnRef}
+              type="button"
                 disabled={lighting}
                 onClick={lightCandle}
                 className="memorial-light-btn rounded-md px-[clamp(16px,4.5vw,36px)] py-[clamp(8px,1.6dvh,12px)] text-[clamp(12px,2.8vw,20px)] font-black uppercase tracking-[0.06em] text-[#fff6df] disabled:opacity-80"

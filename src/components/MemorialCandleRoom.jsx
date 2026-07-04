@@ -36,8 +36,17 @@ function FlyingCandle({ candle }) {
 export default function MemorialCandleRoom({ userCandles }) {
   return (
     <div className="memorial-static-scene pointer-events-none fixed inset-0 z-[1] overflow-hidden" aria-hidden="true">
-      <div className="memorial-wall absolute inset-0" />
-      <div className="memorial-candle-field absolute inset-0" />
+      <picture>
+        <source srcSet="/images/memorial-candle-bg.webp" type="image/webp" />
+        <img
+          src="/images/memorial-candle-bg.png"
+          alt=""
+          className="memorial-candle-bg-image"
+          decoding="async"
+          fetchPriority="low"
+        />
+      </picture>
+      <div className="memorial-candle-bg-overlay absolute inset-0" />
 
       {userCandles.map((candle) => (
         <FlyingCandle key={candle.id} candle={candle} />
