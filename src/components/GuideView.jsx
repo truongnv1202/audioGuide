@@ -1,4 +1,5 @@
 import AudioGuidePlayer from "@/components/AudioGuidePlayer";
+import GuideBackButton from "@/components/GuideBackButton";
 import HeroGuideImage from "@/components/HeroGuideImage";
 
 function titleLines(guide) {
@@ -15,6 +16,7 @@ export default function GuideView({ guide }) {
 
   return (
     <main className="min-h-dvh bg-[#fff7d6]">
+      <GuideBackButton />
       <div className="guide-screen mx-auto flex min-h-dvh w-full max-w-[1080px] flex-col overflow-hidden text-[#3f3028]">
         <section className="relative h-[clamp(288px,38dvh,730px)] shrink-0 overflow-hidden px-[clamp(16px,4.3vw,48px)] pt-[clamp(34px,5dvh,92px)]">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_9%,rgba(255,255,255,0.92),transparent_25%),radial-gradient(circle_at_76%_13%,rgba(255,255,255,0.62),transparent_18%),linear-gradient(150deg,#fff3ad_0%,#f3ce77_52%,#fff4bb_100%)]" />

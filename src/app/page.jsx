@@ -4,6 +4,7 @@ import GuideView from "@/components/GuideView";
 import MemorialHome from "@/components/MemorialHome";
 import { getCandleCount } from "@/lib/candleStore";
 import { getGuideById, getGuides } from "@/lib/guidesStore";
+import { getSiteSettings } from "@/lib/siteSettings";
 
 export const dynamic = "force-dynamic";
 
@@ -17,8 +18,18 @@ export default async function Home({ searchParams }) {
   const idParam = params?.id;
 
   if (!idParam) {
-    const [guides, initialCount] = await Promise.all([getGuides(), getCandleCount()]);
-    return <MemorialHome guides={guides} initialCount={initialCount} />;
+    const [guides, initialCount, settings] = await Promise.all([
+      getGuides(),
+      getCandleCount(),
+      getSiteSettings(),
+    ]);
+    return (
+      <MemorialHome
+        guides={guides}
+        initialCount={initialCount}
+        marqueeText={settings.marqueeText}
+      />
+    );
   }
 
   const id = clampId(idParam);

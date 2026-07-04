@@ -1,7 +1,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
-const DEFAULT_COUNT = 125487;
+const DEFAULT_COUNT = 125941;
 
 function getCandleCountPath() {
   return process.env.CANDLE_COUNT_PATH || path.join(process.cwd(), "data", "candle-count.json");

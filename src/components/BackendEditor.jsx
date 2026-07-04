@@ -14,8 +14,10 @@ function numberValue(value) {
   return Number.isFinite(Number(value)) ? Number(value) : 0;
 }
 
-export default function BackendEditor({ secret, initialGuides }) {
+export default function BackendEditor({ secret, initialGuides, initialSettings }) {
   const [guides, setGuides] = useState(initialGuides);
+  const [viewMode, setViewMode] = useState("guide");
+  const [marqueeText, setMarqueeText] = useState(initialSettings?.marqueeText ?? "");
   const [selectedId, setSelectedId] = useState(initialGuides[0]?.id ?? 1);
   const [draft, setDraft] = useState(() => cloneGuide(initialGuides[0] || {}));
   const [saving, setSaving] = useState(false);
@@ -28,9 +30,40 @@ export default function BackendEditor({ secret, initialGuides }) {
 
   function selectGuide(id) {
     const guide = guides.find((item) => item.id === id);
+    setViewMode("guide");
     setSelectedId(id);
     setDraft(cloneGuide(guide));
     setMessage("");
+  }
+
+  function openHomeSettings() {
+    setViewMode("home");
+    setMessage("");
+  }
+
+  async function saveHomeSettings() {
+    setSaving(true);
+    setMessage("Đang lưu chữ chạy...");
+
+    try {
+      const response = await fetch(`/backend/${secret}/settings`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ marqueeText }),
+      });
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Không lưu được cài đặt trang chủ");
+      }
+
+      setMarqueeText(result.data.marqueeText);
+      setMessage("Đã lưu chữ chạy trang chủ");
+    } catch (error) {
+      setMessage(error.message);
+    } finally {
+      setSaving(false);
+    }
   }
 
   function updateField(field, value) {
@@ -191,13 +224,25 @@ export default function BackendEditor({ secret, initialGuides }) {
             </a>
           </div>
           <div className="grid max-h-[78dvh] gap-2 overflow-y-auto pr-1">
+            <button
+              type="button"
+              onClick={openHomeSettings}
+              className={`rounded-xl border px-3 py-2 text-left text-sm transition ${
+                viewMode === "home"
+                  ? "border-[#c99719] bg-[#fff2ba] font-bold"
+                  : "border-[#eadba9] bg-white hover:bg-[#fff8dc]"
+              }`}
+            >
+              <span className="block text-xs text-[#8b6a12]">Cài đặt</span>
+              <span className="block">Trang chủ / chữ chạy</span>
+            </button>
             {guides.map((guide) => (
               <button
                 key={guide.id}
                 type="button"
                 onClick={() => selectGuide(guide.id)}
                 className={`rounded-xl border px-3 py-2 text-left text-sm transition ${
-                  guide.id === selectedId
+                  viewMode === "guide" && guide.id === selectedId
                     ? "border-[#c99719] bg-[#fff2ba] font-bold"
                     : "border-[#eadba9] bg-white hover:bg-[#fff8dc]"
                 }`}
@@ -212,6 +257,43 @@ export default function BackendEditor({ secret, initialGuides }) {
         </aside>
 
         <section className="rounded-2xl border border-[#dfc271] bg-white/95 p-4 shadow-sm md:p-6">
+          {viewMode === "home" ? (
+            <>
+              <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <p className="text-sm font-bold text-[#9b7318]">Trang chủ</p>
+                  <h2 className="text-2xl font-black">Chữ chạy (marquee)</h2>
+                </div>
+                <div className="flex items-center gap-2">
+                  {message ? <span className="text-sm font-semibold text-[#7b5d19]">{message}</span> : null}
+                  <button
+                    type="button"
+                    disabled={saving}
+                    onClick={saveHomeSettings}
+                    className="rounded-xl bg-[#d4a11d] px-5 py-3 font-black text-white disabled:opacity-60"
+                  >
+                    Lưu chữ chạy
+                  </button>
+                </div>
+              </div>
+
+              <Panel title="Nội dung chữ chạy">
+                <Field label="Chữ chạy trên trang chủ">
+                  <textarea
+                    rows={4}
+                    value={fieldValue(marqueeText)}
+                    onChange={(event) => setMarqueeText(event.target.value)}
+                    className="backend-input min-h-28"
+                    placeholder="Hoà Bình không dễ có • Đời Đời nhớ ơn các anh Hùng liệt sĩ • "
+                  />
+                </Field>
+                <p className="mt-2 text-sm text-[#7b6a4c]">
+                  Dùng dấu <strong>•</strong> để ngăn cách các cụm chữ. Hệ thống tự thêm dấu • cuối nếu thiếu.
+                </p>
+              </Panel>
+            </>
+          ) : (
+            <>
           <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
             <div>
               <p className="text-sm font-bold text-[#9b7318]">
@@ -360,6 +442,8 @@ export default function BackendEditor({ secret, initialGuides }) {
               </Panel>
             </div>
           </div>
+            </>
+          )}
         </section>
       </div>
     </main>
