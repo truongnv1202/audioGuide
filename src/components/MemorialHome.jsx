@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useCallback, useRef, useState } from "react";
 
 import MemorialCandleRoom from "@/components/MemorialCandleRoom";
+import MemorialFullscreen from "@/components/MemorialFullscreen";
 import { useMemorialOrientation } from "@/hooks/useMemorialLayout";
 import { createUserCandle, USER_CANDLE_HOLD_MS, USER_CANDLE_TOTAL_MS } from "@/lib/memorialCandles";
 
@@ -112,6 +113,7 @@ export default function MemorialHome({ guides, initialCount, marqueeText }) {
         landscape ? "memorial-home-landscape" : "memorial-home-portrait",
       ].join(" ")}
     >
+      <MemorialFullscreen />
       <MemorialCandleRoom userCandles={userCandles} />
 
       <header className="memorial-marquee-wrap relative z-20 shrink-0 border-b border-[#4a3a28]/80 py-2">

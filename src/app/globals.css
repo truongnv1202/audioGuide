@@ -34,6 +34,7 @@ body::-webkit-scrollbar {
 html,
 body {
   min-height: 100%;
+  min-height: 100dvh;
 }
 
 body {
@@ -43,6 +44,14 @@ body {
     radial-gradient(circle at 50% 5%, rgba(255, 255, 255, 0.85), transparent 28rem),
     linear-gradient(180deg, #f5f1e5 0%, #ffd982 56%, #fff4cf 100%);
   font-family: var(--font-inter);
+}
+
+body.app-body {
+  padding:
+    env(safe-area-inset-top, 0px)
+    env(safe-area-inset-right, 0px)
+    env(safe-area-inset-bottom, 0px)
+    env(safe-area-inset-left, 0px);
 }
 
 .guide-screen {
@@ -154,6 +163,11 @@ a {
   color-scheme: dark;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
+  width: 100%;
+  min-height: 100dvh;
+  min-height: 100svh;
+  max-height: 100dvh;
+  max-height: 100svh;
 }
 
 .memorial-scroll {

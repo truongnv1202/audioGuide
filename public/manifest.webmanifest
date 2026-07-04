@@ -1,0 +1,18 @@
+{
+  "name": "AudioGuide",
+  "short_name": "AudioGuide",
+  "description": "Hệ thống thuyết minh audio guide",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#17120f",
+  "theme_color": "#17120f",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/images/memorial-candle-bg.webp",
+      "sizes": "512x512",
+      "type": "image/webp",
+      "purpose": "any"
+    }
+  ]
+}
