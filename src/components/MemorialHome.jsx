@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useState } from "react";
 
 import MemorialCandleRoom from "@/components/MemorialCandleRoom";
 import MemorialFullscreen from "@/components/MemorialFullscreen";
@@ -53,7 +53,6 @@ export default function MemorialHome({ guides, initialCount, marqueeText }) {
   const [lighting, setLighting] = useState(false);
   const [userCandles, setUserCandles] = useState([]);
   const landscape = useMemorialOrientation();
-  const lightBtnRef = useRef(null);
 
   const removeUserCandle = useCallback((id) => {
     setUserCandles((current) => current.filter((candle) => candle.id !== id));
@@ -67,17 +66,7 @@ export default function MemorialHome({ guides, initialCount, marqueeText }) {
     setLighting(true);
 
     const id = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
-    const button = lightBtnRef.current;
-    let fromX = 50;
-    let fromY = 88;
-
-    if (button) {
-      const rect = button.getBoundingClientRect();
-      fromX = ((rect.left + rect.width / 2) / window.innerWidth) * 100;
-      fromY = ((rect.top + rect.height * 0.12) / window.innerHeight) * 100;
-    }
-
-    const newCandle = createUserCandle(id, { fromX, fromY });
+    const newCandle = createUserCandle(id);
 
     setUserCandles((current) => [...current, newCandle]);
 
@@ -137,7 +126,6 @@ export default function MemorialHome({ guides, initialCount, marqueeText }) {
           <section className="memorial-actions relative z-20 shrink-0">
             <div className="inline-flex w-full flex-col items-center">
             <button
-              ref={lightBtnRef}
               type="button"
                 disabled={lighting}
                 onClick={lightCandle}
