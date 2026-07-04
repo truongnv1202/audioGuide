@@ -61,7 +61,7 @@ export default function MemorialHome({ guides, initialCount, marqueeText }) {
     setLighting(true);
 
     const id = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
-    const newCandle = createUserCandle(id);
+    const newCandle = createUserCandle(id, userCandles.length);
 
     setUserCandles((current) => trimUserCandles([...current, newCandle]));
 
@@ -80,10 +80,19 @@ export default function MemorialHome({ guides, initialCount, marqueeText }) {
 
     window.setTimeout(() => {
       setUserCandles((current) =>
-        current.map((candle) => (candle.id === id ? { ...candle, isNew: false } : candle)),
+        current.map((candle) =>
+          candle.id === id
+            ? {
+                ...candle,
+                isFlying: false,
+                x: candle.targetX,
+                y: candle.targetY,
+              }
+            : candle,
+        ),
       );
       setLighting(false);
-    }, 900);
+    }, 1400);
   }
 
   const marqueeContent = String(marqueeText || "").trim() || "Hoà Bình không dễ có • ";
@@ -100,7 +109,7 @@ export default function MemorialHome({ guides, initialCount, marqueeText }) {
       </header>
 
       <div className="memorial-scroll memorial-scroll-fill relative z-10 min-h-0 flex-1 overflow-x-hidden overflow-y-auto overscroll-y-contain">
-        <div className="memorial-scroll-inner mx-auto flex h-full w-full max-w-[1080px] flex-col px-[clamp(6px,1.8vw,14px)] pb-[clamp(4px,0.8dvh,8px)] pt-[clamp(6px,1.2dvh,10px)]">
+        <div className="memorial-scroll-inner mx-auto flex w-full max-w-[1080px] flex-col px-[clamp(6px,1.8vw,14px)] pb-[clamp(4px,0.8dvh,8px)] pt-[clamp(6px,1.2dvh,10px)]">
           <div className="memorial-grid-stage">
             <div className="memorial-grid">
               {guides.map((guide) => (
@@ -108,26 +117,26 @@ export default function MemorialHome({ guides, initialCount, marqueeText }) {
               ))}
             </div>
           </div>
+
+          <div className="memorial-candle-gap" aria-hidden="true" />
+
+          <section className="memorial-actions relative z-20 shrink-0">
+            <div className="inline-flex w-full flex-col items-center">
+              <button
+                type="button"
+                disabled={lighting}
+                onClick={lightCandle}
+                className="memorial-light-btn rounded-md px-[clamp(16px,4.5vw,36px)] py-[clamp(8px,1.6dvh,12px)] text-[clamp(12px,2.8vw,20px)] font-black uppercase tracking-[0.06em] text-[#fff6df] disabled:opacity-80"
+              >
+                HÃY THẮP 1 NGỌN NẾN
+              </button>
+              <p className="memorial-candle-count mt-[5px] max-w-[82%] text-center text-[clamp(9px,1.7vw,11px)] font-medium leading-tight text-[#f0dfbf]">
+                {formatCount(count)} ngọn nến đã được thắp.
+              </p>
+            </div>
+          </section>
         </div>
       </div>
-
-      <footer className="memorial-footer pointer-events-none fixed inset-x-0 bottom-0 z-30">
-        <div className="relative flex justify-center px-4 pb-[max(10px,env(safe-area-inset-bottom))] pt-2">
-          <div className="pointer-events-auto inline-flex flex-col items-center">
-            <button
-              type="button"
-              disabled={lighting}
-              onClick={lightCandle}
-              className="memorial-light-btn rounded-md px-[clamp(16px,4.5vw,36px)] py-[clamp(8px,1.6dvh,12px)] text-[clamp(12px,2.8vw,20px)] font-black uppercase tracking-[0.06em] text-[#fff6df] disabled:opacity-80"
-            >
-              HÃY THẮP 1 NGỌN NẾN
-            </button>
-            <p className="memorial-candle-count mt-[5px] max-w-[82%] text-center text-[clamp(9px,1.7vw,11px)] font-medium leading-tight text-[#f0dfbf]">
-              {formatCount(count)} ngọn nến đã được thắp.
-            </p>
-          </div>
-        </div>
-      </footer>
     </main>
   );
 }
