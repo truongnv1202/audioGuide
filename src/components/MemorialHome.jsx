@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useCallback, useState } from "react";
 
 import MemorialCandleRoom from "@/components/MemorialCandleRoom";
+import { useMemorialOrientation } from "@/hooks/useMemorialLayout";
 import { createUserCandle } from "@/lib/memorialCandles";
 
 function formatCount(value) {
@@ -50,8 +51,12 @@ export default function MemorialHome({ guides, initialCount, marqueeText }) {
   const [count, setCount] = useState(initialCount);
   const [lighting, setLighting] = useState(false);
   const [userCandles, setUserCandles] = useState([]);
+  const landscape = useMemorialOrientation();
 
-  const trimUserCandles = useCallback((list) => list.slice(-40), []);
+  const removeUserCandle = useCallback((id) => {
+    setUserCandles((current) => current.filter((candle) => candle.id !== id));
+    setLighting(false);
+  }, []);
 
   async function lightCandle() {
     if (lighting) {
@@ -61,9 +66,9 @@ export default function MemorialHome({ guides, initialCount, marqueeText }) {
     setLighting(true);
 
     const id = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
-    const newCandle = createUserCandle(id, userCandles.length);
+    const newCandle = createUserCandle(id);
 
-    setUserCandles((current) => trimUserCandles([...current, newCandle]));
+    setUserCandles((current) => [...current, newCandle]);
 
     try {
       const response = await fetch("/api/candles", { method: "POST" });
@@ -79,32 +84,25 @@ export default function MemorialHome({ guides, initialCount, marqueeText }) {
     }
 
     window.setTimeout(() => {
-      setUserCandles((current) =>
-        current.map((candle) =>
-          candle.id === id
-            ? {
-                ...candle,
-                isFlying: false,
-                x: candle.targetX,
-                y: candle.targetY,
-              }
-            : candle,
-        ),
-      );
-      setLighting(false);
-    }, 1400);
+      removeUserCandle(id);
+    }, 1900);
   }
 
   const marqueeContent = String(marqueeText || "").trim() || "Hoà Bình không dễ có • ";
+  const marqueeRepeat = landscape ? 2 : 3;
 
   return (
-    <main className="memorial-home relative flex h-dvh max-h-dvh flex-col overflow-hidden bg-transparent text-[#f6ead0]">
-      <div className="memorial-wall pointer-events-none absolute inset-0 z-0" />
+    <main
+      className={[
+        "memorial-home relative flex h-dvh max-h-dvh flex-col overflow-hidden bg-transparent text-[#f6ead0]",
+        landscape ? "memorial-home-landscape" : "memorial-home-portrait",
+      ].join(" ")}
+    >
       <MemorialCandleRoom userCandles={userCandles} />
 
       <header className="memorial-marquee-wrap relative z-20 shrink-0 border-b border-[#4a3a28]/80 py-2">
         <div className="memorial-marquee whitespace-nowrap text-[clamp(11px,2.8vw,16px)] font-semibold uppercase tracking-[0.08em] text-[#efe2c8]">
-          <span>{marqueeContent.repeat(3)}</span>
+          <span>{marqueeContent.repeat(marqueeRepeat)}</span>
         </div>
       </header>
 

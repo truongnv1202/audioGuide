@@ -112,6 +112,7 @@ a {
 .guide-back-btn {
   position: fixed;
   left: clamp(12px, 3vw, 24px);
+  bottom: max(clamp(12px, 2.4dvh, 22px), env(safe-area-inset-bottom, 0px));
   z-index: 60;
   display: grid;
   place-items: center;
@@ -125,22 +126,7 @@ a {
     0 4px 14px rgba(91, 62, 14, 0.22),
     inset 0 1px 0 rgba(255, 255, 255, 0.75);
   backdrop-filter: blur(6px);
-  transition:
-    top 0.22s ease,
-    bottom 0.22s ease,
-    transform 0.15s ease,
-    box-shadow 0.15s ease,
-    background-color 0.15s ease;
-}
-
-.guide-back-btn-bottom {
-  top: auto;
-  bottom: max(clamp(12px, 2.4dvh, 22px), env(safe-area-inset-bottom, 0px));
-}
-
-.guide-back-btn-top {
-  bottom: auto;
-  top: max(clamp(12px, 2.4dvh, 22px), env(safe-area-inset-top, 0px));
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
 }
 
 .guide-back-btn:hover {
@@ -752,10 +738,63 @@ a {
   }
 }
 
+.memorial-static-scene {
+  z-index: 1;
+}
+
+.memorial-flying-candle {
+  position: fixed;
+  z-index: 4;
+  width: clamp(18px, 5vw, 32px);
+  left: var(--fly-from-x);
+  top: var(--fly-from-y);
+  transform: translate(-50%, -100%);
+  animation: memorial-flying-candle 1.85s cubic-bezier(0.22, 0.68, 0.28, 1) forwards;
+  pointer-events: none;
+}
+
+.memorial-flying-candle-icon {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter:
+    drop-shadow(0 0 8px rgba(255, 180, 70, 0.95))
+    drop-shadow(0 0 16px rgba(255, 120, 30, 0.55));
+}
+
+@keyframes memorial-flying-candle {
+  0% {
+    left: var(--fly-from-x);
+    top: var(--fly-from-y);
+    opacity: 0;
+    transform: translate(-50%, -100%) scale(0.35);
+  }
+
+  12% {
+    opacity: 1;
+    transform: translate(-50%, -100%) scale(1.05);
+  }
+
+  72% {
+    left: var(--fly-to-x);
+    top: var(--fly-to-y);
+    opacity: 1;
+    transform: translate(-50%, -100%) scale(0.92);
+  }
+
+  100% {
+    left: var(--fly-to-x);
+    top: var(--fly-to-y);
+    opacity: 0;
+    transform: translate(-50%, -100%) scale(0.55);
+  }
+}
+
 .memorial-candle-field {
   background:
-    radial-gradient(circle at 50% 100%, rgba(255, 170, 60, 0.55) 0%, rgba(255, 120, 20, 0.18) 28%, transparent 62%),
-    linear-gradient(180deg, transparent 0%, rgba(255, 145, 45, 0.12) 35%, rgba(255, 118, 28, 0.42) 100%);
+    radial-gradient(circle at 50% 100%, rgba(255, 170, 60, 0.58) 0%, rgba(255, 120, 20, 0.2) 30%, transparent 64%),
+    radial-gradient(ellipse 90% 55% at 50% 88%, rgba(255, 190, 90, 0.28) 0%, transparent 58%),
+    linear-gradient(180deg, rgba(255, 145, 45, 0.06) 0%, rgba(255, 118, 28, 0.38) 100%);
   pointer-events: none;
 }
 
@@ -764,21 +803,21 @@ a {
   content: "";
   position: absolute;
   inset: 0;
-  opacity: 0.75;
+  opacity: 0.82;
 }
 
 .memorial-candle-field::before {
   background-image: radial-gradient(circle, rgba(255, 214, 120, 0.95) 0 1px, transparent 2px);
-  background-size: 14px 18px;
+  background-size: 13px 17px;
   background-position: 0 100%;
-  mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.85) 55%, black 100%);
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.55) 35%, black 72%, black 100%);
 }
 
 .memorial-candle-field::after {
-  background-image: radial-gradient(circle, rgba(255, 180, 70, 0.85) 0 1.5px, transparent 3px);
-  background-size: 22px 26px;
+  background-image: radial-gradient(circle, rgba(255, 180, 70, 0.88) 0 1.5px, transparent 3px);
+  background-size: 21px 25px;
   background-position: 7px 100%;
-  mask-image: linear-gradient(180deg, transparent 10%, rgba(0, 0, 0, 0.7) 60%, black 100%);
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.45) 45%, black 100%);
 }
 
 .memorial-light-btn {
@@ -797,4 +836,111 @@ a {
 .memorial-candle-count {
   line-height: 1.2;
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.65);
+}
+
+.memorial-candle-room-lite .memorial-room-corridor,
+.memorial-candle-room-lite .memorial-room-sparkle-shimmer-alt,
+.memorial-candle-room-lite .memorial-room-bokeh {
+  display: none;
+}
+
+.memorial-candle-room-lite .memorial-scene-candle {
+  will-change: auto;
+}
+
+.memorial-candle-room-lite .memorial-scene-candle-icon {
+  filter: drop-shadow(0 0 6px rgba(255, 170, 60, 0.85));
+}
+
+.memorial-candle-room-lite .memorial-scene-ember {
+  box-shadow: 0 0 6px rgba(255, 180, 70, 0.75);
+}
+
+.memorial-home-landscape .memorial-marquee {
+  animation-name: memorial-marquee-landscape;
+}
+
+@keyframes memorial-marquee-landscape {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (orientation: landscape) {
+  .memorial-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-template-rows: repeat(4, minmax(0, 1fr));
+  }
+
+  .memorial-grid-stage {
+    min-height: calc(
+      100dvh - clamp(26px, 5dvh, 38px) - clamp(56px, 12dvh, 88px) - clamp(64px, 11dvh, 84px)
+    );
+    padding: clamp(4px, 0.9dvh, 8px) clamp(4px, 1vw, 8px);
+  }
+
+  .memorial-candle-gap {
+    height: clamp(52px, 10dvh, 88px);
+    margin-top: clamp(6px, 1.2dvh, 12px);
+  }
+
+  .memorial-actions {
+    margin-top: clamp(6px, 1.2dvh, 12px);
+    padding-top: clamp(6px, 1.2dvh, 10px);
+  }
+
+  .memorial-marquee-wrap {
+    padding-block: 0.35rem;
+  }
+
+  .memorial-card-caption {
+    height: clamp(16px, 3.2vw, 24px);
+  }
+
+  .memorial-card-name {
+    font-size: clamp(6px, 1.2vw, 10px);
+    -webkit-line-clamp: 1;
+  }
+
+  .memorial-light-btn {
+    min-width: clamp(180px, 38vw, 320px);
+    padding-block: clamp(6px, 1.2dvh, 10px);
+    font-size: clamp(11px, 2.2vw, 16px);
+  }
+}
+
+@media (orientation: portrait) {
+  .memorial-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: repeat(6, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px), ((hover: none) and (pointer: coarse)) {
+  .memorial-grid {
+    gap: clamp(2px, 0.7vw, 6px);
+  }
+
+  .memorial-card-frame {
+    padding: clamp(2px, 0.45vw, 4px);
+  }
+
+  .memorial-scroll-inner {
+    padding-inline: clamp(4px, 1.4vw, 10px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .memorial-marquee,
+  .memorial-flying-candle {
+    animation: none !important;
+  }
+
+  .memorial-flying-candle {
+    opacity: 0 !important;
+  }
 }
