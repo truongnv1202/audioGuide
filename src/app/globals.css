@@ -178,17 +178,31 @@ a {
   -ms-overflow-style: none;
 }
 
+.memorial-scroll-fill {
+  display: flex;
+  flex-direction: column;
+}
+
+.memorial-scroll-inner {
+  flex: 1;
+  min-height: 0;
+}
+
 .memorial-grid-stage {
   position: relative;
   z-index: 2;
   isolation: isolate;
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  flex-direction: column;
   border: 1px solid rgba(74, 58, 40, 0.42);
   border-radius: 10px;
   background: linear-gradient(180deg, #1c1613 0%, #17120f 48%, #1a1512 100%);
   box-shadow:
     inset 0 1px 0 rgba(255, 228, 180, 0.07),
     0 10px 36px rgba(0, 0, 0, 0.48);
-  padding: clamp(8px, 1.6dvh, 14px) clamp(6px, 1.4vw, 12px);
+  padding: clamp(6px, 1.2dvh, 10px) clamp(5px, 1.2vw, 10px);
 }
 
 .memorial-scroll::-webkit-scrollbar {
@@ -196,8 +210,88 @@ a {
 }
 
 .memorial-footer {
-  min-height: clamp(132px, 22dvh, 196px);
-  background: linear-gradient(180deg, rgba(18, 14, 11, 0.08) 0%, rgba(18, 14, 11, 0.72) 100%);
+  background: linear-gradient(180deg, rgba(18, 14, 11, 0) 0%, rgba(18, 14, 11, 0.78) 42%, rgba(18, 14, 11, 0.92) 100%);
+}
+
+.memorial-grid {
+  display: grid;
+  flex: 1;
+  min-height: 0;
+  height: 100%;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: repeat(6, minmax(0, 1fr));
+  gap: clamp(3px, 0.9vw, 8px);
+  align-items: stretch;
+  justify-items: stretch;
+}
+
+.memorial-card {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+}
+
+.memorial-card-frame {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  flex-direction: column;
+  border: 1px solid rgba(214, 181, 118, 0.72);
+  background:
+    linear-gradient(180deg, rgba(255, 244, 214, 0.98) 0%, rgba(244, 226, 178, 0.98) 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 250, 232, 0.45),
+    0 2px 8px rgba(0, 0, 0, 0.35);
+  padding: clamp(2px, 0.5vw, 5px);
+}
+
+.memorial-card-photo {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid rgba(122, 92, 48, 0.35);
+  background: #d8c4a0;
+}
+
+.memorial-card-image {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  object-position: center center;
+  filter: grayscale(0.15) sepia(0.12);
+}
+
+.memorial-card-caption {
+  display: flex;
+  height: clamp(20px, 4.8vw, 30px);
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(2px, 0.6vw, 4px) clamp(2px, 0.6vw, 4px);
+  text-align: center;
+}
+
+.memorial-card-name {
+  margin: 0;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-size: clamp(7px, 1.45vw, 12px);
+  font-weight: 900;
+  line-height: 1.12;
+  letter-spacing: 0.02em;
+  color: #1f1712;
 }
 
 .memorial-candle-room {
@@ -514,78 +608,6 @@ a {
   }
 }
 
-.memorial-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(5px, 1.2vw, 12px);
-  align-items: start;
-  justify-items: stretch;
-}
-
-.memorial-card {
-  display: block;
-  width: 100%;
-  min-width: 0;
-}
-
-.memorial-card-frame {
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  border: 1px solid rgba(214, 181, 118, 0.72);
-  background:
-    linear-gradient(180deg, rgba(255, 244, 214, 0.98) 0%, rgba(244, 226, 178, 0.98) 100%);
-  box-shadow:
-    inset 0 0 0 1px rgba(255, 250, 232, 0.45),
-    0 2px 8px rgba(0, 0, 0, 0.35);
-  padding: clamp(3px, 0.7vw, 6px);
-}
-
-.memorial-card-photo {
-  display: flex;
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  border: 1px solid rgba(122, 92, 48, 0.35);
-  background: #d8c4a0;
-}
-
-.memorial-card-image {
-  display: block;
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  object-position: center center;
-  filter: grayscale(0.15) sepia(0.12);
-}
-
-.memorial-card-caption {
-  display: flex;
-  height: clamp(26px, 6.5vw, 38px);
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  padding: clamp(3px, 0.8vw, 6px) clamp(2px, 0.6vw, 4px);
-  text-align: center;
-}
-
-.memorial-card-name {
-  margin: 0;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  font-size: clamp(7px, 1.55vw, 13px);
-  font-weight: 900;
-  line-height: 1.15;
-  letter-spacing: 0.02em;
-  color: #1f1712;
-}
-
 .memorial-candle-field {
   background:
     radial-gradient(circle at 50% 100%, rgba(255, 170, 60, 0.55) 0%, rgba(255, 120, 20, 0.18) 28%, transparent 62%),
@@ -616,7 +638,7 @@ a {
 }
 
 .memorial-light-btn {
-  min-width: clamp(220px, 58vw, 420px);
+  min-width: clamp(200px, 52vw, 380px);
   border: 1px solid rgba(228, 193, 118, 0.95);
   background: linear-gradient(180deg, #6d4f2d 0%, #4f3822 48%, #3b2918 100%);
   box-shadow:

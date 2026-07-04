@@ -94,13 +94,13 @@ export default function MemorialHome({ guides, initialCount, marqueeText }) {
       <MemorialCandleRoom userCandles={userCandles} />
 
       <header className="memorial-marquee-wrap relative z-20 shrink-0 border-b border-[#4a3a28]/80 py-2">
-        <div className="memorial-marquee whitespace-nowrap text-[clamp(11px,2.8vw,16px)] font-semibold tracking-[0.08em] text-[#efe2c8]">
+        <div className="memorial-marquee whitespace-nowrap text-[clamp(11px,2.8vw,16px)] font-semibold uppercase tracking-[0.08em] text-[#efe2c8]">
           <span>{marqueeContent.repeat(3)}</span>
         </div>
       </header>
 
-      <div className="memorial-scroll relative z-10 min-h-0 flex-1 overflow-x-hidden overflow-y-auto overscroll-y-contain">
-        <div className="memorial-scroll-inner mx-auto w-full max-w-[1080px] px-[clamp(6px,1.8vw,14px)] pb-[clamp(12px,2dvh,18px)] pt-[clamp(8px,1.6dvh,14px)]">
+      <div className="memorial-scroll memorial-scroll-fill relative z-10 min-h-0 flex-1 overflow-x-hidden overflow-y-auto overscroll-y-contain">
+        <div className="memorial-scroll-inner mx-auto flex h-full w-full max-w-[1080px] flex-col px-[clamp(6px,1.8vw,14px)] pb-[clamp(4px,0.8dvh,8px)] pt-[clamp(6px,1.2dvh,10px)]">
           <div className="memorial-grid-stage">
             <div className="memorial-grid">
               {guides.map((guide) => (
@@ -111,18 +111,18 @@ export default function MemorialHome({ guides, initialCount, marqueeText }) {
         </div>
       </div>
 
-      <footer className="memorial-footer relative z-30 shrink-0">
-        <div className="relative flex justify-center px-4 pb-[max(14px,env(safe-area-inset-bottom))] pt-[clamp(14px,3dvh,22px)]">
-          <div className="inline-flex flex-col items-center">
+      <footer className="memorial-footer pointer-events-none fixed inset-x-0 bottom-0 z-30">
+        <div className="relative flex justify-center px-4 pb-[max(10px,env(safe-area-inset-bottom))] pt-2">
+          <div className="pointer-events-auto inline-flex flex-col items-center">
             <button
               type="button"
               disabled={lighting}
               onClick={lightCandle}
-              className="memorial-light-btn rounded-md px-[clamp(18px,5vw,42px)] py-[clamp(10px,2.2dvh,16px)] text-[clamp(13px,3.2vw,22px)] font-black uppercase tracking-[0.06em] text-[#fff6df] disabled:opacity-80"
+              className="memorial-light-btn rounded-md px-[clamp(16px,4.5vw,36px)] py-[clamp(8px,1.6dvh,12px)] text-[clamp(12px,2.8vw,20px)] font-black uppercase tracking-[0.06em] text-[#fff6df] disabled:opacity-80"
             >
               HÃY THẮP 1 NGỌN NẾN
             </button>
-            <p className="memorial-candle-count mt-[5px] max-w-[82%] text-center text-[clamp(9px,1.9vw,12px)] font-medium leading-tight text-[#f0dfbf]">
+            <p className="memorial-candle-count mt-[5px] max-w-[82%] text-center text-[clamp(9px,1.7vw,11px)] font-medium leading-tight text-[#f0dfbf]">
               {formatCount(count)} ngọn nến đã được thắp.
             </p>
           </div>
