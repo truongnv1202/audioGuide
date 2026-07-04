@@ -860,6 +860,7 @@ a {
 
 .memorial-lotus-candle-image {
   pointer-events: none;
+  background: transparent;
 }
 
 @keyframes memorial-flying-candle-sway {
