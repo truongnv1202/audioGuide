@@ -250,7 +250,7 @@ export default function BackendEditor({ secret, initialGuides, initialSettings }
                 <span className="block text-xs text-[#8b6a12]">
                   Bài {String(guide.id).padStart(2, "0")}
                 </span>
-                <span className="block max-h-10 overflow-hidden whitespace-pre-line">{guide.title1 || guide.title}</span>
+                <span className="block max-h-10 overflow-hidden whitespace-pre-line">{guide.homeTitle || guide.title1 || guide.title}</span>
               </button>
             ))}
           </div>
@@ -316,6 +316,15 @@ export default function BackendEditor({ secret, initialGuides, initialSettings }
 
           <div className="grid gap-5 xl:grid-cols-2">
             <div className="space-y-4">
+              <Field label="Title trang chủ">
+                <textarea
+                  rows={2}
+                  value={fieldValue(draft.homeTitle)}
+                  onChange={(event) => updateField("homeTitle", event.target.value)}
+                  className="backend-input min-h-20"
+                  placeholder="Tên trên thẻ lưới trang chủ. Để trống sẽ dùng Title 1."
+                />
+              </Field>
               <Field label="Title 1">
                 <textarea
                   rows={2}

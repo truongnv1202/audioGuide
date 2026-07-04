@@ -13,7 +13,7 @@ function formatCount(value) {
 }
 
 function heroName(guide) {
-  const raw = String(guide.title1 || guide.title || "").trim();
+  const raw = String(guide.homeTitle || guide.title1 || guide.title || "").trim();
   const dashIndex = raw.indexOf(" - ");
 
   if (dashIndex > 0) {

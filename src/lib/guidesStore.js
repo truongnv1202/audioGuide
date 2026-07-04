@@ -14,6 +14,7 @@ const EDITABLE_STRING_FIELDS = [
   "title1",
   "title2",
   "title3",
+  "homeTitle",
   "description",
   "imageUrl",
   "audioUrl",

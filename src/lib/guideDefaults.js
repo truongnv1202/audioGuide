@@ -48,6 +48,7 @@ export function normalizeGuideDisplay(guide) {
     title1: String(guide.title1 ?? title),
     title2: String(guide.title2 ?? subtitle),
     title3: String(guide.title3 ?? ""),
+    homeTitle: String(guide.homeTitle ?? ""),
     playbackRate: normalizePlaybackRate(guide.playbackRate),
     audioGenerationCount: normalizeAudioGenerationCount(guide.audioGenerationCount),
     audioGeneratedAt: String(guide.audioGeneratedAt ?? ""),
